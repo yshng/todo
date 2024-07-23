@@ -1,3 +1,5 @@
+import { formatDate } from "date-fns";
+
 export interface ToDo {
   title: string;
   description: string;
@@ -35,7 +37,11 @@ export function createCard(item: ToDo): HTMLDivElement {
 
   const dueDate = document.createElement("p");
   dueDate.classList.add("due-date");
-  dueDate.textContent = String(item.dueDate);
+  if (item.dueDate == undefined) {
+    dueDate.textContent = "";
+  } else {
+    dueDate.textContent = formatDate(item.dueDate, 'EEEE M/d/yyyy')
+  }
 
   const priorityHead = document.createElement("p");
   priorityHead.classList.add("priority-head");
