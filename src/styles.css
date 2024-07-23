@@ -20,6 +20,11 @@ header {
   border: 1px solid black;
 }
 
+.todo {
+
+}
+
 .board {
   border: 1px solid black;
+  display: grid;
 }
