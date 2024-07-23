@@ -2,6 +2,24 @@
   font-family: system-ui, sans-serif;
 }
 
-.panel .new-item {
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
+#panel > button {
+  background-color: none;
+  border-radius: 0;
+  border: 1px solid white;
+  padding: 1em;
+  font-weight: 800;
+}
+
+#panel > button:active {
+  border: 1px solid black;
+}
+
+.board {
+  border: 1px solid black;
 }
