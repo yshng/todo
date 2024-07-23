@@ -10,17 +10,25 @@ module.exports = {
       template: "./src/index.html",
     }),
   ],
-  output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
-  },
   mode: "none",
   module: {
     rules: [
       {
         test: /\.css$/i,
-        use: ["style-loader","css-loader"],
-      }
-    ]
-  }
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
+  },
+  output: {
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
+  },
 };
