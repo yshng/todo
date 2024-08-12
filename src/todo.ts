@@ -37,17 +37,7 @@ export function createCard(item: ToDo): HTMLDivElement {
 
   const dueDate = createDueDate(item.dueDate);
 
-  const priorityContainer = document.createElement("div");
-  priorityContainer.classList.add("priority-div");
-
-  const priorityHead = document.createElement("p");
-  priorityHead.classList.add("priority-head");
-  priorityHead.textContent = "Priority: ";
-  const priority = createPriorityDropdown();
-  priorityContainer.append (
-    priorityHead,
-    priority
-  );
+  const priority = createPriority();
 
   const notesHead = document.createElement("p");
   notesHead.classList.add("notes-head");
@@ -60,13 +50,28 @@ export function createCard(item: ToDo): HTMLDivElement {
     title,
     description,
     dueDate,
-    priorityContainer,
+    priority,
     notesHead,
     notes,
     checklist
   );
 
   return card;
+}
+
+function createPriority(): HTMLDivElement {
+  const container = document.createElement("div");
+  container.classList.add("priority-div");
+
+  const priorityHead = document.createElement("p");
+  priorityHead.classList.add("priority-head");
+  priorityHead.textContent = "Priority: ";
+  const priority = createPriorityDropdown();
+  container.append (
+    priorityHead,
+    priority
+  );
+  return container;
 }
 
 function createPriorityDropdown(): HTMLSelectElement {
