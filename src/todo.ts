@@ -108,6 +108,7 @@ function createNotes(notes: string): HTMLDivElement {
   head.textContent = "Notes";
 
   const body = document.createElement("p");
+  body.classList.add("notes");
   body.textContent = notes;
   
   container.append(head,body);
