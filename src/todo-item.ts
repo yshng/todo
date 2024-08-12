@@ -35,13 +35,7 @@ export function createCard(item: ToDo): HTMLDivElement {
   description.classList.add("description");
   description.textContent = item.description;
 
-  const dueDate = document.createElement("p");
-  dueDate.classList.add("due-date");
-  if (item.dueDate == undefined) {
-    dueDate.textContent = "";
-  } else {
-    dueDate.textContent = formatDate(item.dueDate, 'EEEE M/d/yyyy')
-  }
+  const dueDate = createDueDate(item.dueDate);
 
   const priorityContainer = document.createElement("div");
   priorityContainer.classList.add("priority-div");
@@ -84,6 +78,23 @@ function createPriorityDropdown(): HTMLSelectElement {
     list.appendChild(option);
   }
   return list;
+}
+
+function createDueDate(dueDate: Date | undefined): HTMLDivElement {
+  const container = document.createElement("div");
+  container.classList.add("due-date-div");
+  
+  const head = document.createElement("p");
+  head.textContent = "Due: ";
+
+  const date = document.createElement("p");
+  
+  if (dueDate == undefined) {
+  } else {
+    date.textContent = formatDate(dueDate, 'EEE MMM dd, yyyy')
+    container.append(head,date);
+  }
+  return container;
 }
 
 function createChecklist(array: string[]): HTMLUListElement {
