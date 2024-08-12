@@ -88,6 +88,7 @@ function createDueDate(dueDate: Date | undefined): HTMLDivElement {
   
   const head = document.createElement("p");
   head.textContent = "Due: ";
+  head.classList.add("due-date-head");
 
   const date = document.createElement("p");
   
