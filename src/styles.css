@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 :root {
   font-family: system-ui, sans-serif;
 }
@@ -21,10 +25,12 @@ header {
 }
 
 .todo {
-
+  border: 1px solid black;
+  padding: 1rem;
 }
 
-.board {
-  border: 1px solid black;
+#content > div {
   display: grid;
+  grid-template-columns: repeat(6,14em);
+  gap: 10px;
 }
