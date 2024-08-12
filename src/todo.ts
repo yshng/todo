@@ -115,12 +115,16 @@ function createNotes(notes: string): HTMLDivElement {
   return container;
 }
 
-function createChecklist(array: string[]): HTMLUListElement {
+function createChecklist(array: string[]): HTMLDivElement {
+  const container = document.createElement("div");
+  container.classList.add("checklist-div"); 
+
   const list = document.createElement("ul");
   array.map((listitem) => {
     const li = document.createElement("li");
     li.textContent = listitem;
     list.appendChild(li);
   });
-  return list;
+  container.append(list);
+  return container;
 }
