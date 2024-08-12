@@ -11,6 +11,10 @@ newItemBtn?.addEventListener("click", function pushItem() {
   updateDisplay();
 });
 
+const newItem = createItem();
+master.push(newItem);
+updateDisplay();
+
 export function updateDisplay() {
   const container = document.querySelector("#content") as HTMLDivElement;
   const content = document.createElement("div");
