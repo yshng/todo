@@ -1,0 +1,25 @@
+.title {
+  font-weight: 600;
+}
+
+.title, .description, .due-date, .priority-div {
+  padding-bottom: .5em;
+}
+
+.todo {
+  border: 1px solid black;
+  padding: 1rem;
+}
+
+.priority-head {
+  padding-right: .5em;
+}
+
+.priority-div {
+  display: flex;
+  align-items: center;
+}
+
+.notes-head {
+  font-weight: 600;
+}
