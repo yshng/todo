@@ -4,7 +4,7 @@ export interface ToDo {
   title: string;
   description: string;
   dueDate: Date | undefined;
-  priority: number; // from 1 to 5, 5 being most important
+  priority: number; // from 0 to 4, 4 being most important
   notes: string;
   checklist: string[];
   //status: "unsaved" | "saved";
@@ -15,7 +15,7 @@ export function createItem(): ToDo {
     title: "Test",
     description: "Test",
     dueDate: new Date("2001-01-01"),
-    priority: 3,
+    priority: 2,
     notes: "More testing even than you thought.",
     checklist: ["Some item","Next item","Check me out"],
     //status: "unsaved" 
@@ -37,7 +37,7 @@ export function createCard(item: ToDo): HTMLDivElement {
 
   const dueDate = createDueDate(item.dueDate);
 
-  const priority = createPriority();
+  const priority = createPriority(item.priority);
 
   const notes = createNotes(item.notes);
 
@@ -55,28 +55,31 @@ export function createCard(item: ToDo): HTMLDivElement {
   return card;
 }
 
-function createPriority(): HTMLDivElement {
+function createPriority(priority: number): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("priority-div");
 
   const priorityHead = document.createElement("p");
   priorityHead.classList.add("priority-head");
   priorityHead.textContent = "Priority: ";
-  const priority = createPriorityDropdown();
-  priority.classList.add("priority");
+  const dropdown = createPriorityDropdown(priority);
+  dropdown.classList.add("priority");
   container.append (
     priorityHead,
-    priority
+    dropdown
   );
   
   return container;
 }
 
-function createPriorityDropdown(): HTMLSelectElement {
+function createPriorityDropdown(priority: number): HTMLSelectElement {
   const list = document.createElement("select");
   const priorities = ["very low", "low", "moderate", "high", "very high"];
   for (let i = 0; i <= 4; i++) {
     const option = document.createElement("option");
+    if (i == priority) {
+    option.setAttribute("selected","");
+    }
     option.textContent = priorities[i];
     list.appendChild(option);
   }
