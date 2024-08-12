@@ -63,6 +63,7 @@ function createPriority(): HTMLDivElement {
   priorityHead.classList.add("priority-head");
   priorityHead.textContent = "Priority: ";
   const priority = createPriorityDropdown();
+  priority.classList.add("priority");
   container.append (
     priorityHead,
     priority
