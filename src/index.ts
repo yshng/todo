@@ -1,4 +1,5 @@
-import './styles.css';
+import './card.css';
+import './layout.css';
 import {ToDo, createItem, createCard} from './todo-item';
 
 export const master: ToDo[] = [];

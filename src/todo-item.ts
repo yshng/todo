@@ -43,10 +43,17 @@ export function createCard(item: ToDo): HTMLDivElement {
     dueDate.textContent = formatDate(item.dueDate, 'EEEE M/d/yyyy')
   }
 
+  const priorityContainer = document.createElement("div");
+  priorityContainer.classList.add("priority-div");
+
   const priorityHead = document.createElement("p");
   priorityHead.classList.add("priority-head");
   priorityHead.textContent = "Priority: ";
   const priority = createPriorityDropdown();
+  priorityContainer.append (
+    priorityHead,
+    priority
+  );
 
   const notesHead = document.createElement("p");
   notesHead.classList.add("notes-head");
@@ -59,8 +66,7 @@ export function createCard(item: ToDo): HTMLDivElement {
     title,
     description,
     dueDate,
-    priorityHead,
-    priority,
+    priorityContainer,
     notesHead,
     notes,
     checklist
