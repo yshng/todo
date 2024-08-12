@@ -39,11 +39,8 @@ export function createCard(item: ToDo): HTMLDivElement {
 
   const priority = createPriority();
 
-  const notesHead = document.createElement("p");
-  notesHead.classList.add("notes-head");
-  notesHead.textContent = "Notes";
-  const notes = document.createElement("p");
-  notes.textContent = item.notes;
+  const notes = createNotes(item.notes);
+
   const checklist = createChecklist(item.checklist);
 
   card.append(
@@ -51,7 +48,6 @@ export function createCard(item: ToDo): HTMLDivElement {
     description,
     dueDate,
     priority,
-    notesHead,
     notes,
     checklist
   );
@@ -71,6 +67,7 @@ function createPriority(): HTMLDivElement {
     priorityHead,
     priority
   );
+  
   return container;
 }
 
@@ -99,6 +96,22 @@ function createDueDate(dueDate: Date | undefined): HTMLDivElement {
     date.textContent = formatDate(dueDate, 'EEE MMM dd, yyyy')
     container.append(head,date);
   }
+  return container;
+}
+
+function createNotes(notes: string): HTMLDivElement {
+  const container = document.createElement("div");
+  container.classList.add("notes-div");
+
+  const head = document.createElement("p");
+  head.classList.add("notes-head");
+  head.textContent = "Notes";
+
+  const body = document.createElement("p");
+  body.textContent = notes;
+  
+  container.append(head,body);
+
   return container;
 }
 
