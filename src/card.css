@@ -2,7 +2,7 @@
   font-weight: 600;
 }
 
-.title, .description, .due-date-div, .priority-div, .notes-div {
+.title, .description, .due-date-div, .priority-div, .notes-div, .checklist-div {
   padding-bottom: .5em;
 }
 
@@ -37,3 +37,6 @@ select {
   margin-right: .5em;
 }
 
+.timestamp {
+  font-size: .6em;
+}
