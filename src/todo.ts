@@ -129,7 +129,11 @@ function createChecklist(array: string[]): HTMLDivElement {
   list.classList.add("checklist");
   array.map((listitem) => {
     const li = document.createElement("li");
-    li.textContent = listitem;
+    const checkbox = document.createElement("input");
+    checkbox.setAttribute("type","checkbox");
+    checkbox.setAttribute("name",listitem);
+    const text = document.createTextNode(listitem);
+    li.append(checkbox, text);
     list.appendChild(li);
   });
   container.append(list);

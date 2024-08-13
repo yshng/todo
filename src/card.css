@@ -2,7 +2,7 @@
   font-weight: 600;
 }
 
-.title, .description, .due-date, .priority-div {
+.title, .description, .due-date-div, .priority-div, .notes-div {
   padding-bottom: .5em;
 }
 
@@ -17,9 +17,22 @@
 
 .priority-div {
   display: flex;
-  align-items: center;
+  align-items: baseline;
+}
+
+select {
+  font-size: .9em;  
+
 }
 
 .notes-head {
   font-weight: 600;
+}
+
+.checklist {
+  list-style: none;
+}
+
+.checklist input {
+  margin-right: .5em;
 }
