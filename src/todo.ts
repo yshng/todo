@@ -12,7 +12,7 @@ export interface ToDo {
 
 export function createItem(): ToDo {
   const newItem: ToDo = {
-    title: "Test",
+    title: "Sample task",
     description: "This is a description.",
     dueDate: new Date("2001-01-01"),
     priority: 2,
