@@ -136,7 +136,8 @@ function createStatus(state: Status): HTMLDivElement {
   container.classList.add("status-div");
   const head = document.createElement("p");
   head.classList.add("status-head");
-  const status = document.createElement("p");
+  head.textContent = "Status: ";
+  const status = document.createElement("span");
   status.classList.add("status");
   status.textContent = state;
   container.append (head, status);
