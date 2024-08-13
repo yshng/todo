@@ -7,10 +7,13 @@ export interface ToDo {
   priority: number; // from 0 to 4, 4 being most important
   notes: string;
   checklist: string[];
-  status: "done" | "started" | "not started";
-  timescale: "less than 5 minutes" | "less than an hour" | "hours" | "days" | "weeks" | "months" | "years"; 
+  status: Status;
+  timescale: Timescale; 
   created: number;
 }
+
+type Status = "done" | "started" | "not started" | "paused";
+type Timescale = "<5 minutes" | "<1 hour" | "hours" | "days" | "weeks" | "months" | "years";
 
 export function createItem(): ToDo {
   const newItem: ToDo = {
@@ -21,7 +24,7 @@ export function createItem(): ToDo {
     notes: "Here are some notes about this task.",
     checklist: ["Some item","Next item","Check me out"],
     status: "not started",
-    timescale: "less than an hour",
+    timescale: "<1 hour",
     created: Date.now()
   }
   return newItem;
