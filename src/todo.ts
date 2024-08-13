@@ -1,4 +1,4 @@
-import { formatDate } from "date-fns";
+import { formatDate, isToday } from "date-fns";
 
 export interface ToDo {
   title: string;
@@ -9,6 +9,7 @@ export interface ToDo {
   checklist: string[];
   status: "done" | "started" | "not started";
   timescale: "less than 5 minutes" | "less than an hour" | "hours" | "days" | "weeks" | "months" | "years"; 
+  created: number;
 }
 
 export function createItem(): ToDo {
@@ -20,8 +21,8 @@ export function createItem(): ToDo {
     notes: "Here are some notes about this task.",
     checklist: ["Some item","Next item","Check me out"],
     status: "not started",
-    timescale: "less than an hour"
-
+    timescale: "less than an hour",
+    created: Date.now()
   }
   return newItem;
 }
@@ -39,12 +40,10 @@ export function createCard(item: ToDo): HTMLDivElement {
   description.textContent = item.description;
 
   const dueDate = createDueDate(item.dueDate);
-
   const priority = createPriority(item.priority);
-
   const notes = createNotes(item.notes);
-
   const checklist = createChecklist(item.checklist);
+  const timestamp = createTimestamp(item.created);
 
   card.append(
     title,
@@ -52,7 +51,8 @@ export function createCard(item: ToDo): HTMLDivElement {
     dueDate,
     priority,
     notes,
-    checklist
+    checklist,
+    timestamp
   );
 
   return card;
@@ -140,5 +140,12 @@ function createChecklist(array: string[]): HTMLDivElement {
     list.appendChild(li);
   });
   container.append(list);
+  return container;
+}
+
+function createTimestamp(timestamp: number): HTMLDivElement {
+  const container = document.createElement("div");
+  container.classList.add("timestamp");
+  container.textContent = "Created " + formatDate(new Date(timestamp), 'EEE MMM dd, yyyy HH:MM:ssa ');
   return container;
 }
