@@ -27,20 +27,15 @@ export function createCard(item: ToDo): HTMLDivElement {
   description.classList.add("description");
   description.textContent = item.description;
 
-  const dueDate = createDueDate(item.dueDate);
-  const priority = createPriority(item.priority);
-  const notes = createNotes(item.notes);
-  const checklist = createChecklist(item.checklist);
-  const timestamp = createTimestamp(item.created);
-
   card.append(
     title,
     description,
-    dueDate,
-    priority,
-    notes,
-    checklist,
-    timestamp
+    createDueDate(item.dueDate),
+    createPriority(item.priority),
+    createNotes(item.notes),
+    createChecklist(item.checklist),
+    createTimestamp(item.created),
+    createStatus(item.status)
   );
 
   return card;
@@ -139,5 +134,17 @@ function createTimestamp(timestamp: number): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("timestamp");
   container.textContent = "Created " + formatDistance(new Date(timestamp), new Date(Date.now())) + " ago";
+  return container;
+}
+
+function createStatus(state: Status): HTMLDivElement {
+  const container = document.createElement("div");
+  container.classList.add("status-div");
+  const head = document.createElement("p");
+  head.classList.add("status-head");
+  const status = document.createElement("p");
+  status.classList.add("status");
+  status.textContent = state;
+  container.append (head, status);
   return container;
 }
