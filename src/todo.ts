@@ -1,4 +1,4 @@
-import { formatDate, isToday } from "date-fns";
+import { formatDate, formatDistance } from "date-fns";
 
 export interface ToDo {
   title: string;
@@ -12,23 +12,8 @@ export interface ToDo {
   created: number;
 }
 
-type Status = "done" | "started" | "not started" | "paused";
-type Timescale = "<5 minutes" | "<1 hour" | "hours" | "days" | "weeks" | "months" | "years";
-
-export function createItem(): ToDo {
-  const newItem: ToDo = {
-    title: "Sample task",
-    description: "This is a description.",
-    dueDate: new Date("2001-01-01"),
-    priority: 2,
-    notes: "Here are some notes about this task.",
-    checklist: ["Some item","Next item","Check me out"],
-    status: "not started",
-    timescale: "<1 hour",
-    created: Date.now()
-  }
-  return newItem;
-}
+export type Status = "done" | "started" | "not started" | "paused";
+export type Timescale = "<5 minutes" | "<1 hour" | "hours" | "days" | "weeks" | "months" | "years";
 
 export function createCard(item: ToDo): HTMLDivElement {
   const card = document.createElement("div");
@@ -149,6 +134,6 @@ function createChecklist(array: string[]): HTMLDivElement {
 function createTimestamp(timestamp: number): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("timestamp");
-  container.textContent = "Created " + formatDate(new Date(timestamp), 'EEE MMM dd, yyyy HH:MM:ssa ');
+  container.textContent = "Created " + formatDistance(new Date(timestamp), new Date(Date.now())) + " ago";
   return container;
 }
