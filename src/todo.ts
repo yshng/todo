@@ -13,10 +13,10 @@ export interface ToDo {
 export function createItem(): ToDo {
   const newItem: ToDo = {
     title: "Test",
-    description: "Test",
+    description: "This is a description.",
     dueDate: new Date("2001-01-01"),
     priority: 2,
-    notes: "More testing even than you thought.",
+    notes: "Here are some notes about this task.",
     checklist: ["Some item","Next item","Check me out"],
     //status: "unsaved" 
   }
