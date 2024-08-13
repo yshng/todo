@@ -105,8 +105,12 @@ function createNotes(notes: string): HTMLDivElement {
 
   const body = document.createElement("p");
   body.classList.add("notes");
-  body.textContent = notes;
-  
+  if (notes == "") {
+    body.textContent = "(none)";
+  } else { 
+    body.textContent = notes;
+  }
+
   container.append(head,body);
 
   return container;

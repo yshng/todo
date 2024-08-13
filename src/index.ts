@@ -38,7 +38,7 @@ const sample2: ToDo = {
 
 const sample3: ToDo = {
   title: "Sample Task 3",
-  description: "This is the description of yet another sample task",
+  description: "",
   dueDate: new Date(2025,12,5),
   priority: 0,
   notes: "Maybe don't even do this task.",
