@@ -126,6 +126,7 @@ function createChecklist(array: string[]): HTMLDivElement {
   container.classList.add("checklist-div"); 
 
   const list = document.createElement("ul");
+  list.classList.add("checklist");
   array.map((listitem) => {
     const li = document.createElement("li");
     li.textContent = listitem;
