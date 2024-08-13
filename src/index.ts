@@ -14,7 +14,6 @@ export const master: ToDo[] = [];
 
 const sample1: ToDo = {
   title: "Sample Task",
-  description: "This is the description of a sample task",
   dueDate: new Date(2025,12,1,),
   priority: 2,
   notes: "Here are some notes about what I need to do",
@@ -26,7 +25,6 @@ const sample1: ToDo = {
 
 const sample2: ToDo = {
   title: "Sample Task 2",
-  description: "This is the description of another sample task",
   dueDate: new Date(2025,12,2,),
   priority: 3,
   notes: "",
@@ -38,7 +36,6 @@ const sample2: ToDo = {
 
 const sample3: ToDo = {
   title: "Sample Task 3",
-  description: "",
   dueDate: new Date(2025,12,5),
   priority: 0,
   notes: "Maybe don't even do this task.",

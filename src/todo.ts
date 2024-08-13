@@ -2,7 +2,6 @@ import { formatDate, formatDistance } from "date-fns";
 
 export interface ToDo {
   title: string;
-  description: string;
   dueDate: Date | undefined;
   priority: number; // from 0 to 4, 4 being most important
   notes: string;
@@ -23,13 +22,8 @@ export function createCard(item: ToDo): HTMLDivElement {
   title.classList.add("title");
   title.textContent = item.title;
 
-  const description = document.createElement("p");
-  description.classList.add("description");
-  description.textContent = item.description;
-
   card.append(
     title,
-    description,
     createDueDate(item.dueDate),
     createPriority(item.priority),
     createNotes(item.notes),
