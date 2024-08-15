@@ -15,7 +15,7 @@
   padding-right: .5em;
 }
 
-.priority-div {
+.priority-div, .status-div, .due-date-div {
   display: flex;
   align-items: baseline;
 }
