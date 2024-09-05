@@ -2,6 +2,7 @@ import './card.css';
 import './layout.css';
 import './dialog.css';
 import {ToDo, Status, Timescale, createCard} from './todo';
+import './dialog';
 
 export let master: ToDo[] = [];
  
