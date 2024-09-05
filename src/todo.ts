@@ -119,6 +119,8 @@ function createTimestamp(timestamp: number): HTMLDivElement {
   return container;
 }
 
+//function createTimeScale(timescale: Timescale): HTMLDivElement{}
+
 function createStatus(state: Status): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("status-div");
