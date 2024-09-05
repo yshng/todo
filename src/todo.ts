@@ -42,11 +42,13 @@ function createPriority(priority: number): HTMLDivElement {
   const priorityHead = document.createElement("p");
   priorityHead.classList.add("priority-head");
   priorityHead.textContent = "Priority: ";
-  const dropdown = createPriorityDropdown(priority);
-  dropdown.classList.add("priority");
+  const priorities = ["Very High","High","Normal","Low","Very Low"];
+  const body = document.createElement("p");
+  body.classList.add("priority");
+  body.textContent = priorities[priority-1];
   container.append (
     priorityHead,
-    dropdown
+    body
   );
   
   return container;
