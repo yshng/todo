@@ -22,9 +22,6 @@ header {
   align-items: center;
 }
 
-#content {
-  margin: 1em;
-}
 
 button {
   background-color: none;
@@ -38,8 +35,18 @@ button {
   border: 1px solid black;
 }
 
+body, header, main {
+  background-color: lightgray;
+}
+
+#content {
+  width: 100%;
+}
 #content > div {
+  background-color: white;
   display: grid;
   grid-template-columns: repeat(6,14em);
   gap: 10px;
+  overflow: scroll;
+  padding: 1em;
 }
