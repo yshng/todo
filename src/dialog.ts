@@ -5,8 +5,9 @@ const dialog = document.querySelector<HTMLDialogElement>("dialog");
 const addBtn = document.querySelector<HTMLButtonElement>("#submit");
 const cancelBtn = document.querySelector<HTMLButtonElement>("#cancel");
 
-const newItemBtn = document.querySelector<HTMLElement>("#new-item");
- newItemBtn?.addEventListener("click", () => {
+const newItemBtn = document.querySelector<HTMLButtonElement>("#new-item");
+
+newItemBtn?.addEventListener("click", () => {
   if (dialog) dialog.showModal();
 });
 
