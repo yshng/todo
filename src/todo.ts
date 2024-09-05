@@ -5,7 +5,7 @@ export interface ToDo {
   dueDate: Date | undefined;
   priority: number; // from 0 to 4, 4 being most important
   notes: string;
-  checklist: string[];
+  checklist?: string[];
   status: Status;
   timescale: Timescale; 
   created: number;
@@ -93,22 +93,24 @@ function createNotes(notes: string): HTMLDivElement {
   return container;
 }
 
-function createChecklist(array: string[]): HTMLDivElement {
+function createChecklist(array: string[] | undefined): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("checklist-div"); 
 
-  const list = document.createElement("ul");
-  list.classList.add("checklist");
-  array.map((listitem) => {
-    const li = document.createElement("li");
-    const checkbox = document.createElement("input");
-    checkbox.setAttribute("type","checkbox");
-    checkbox.setAttribute("name",listitem);
-    const text = document.createTextNode(listitem);
-    li.append(checkbox, text);
-    list.appendChild(li);
-  });
-  container.append(list);
+  if (array != undefined) {
+    const list = document.createElement("ul");
+    list.classList.add("checklist");
+    array.map((listitem) => {
+      const li = document.createElement("li");
+      const checkbox = document.createElement("input");
+      checkbox.setAttribute("type","checkbox");
+      checkbox.setAttribute("name",listitem);
+      const text = document.createTextNode(listitem);
+      li.append(checkbox, text);
+      list.appendChild(li);
+    });
+    container.append(list);
+  }
   return container;
 }
 
