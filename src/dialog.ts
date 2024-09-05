@@ -1,10 +1,14 @@
 import { Status, Timescale, ToDo } from "./todo";
-import { master } from "./cache";
-import { updateDisplay } from ".";
+import { master, updateDisplay } from ".";
 
-export const dialog = document.querySelector<HTMLDialogElement>("dialog");
-export const addBtn = document.querySelector<HTMLButtonElement>("#submit");
-export const cancelBtn = document.querySelector<HTMLButtonElement>("#cancel");
+const dialog = document.querySelector<HTMLDialogElement>("dialog");
+const addBtn = document.querySelector<HTMLButtonElement>("#submit");
+const cancelBtn = document.querySelector<HTMLButtonElement>("#cancel");
+
+const newItemBtn = document.querySelector<HTMLElement>("#new-item");
+ newItemBtn?.addEventListener("click", () => {
+  if (dialog) dialog.showModal();
+});
 
 addBtn?.addEventListener("click", ()=> {
   master.push(newItem());
@@ -16,7 +20,7 @@ cancelBtn?.addEventListener("click", () => {
   dialog?.close();
 })
 
-export function newItem(): ToDo {
+function newItem(): ToDo {
   let title = document.querySelector<HTMLInputElement>("#title")?.value;
   if (!title) {title = "Another To Do";}
 

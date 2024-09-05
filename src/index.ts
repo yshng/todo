@@ -3,13 +3,8 @@ import './layout.css';
 import './dialog.css';
 import {ToDo, Status, Timescale, createCard} from './todo';
 
-const master: ToDo[] = [];
-const dialog = document.querySelector<HTMLDialogElement>("dialog");
-
- const newItemBtn = document.querySelector<HTMLElement>("#new-item");
- newItemBtn?.addEventListener("click", () => {
-  if (dialog) dialog.showModal();});
-
+export let master: ToDo[] = [];
+ 
 const sample1: ToDo = {
   title: "Sample Task",
   dueDate: new Date(2025,12,1,),
