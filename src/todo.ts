@@ -12,7 +12,7 @@ export interface ToDo {
 }
 
 export type Status = "done" | "started" | "not started" | "paused";
-export type Timescale = "<5 minutes" | "<1 hour" | "hours" | "days" | "weeks" | "months" | "years";
+export type Timescale = "less-5-min" | "less-hour" | "hours" | "days" | "weeks" | "months" | "years";
 
 export function createCard(item: ToDo): HTMLDivElement {
   const card = document.createElement("div");
@@ -137,9 +137,21 @@ function createStatus(state: Status): HTMLDivElement {
   const head = document.createElement("p");
   head.classList.add("status-head");
   head.textContent = "Status: ";
-  const status = document.createElement("span");
+
+  const status = document.createElement("select");
   status.classList.add("status");
   status.textContent = state;
+  const statuses: Status[] = ["not started", "started", "paused", "done"];
+  for (let st of statuses) {
+    const option = document.createElement("option");
+    if (st == state) {
+      option.setAttribute("selected","");
+    }
+    option.textContent = st;
+    status.appendChild(option);
+  }
+  
   container.append (head, status);
   return container;
+
 }

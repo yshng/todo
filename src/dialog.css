@@ -1,0 +1,68 @@
+dialog[open] {
+  background-color: #E4EDF3;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(50vw, 400px);
+  min-width: 300px;
+  height: min(60vh,600px);
+  min-height: 400px;
+  padding: 1rem 2rem;
+}
+
+form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.row {
+  flex: 1 1 100%;
+  margin-top: 1em;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.buttons {
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+button#submit {
+  font-weight: 700;
+}
+
+label {
+  flex: 0 1 30%;
+}
+
+input, textarea, select {
+  flex: 1 1 60%;
+}
+
+dialog input, dialog textarea, dialog select {
+  outline: none;
+  border: 1px solid black;
+  inset: none;
+  padding: 5px;
+}
+
+button {
+  background-color: none;
+  border-radius: 0;
+  border: 1px solid black;
+  padding: .25em .5em;
+  font-weight: 400;
+}
+
+button:active{
+  background-color: white;
+  transform: scale(95%);
+}

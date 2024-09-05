@@ -1,16 +1,14 @@
 import './card.css';
 import './layout.css';
+import './dialog.css';
 import {ToDo, Status, Timescale, createCard} from './todo';
 
-export const master: ToDo[] = [];
+const master: ToDo[] = [];
+const dialog = document.querySelector<HTMLDialogElement>("dialog");
 
-// const newItemBtn = document.querySelector("#new-item") as HTMLElement;
-// newItemBtn?.addEventListener("click", 
-  //function pushItem() {
-  //const newItem = createItem();
-  //master.push(newItem);
-  //updateDisplay();
-  //});
+ const newItemBtn = document.querySelector<HTMLElement>("#new-item");
+ newItemBtn?.addEventListener("click", () => {
+  if (dialog) dialog.showModal();});
 
 const sample1: ToDo = {
   title: "Sample Task",
@@ -19,7 +17,7 @@ const sample1: ToDo = {
   notes: "Here are some notes about what I need to do",
   checklist: ["Subtask 1","Subtask 2"],
   status: "not started",
-  timescale: "<1 hour",
+  timescale: "less-hour",
   created: Date.now()
 }
 
@@ -41,7 +39,7 @@ const sample3: ToDo = {
   notes: "Maybe don't even do this task.",
   checklist: [],
   status: "paused",
-  timescale: "<5 minutes",
+  timescale: "less-5-min",
   created: Date.now()
 }
 

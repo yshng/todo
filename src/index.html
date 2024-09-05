@@ -19,5 +19,40 @@
 
     </div>
   </main>
+  <dialog>
+    <form id="item-form" method="dialog">
+      <h1>New Item</h1>
+
+        <div class="row"><label for="title">Title</label><input id="title" type="text"></div>
+        <div class="row"><label for="due-date">Due Date</label><input id="due-date" type="date">    </div>        
+        <div class="row"><label for="priority">Priority</label>
+          <select>
+            <option value="1">Very High</option>
+            <option value="2">High</option>
+            <option value="3">Normal</option>
+            <option value="4">Low</option>
+            <option value="5">Very Low</option>
+          </select>
+        </div>
+        <div class="row">
+          <label for="notes">Notes</label><textarea name="notes" id="notes"></textarea></div>
+          <div class="row">
+            <label for="timescale">Timescale</label>
+            <select>
+              <option value="less-5-min">Less than 5 minutes</option>
+              <option value="less-hour">Less than an hour</option>
+              <option value="hours">Hours</option>
+              <option value="days">Days</option>
+              <option value="weeks">Weeks</option>
+              <option value="months">Months</option>
+              <option value="years">Years</option>
+            </select>
+          </div>
+        <div class="buttons row">
+          <button type="button" id="cancel">Cancel</button>
+          <button type="button" id="submit">Add item</button>
+        </div>
+    </form>
+</dialog>
 </body>
 </html>
