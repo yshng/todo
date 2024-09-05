@@ -28,8 +28,8 @@ export function createCard(item: ToDo): HTMLDivElement {
     createPriority(item.priority),
     createNotes(item.notes),
     createChecklist(item.checklist),
-    createTimestamp(item.created),
-    createStatus(item.status)
+    createStatus(item.status),
+    createTimestamp(item.created)
   );
 
   return card;
