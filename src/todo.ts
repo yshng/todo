@@ -52,20 +52,6 @@ function createPriority(priority: number): HTMLDivElement {
   return container;
 }
 
-function createPriorityDropdown(priority: number): HTMLSelectElement {
-  const list = document.createElement("select");
-  const priorities = ["very low", "low", "moderate", "high", "very high"];
-  for (let i = 0; i <= 4; i++) {
-    const option = document.createElement("option");
-    if (i == priority) {
-    option.setAttribute("selected","");
-    }
-    option.textContent = priorities[i];
-    list.appendChild(option);
-  }
-  return list;
-}
-
 function createDueDate(dueDate: Date | undefined): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("due-date-div");
