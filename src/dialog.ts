@@ -1,4 +1,4 @@
-import { Status, Timescale, ToDo } from "./todo";
+import { Status, Timescale, ToDo } from "./card";
 import { master, updateDisplay } from ".";
 
 const dialog = document.querySelector<HTMLDialogElement>("dialog");
