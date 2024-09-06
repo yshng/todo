@@ -9,6 +9,7 @@
   font-family: system-ui, sans-serif;
 }
 
+
 button, input, textarea, select {
   font-family: inherit;
   line-height: inherit;
@@ -44,9 +45,11 @@ body, header, main {
 }
 
 #content > div {
+  width: 20em;
+  margin: 0 auto;
   background-color: white;
   display: grid;
-  grid-template-columns: repeat(6,14em);
+  grid-template-rows: repeat(auto,20em);
   gap: 10px;
   overflow: scroll;
   padding: 1em;
