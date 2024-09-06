@@ -97,6 +97,16 @@ function createChecklist(array: string[] | undefined): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("checklist-div"); 
 
+  const head = document.createElement("p");
+  head.classList.add("checklist-head");
+  head.textContent = "Subtasks";
+
+  const add = document.createElement("button");
+  add.classList.add("checklist-add");
+  add.textContent = "+";
+
+  container.append(head,add);
+
   if (array != undefined) {
     const list = document.createElement("ul");
     list.classList.add("checklist");
@@ -111,6 +121,7 @@ function createChecklist(array: string[] | undefined): HTMLDivElement {
     });
     container.append(list);
   }
+
   return container;
 }
 
