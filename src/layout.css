@@ -42,6 +42,7 @@ body, header, main {
 #content {
   width: 100%;
 }
+
 #content > div {
   background-color: white;
   display: grid;
@@ -49,4 +50,6 @@ body, header, main {
   gap: 10px;
   overflow: scroll;
   padding: 1em;
+  height: 50vh;
+
 }

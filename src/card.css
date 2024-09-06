@@ -29,7 +29,11 @@
 
 .checklist {
   list-style: none;
-  height: 2em;
+  height: 4em;
+}
+
+.notes {
+  height: 4em;
 }
 
 .notes, .checklist {
