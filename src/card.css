@@ -14,13 +14,11 @@
   justify-content: space-between;
 }
 
-.priority-head {
-  padding-right: .5em;
-}
 
 .priority-div, .status-div, .due-date-div {
   display: flex;
   align-items: baseline;
+  gap: 10px;
 }
 
 .notes-head {
