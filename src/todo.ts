@@ -1,6 +1,6 @@
 export class ToDo {
   title: string;
-  dueDate: Date | undefined;
+  dueDate: number;
   priority: number; // from 0 to 4, 4 being most important
   notes: string;
   //checklist?: string[];
@@ -8,7 +8,7 @@ export class ToDo {
   timescale: Timescale; 
   created: number;
 
-  constructor(title: string,dueDate: Date | undefined,priority: number,notes: string, timescale: Timescale) {
+  constructor(title: string,dueDate: number,priority: number,notes: string, timescale: Timescale) {
     this.title = title,
     this.dueDate = dueDate,
     this.priority = priority,
