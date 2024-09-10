@@ -41,7 +41,7 @@ function createPriority(priority: number): HTMLDivElement {
   return container;
 }
 
-function createDueDate(dueDate: number): HTMLDivElement {
+function createDueDate(dueDate: Date | undefined): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("due-date-div");
   
@@ -52,6 +52,7 @@ function createDueDate(dueDate: number): HTMLDivElement {
   const date = document.createElement("p");
   
   if (dueDate == undefined) {
+    date.textContent = "(none)";
   } else {
     date.textContent = formatDate(dueDate, 'EEE MMM dd, yyyy')
     container.append(head,date);
@@ -112,10 +113,10 @@ function createChecklist(array: string[] | undefined): HTMLDivElement {
   return container;
 }
 
-function createTimestamp(timestamp: number): HTMLDivElement {
+function createTimestamp(timestamp: Date): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("timestamp");
-  container.textContent = "Created " + formatDistance(new Date(timestamp), new Date(Date.now())) + " ago";
+  container.textContent = "Created " + formatDistance(timestamp, new Date() + " ago");
   return container;
 }
 

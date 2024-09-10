@@ -25,9 +25,9 @@ function newItem(): ToDo {
   let title = document.querySelector<HTMLInputElement>("#title")?.value;
   if (!title) {title = "Another To Do";}
 
+  let dueDate = undefined;
   let dateString = document.querySelector<HTMLInputElement>("#due-date")?.value;
-  if (dateString) {var dueDate: Date | undefined = new Date(dateString);} 
-  else {dueDate = undefined;}
+  if (dateString) {dueDate = new Date(dateString);}
 
   let notes = document.querySelector<HTMLTextAreaElement>("#notes")?.value;
   if (!notes) {notes = "(no notes)"};
@@ -40,6 +40,7 @@ function newItem(): ToDo {
 
   //let checklist: string[] = [];
 
+  
   return new ToDo(
     title,
     dueDate,

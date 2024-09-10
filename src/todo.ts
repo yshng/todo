@@ -1,21 +1,21 @@
 export class ToDo {
   title: string;
-  dueDate: number;
+  dueDate?: Date;
   priority: number; // from 0 to 4, 4 being most important
   notes: string;
   //checklist?: string[];
   status: Status;
   timescale: Timescale; 
-  created: number;
+  created: Date;
 
-  constructor(title: string,dueDate: number,priority: number,notes: string, timescale: Timescale) {
+  constructor(title: string,dueDate: Date | undefined,priority: number,notes: string, timescale: Timescale) {
     this.title = title,
     this.dueDate = dueDate,
     this.priority = priority,
     this.notes = notes,
     this.timescale = timescale,
     this.status = "not started",
-    this.created = Date.now();
+    this.created = new Date();
   }
 
   update<K extends keyof ToDo, V extends ToDo[K]>(key: K,value: V): ToDo {
