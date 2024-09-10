@@ -41,7 +41,7 @@ function createPriority(priority: number): HTMLDivElement {
   return container;
 }
 
-function createDueDate(dueDate: Date | undefined): HTMLDivElement {
+function createDueDate(dueDate: number): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("due-date-div");
   
