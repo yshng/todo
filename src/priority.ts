@@ -1,5 +1,4 @@
 const priorities = ["Very High","High","Normal","Low","Very Low"] as const;
-type priorities = typeof priorities[number];
 
 export function createPriority(priority: number | undefined): HTMLDivElement {
   const container = document.createElement("div");
