@@ -1,5 +1,5 @@
-const priorities = ["Very High","High","Normal","Low","Very Low"] as const;
-type priorities = typeof priorities[number];
+
+export type Timescale = "less-5-min" | "less-hour" | "hours" | "days" | "weeks" | "months" | "years";
 
 export class ToDo {
   title: string;
@@ -7,7 +7,7 @@ export class ToDo {
   priority?: number; // from 0 to 4, 4 being most important
   notes: string;
   //checklist?: string[];
-  status: Status;
+  status: number;
   timescale: Timescale; 
   created: Date;
 
@@ -17,7 +17,7 @@ export class ToDo {
     this.priority = priority,
     this.notes = notes,
     this.timescale = timescale,
-    this.status = "not started",
+    this.status = 0,
     this.created = new Date();
   }
 
@@ -26,5 +26,3 @@ export class ToDo {
   }
 }
 
-export type Status = "done" | "started" | "not started" | "paused";
-export type Timescale = "less-5-min" | "less-hour" | "hours" | "days" | "weeks" | "months" | "years";

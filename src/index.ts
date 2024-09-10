@@ -1,7 +1,7 @@
 import './card.css';
 import './layout.css';
 import './dialog.css';
-import {ToDo, Status, Timescale} from './todo';
+import {ToDo, Timescale} from './todo';
 import './dialog';
 import './project';
 import {createCard} from './card'

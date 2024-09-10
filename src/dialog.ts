@@ -1,4 +1,4 @@
-import { Status, Timescale, ToDo } from "./todo";
+import { Timescale, ToDo } from "./todo";
 import { master, updateDisplay } from ".";
 
 const dialog = document.querySelector<HTMLDialogElement>("dialog");
@@ -39,7 +39,6 @@ function newItem(): ToDo {
   var timescale = timescaleSelect!.options[timescaleSelect!.selectedIndex].value as Timescale;
 
   //let checklist: string[] = [];
-
   
   return new ToDo(
     title,

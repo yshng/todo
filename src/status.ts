@@ -1,8 +1,6 @@
-const statuses = ["done", "started", "not started", "paused"] as const;
-type Status = typeof statuses[number];
+const statuses = ["done", "started", "not started", "paused"];
 
-
-export function createStatus(state: Status): HTMLDivElement {
+export function createStatus(state: number): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("status-div");
   const head = document.createElement("p");
@@ -11,11 +9,10 @@ export function createStatus(state: Status): HTMLDivElement {
 
   const status = document.createElement("select");
   status.classList.add("status");
-  status.textContent = state;
-  const statuses: Status[] = ["not started", "started", "paused", "done"];
+  status.textContent = statuses[state];
   for (let st of statuses) {
     const option = document.createElement("option");
-    if (st == state) {
+    if (st == statuses[state]) {
       option.setAttribute("selected","");
     }
     option.textContent = st;
