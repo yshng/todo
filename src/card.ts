@@ -1,18 +1,5 @@
 import { formatDate, formatDistance } from "date-fns";
-
-export interface ToDo {
-  title: string;
-  dueDate: Date | undefined;
-  priority: number; // from 0 to 4, 4 being most important
-  notes: string;
-  checklist?: string[];
-  status: Status;
-  timescale: Timescale; 
-  created: number;
-}
-
-export type Status = "done" | "started" | "not started" | "paused";
-export type Timescale = "less-5-min" | "less-hour" | "hours" | "days" | "weeks" | "months" | "years";
+import { ToDo, Status, Timescale } from "./todo";
 
 export function createCard(item: ToDo): HTMLDivElement {
   const card = document.createElement("div");
