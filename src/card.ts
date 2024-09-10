@@ -1,5 +1,6 @@
 import { formatDate, formatDistance } from "date-fns";
 import { ToDo, Status, Timescale } from "./todo";
+import {createPriority} from "./priorities";
 
 export function createCard(item: ToDo): HTMLDivElement {
   const card = document.createElement("div");
@@ -22,24 +23,7 @@ export function createCard(item: ToDo): HTMLDivElement {
   return card;
 }
 
-function createPriority(priority: number): HTMLDivElement {
-  const container = document.createElement("div");
-  container.classList.add("priority-div");
 
-  const priorityHead = document.createElement("p");
-  priorityHead.classList.add("priority-head");
-  priorityHead.textContent = "Priority: ";
-  const priorities = ["Very High","High","Normal","Low","Very Low"];
-  const body = document.createElement("p");
-  body.classList.add("priority");
-  body.textContent = priorities[priority-1];
-  container.append (
-    priorityHead,
-    body
-  );
-  
-  return container;
-}
 
 function createDueDate(dueDate: Date | undefined): HTMLDivElement {
   const container = document.createElement("div");
@@ -116,7 +100,7 @@ function createChecklist(array: string[] | undefined): HTMLDivElement {
 function createTimestamp(timestamp: Date): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("timestamp");
-  container.textContent = "Created " + formatDistance(timestamp, new Date() + " ago");
+  container.textContent = `Created at ${formatDistance(timestamp, new Date())}ago`;
   return container;
 }
 
