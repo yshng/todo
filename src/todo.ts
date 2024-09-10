@@ -1,7 +1,10 @@
+const priorities = ["Very High","High","Normal","Low","Very Low"] as const;
+type priorities = typeof priorities[number];
+
 export class ToDo {
   title: string;
   dueDate?: Date;
-  priority: number; // from 0 to 4, 4 being most important
+  priority?: number; // from 0 to 4, 4 being most important
   notes: string;
   //checklist?: string[];
   status: Status;

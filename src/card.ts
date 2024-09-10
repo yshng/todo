@@ -1,6 +1,7 @@
 import { formatDate, formatDistance } from "date-fns";
-import { ToDo, Status, Timescale } from "./todo";
-import {createPriority} from "./priorities";
+import { ToDo } from "./todo";
+import { createPriority } from "./priority";
+import { createStatus } from "./status";
 
 export function createCard(item: ToDo): HTMLDivElement {
   const card = document.createElement("div");
@@ -22,8 +23,6 @@ export function createCard(item: ToDo): HTMLDivElement {
 
   return card;
 }
-
-
 
 function createDueDate(dueDate: Date | undefined): HTMLDivElement {
   const container = document.createElement("div");
@@ -105,28 +104,3 @@ function createTimestamp(timestamp: Date): HTMLDivElement {
 }
 
 //function createTimeScale(timescale: Timescale): HTMLDivElement{}
-
-function createStatus(state: Status): HTMLDivElement {
-  const container = document.createElement("div");
-  container.classList.add("status-div");
-  const head = document.createElement("p");
-  head.classList.add("status-head");
-  head.textContent = "Status: ";
-
-  const status = document.createElement("select");
-  status.classList.add("status");
-  status.textContent = state;
-  const statuses: Status[] = ["not started", "started", "paused", "done"];
-  for (let st of statuses) {
-    const option = document.createElement("option");
-    if (st == state) {
-      option.setAttribute("selected","");
-    }
-    option.textContent = st;
-    status.appendChild(option);
-  }
-  
-  container.append (head, status);
-  return container;
-
-}
