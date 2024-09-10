@@ -1,4 +1,4 @@
-import { Status, Timescale, ToDo } from "./card";
+import { Status, Timescale, ToDo } from "./todo";
 import { master, updateDisplay } from ".";
 
 const dialog = document.querySelector<HTMLDialogElement>("dialog");
@@ -38,17 +38,14 @@ function newItem(): ToDo {
   let timescaleSelect = document.querySelector<HTMLSelectElement>("#timescale");
   var timescale = timescaleSelect!.options[timescaleSelect!.selectedIndex].value as Timescale;
 
-  let status: Status = "not started";
-  let checklist: string[] = [];
+  //let checklist: string[] = [];
 
-  return {
+  return new ToDo(
     title,
     dueDate,
-    created: Date.now(),
+    priority, 
     notes,
-    priority,
-    timescale,
-    status,
-    checklist
-  }
+    timescale
+  )
+  
 }
