@@ -1,4 +1,4 @@
-import { Timescale, ToDo } from "./todo";
+import { ToDo } from "./todo";
 import { master, updateDisplay } from ".";
 
 const dialog = document.querySelector<HTMLDialogElement>("dialog");
