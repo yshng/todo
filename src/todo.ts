@@ -1,6 +1,4 @@
 
-export type Timescale = "less-5-min" | "less-hour" | "hours" | "days" | "weeks" | "months" | "years";
-
 export class ToDo {
   title: string;
   dueDate?: Date;
@@ -8,10 +6,10 @@ export class ToDo {
   notes: string;
   //checklist?: string[];
   status: number;
-  timescale: Timescale; 
+  timescale: number; 
   created: Date;
 
-  constructor(title: string,dueDate: Date | undefined,priority: number,notes: string, timescale: Timescale) {
+  constructor(title: string,dueDate: Date | undefined,priority: number,notes: string, timescale: number) {
     this.title = title,
     this.dueDate = dueDate,
     this.priority = priority,

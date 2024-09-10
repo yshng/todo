@@ -1,7 +1,7 @@
 import './card.css';
 import './layout.css';
 import './dialog.css';
-import {ToDo, Timescale} from './todo';
+import {ToDo} from './todo';
 import './dialog';
 import './project';
 import {createCard} from './card'
@@ -13,7 +13,7 @@ const sample1 = new ToDo(
   new Date(2025,12,1),
   2,
   "Here are same notes",
-  "less-hour"
+  1
 );
 
 master.push(sample1);

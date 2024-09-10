@@ -36,7 +36,7 @@ function newItem(): ToDo {
   if (!priority) {priority = 2};
 
   let timescaleSelect = document.querySelector<HTMLSelectElement>("#timescale");
-  var timescale = timescaleSelect!.options[timescaleSelect!.selectedIndex].value as Timescale;
+  var timescale = timescaleSelect!.selectedIndex;
 
   //let checklist: string[] = [];
   

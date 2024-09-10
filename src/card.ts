@@ -2,6 +2,7 @@ import { formatDate, formatDistance } from "date-fns";
 import { ToDo } from "./todo";
 import { createPriority } from "./priority";
 import { createStatus } from "./status";
+import { createTimescale } from "./timescale";
 
 export function createCard(item: ToDo): HTMLDivElement {
   const card = document.createElement("div");
@@ -18,6 +19,7 @@ export function createCard(item: ToDo): HTMLDivElement {
     createNotes(item.notes),
     //createChecklist(item.checklist),
     createStatus(item.status),
+    createTimescale(item.timescale),
     createTimestamp(item.created)
   );
 
@@ -64,38 +66,6 @@ function createNotes(notes: string): HTMLDivElement {
   return container;
 }
 
-function createChecklist(array: string[] | undefined): HTMLDivElement {
-  const container = document.createElement("div");
-  container.classList.add("checklist-div"); 
-
-  const head = document.createElement("p");
-  head.classList.add("checklist-head");
-  head.textContent = "Subtasks";
-
-  const add = document.createElement("button");
-  add.classList.add("checklist-add");
-  add.textContent = "+";
-
-  container.append(head,add);
-
-  if (array != undefined) {
-    const list = document.createElement("ul");
-    list.classList.add("checklist");
-    array.map((listitem) => {
-      const li = document.createElement("li");
-      const checkbox = document.createElement("input");
-      checkbox.setAttribute("type","checkbox");
-      checkbox.setAttribute("name",listitem);
-      const text = document.createTextNode(listitem);
-      li.append(checkbox, text);
-      list.appendChild(li);
-    });
-    container.append(list);
-  }
-
-  return container;
-}
-
 function createTimestamp(timestamp: Date): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("timestamp");
@@ -103,4 +73,3 @@ function createTimestamp(timestamp: Date): HTMLDivElement {
   return container;
 }
 
-//function createTimeScale(timescale: Timescale): HTMLDivElement{}
