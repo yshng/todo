@@ -17,7 +17,8 @@
 }
 
 .priority-div, .status-div, .due-date-div, .timescale-div {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   align-items: baseline;
   gap: 10px;
 }
