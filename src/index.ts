@@ -12,7 +12,7 @@ const sample1 = new ToDo(
   "Sample Task",
   new Date(2025,12,1),
   2,
-  "Here are same notes",
+  "Here are some notes",
   1
 );
 
