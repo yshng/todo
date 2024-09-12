@@ -3,15 +3,11 @@ const timescales = ["less than 5 minutes", "less than an hour", "hours", "days",
 export function createTimescale(index: number): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("timescale-div");
-  const head = document.createElement("p");
-  head.classList.add("timescale-head");
-  head.textContent = "Timescale: ";
-
   const timescale = document.createElement("p");
   timescale.classList.add("timescale");
-  timescale.textContent = timescales[index];
+  timescale.textContent = "Should take " + timescales[index];
   
-  container.append (head, timescale);
+  container.append (timescale);
   return container;
 }
 
