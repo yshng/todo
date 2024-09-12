@@ -16,7 +16,7 @@
   min-height: 275px;
 }
 
-.priority-div, .status-div, .due-date-div, .timescale-div {
+.status-div, .due-date-div, .timescale-div {
   display: grid;
   grid-template-columns: 1fr 2fr;
   align-items: baseline;
