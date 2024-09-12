@@ -16,9 +16,9 @@ export function createCard(item: ToDo): HTMLDivElement {
     title,
     createDueDate(item.dueDate),
     createPriority(item.priority),
-    //createChecklist(item.checklist),
-    createStatus(item.status),
     createTimescale(item.timescale),
+    createStatus(item.status),
+    //createChecklist(item.checklist),
     createNotes(item.notes),
     createTimestamp(item.created)
   );
