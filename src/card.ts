@@ -69,7 +69,7 @@ function createNotes(notes: string): HTMLDivElement {
 function createTimestamp(timestamp: Date): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("timestamp");
-  container.textContent = `Created at ${formatDistance(timestamp, new Date())}ago`;
+  container.textContent = `Created ${formatDistance(timestamp, new Date())} ago`;
   return container;
 }
 
