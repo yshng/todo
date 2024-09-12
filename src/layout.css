@@ -7,6 +7,8 @@
 
 :root {
   font-family: system-ui, sans-serif;
+  --bg-color: #84B68D;
+  --bg-light: #e6f0e8;
 }
 
 
@@ -37,7 +39,7 @@ button {
 }
 
 body, header, main {
-  background-color: lightgray;
+  background-color: var(--bg-color);
 }
 
 #content {
@@ -53,6 +55,6 @@ body, header, main {
   gap: 10px;
   overflow: scroll;
   padding: 1em;
-  height: 50vh;
+  height: 25em;
 
 }

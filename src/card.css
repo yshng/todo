@@ -1,9 +1,10 @@
 .title {
   font-weight: 600;
+  padding-bottom: 1em;
 }
 
-.title, .description, .due-date-div, .priority-div, .notes-div, .checklist-div {
-  padding-bottom: .5em;
+.description, .due-date-div, .priority-div, .notes-div, .checklist-div, .status-div, .timescale-div {
+  padding-bottom: .3em;
 }
 
 .todo {
@@ -12,10 +13,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 275px;
 }
 
-
-.priority-div, .status-div, .due-date-div {
+.priority-div, .status-div, .due-date-div, .timescale-div {
   display: flex;
   align-items: baseline;
   gap: 10px;
