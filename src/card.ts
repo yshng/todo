@@ -29,18 +29,13 @@ export function createCard(item: ToDo): HTMLDivElement {
 function createDueDate(dueDate: Date | undefined): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("due-date-div");
-  
-  const head = document.createElement("p");
-  head.textContent = "Due: ";
-  head.classList.add("due-date-head");
-
   const date = document.createElement("p");
   
   if (dueDate == undefined) {
     date.textContent = "(none)";
   } else {
-    date.textContent = formatDate(dueDate, 'EEE MMM dd, yyyy')
-    container.append(head,date);
+    date.textContent = "Due by " + formatDate(dueDate, 'EEEE MMM dd, yyyy');
+    container.append(date);
   }
   return container;
 }

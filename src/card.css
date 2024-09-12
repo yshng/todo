@@ -17,8 +17,8 @@
 }
 
 .status-div, .due-date-div {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  display: flex;
+  flex-direction: row;
   align-items: baseline;
   gap: 10px;
 }
