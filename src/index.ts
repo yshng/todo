@@ -5,15 +5,15 @@ import {ToDo} from './todo';
 import './dialog';
 import './project';
 import {createCard} from './card'
-import { Project } from './project';
-import { set } from 'date-fns';
+import { getProjects } from './project';
 
 const sample1 = new ToDo(
   "Sample Task",
   new Date(2025,12,1),
   2,
   "Here are some notes",
-  1
+  1,
+  "Project 1"
 );
 
 const sample2 = new ToDo(
@@ -21,20 +21,13 @@ const sample2 = new ToDo(
   new Date(2025,12,1),
   3,
   "Here are some notes. Even more notes.",
-  2
+  2,
+  "Project 2"
 );
 
-export let master: Project[] = [];
+export let todos: ToDo[] = [sample1, sample2];
+export let projects: string[] = getProjects();
 export let currentProject = 0;
-
-const defaultAll = new Project("All Projects",[]);
-const project1 = new Project("Project 1",[sample1,sample2]);
-const project2 = new Project("Project 2",[]);
-
-master.push(defaultAll);
-master.push(project1);
-master.push(project2);
-
 
 updateDisplay();
 
@@ -49,9 +42,9 @@ export function updateDisplay() {
 function createProjects(): HTMLDivElement {
   const projectDiv = document.createElement("div");
   projectDiv.setAttribute("id","projects");  
-  for (let i = 0; i < master.length; i++) {
+  for (let i = 0; i < projects.length; i++) {
     const h1 = document.createElement("h1");
-    h1.textContent = master[i].title;
+    h1.textContent = projects[i];
     if (i == currentProject) {h1.classList.add("current-project")};
     h1.classList.add("project");
     projectDiv.appendChild(h1);
@@ -61,13 +54,12 @@ function createProjects(): HTMLDivElement {
 
 function createCards(): HTMLDivElement {
   const cardHolder = document.createElement("div");
-  cardHolder.setAttribute("id","content");
-  master.map(proj => {
-  if (proj.items?.length) {
-    for (let todo of proj.items){
+  cardHolder.setAttribute("id","cards");
+  todos.map((todo) => {
+  if (todos.length) {
       const card = createCard(todo);
       cardHolder.append(card);
-    }
+    
   }})
   return cardHolder;
 }
