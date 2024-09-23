@@ -1,6 +1,3 @@
-
-import { Project } from "./project";
-
 export class ToDo {
   title: string;
   dueDate?: Date;
