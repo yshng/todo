@@ -19,6 +19,10 @@ export class ToDo {
     this.created = new Date();
   }
 
+  toString(): string {
+    return this.title;
+  }
+
   update<K extends keyof ToDo, V extends ToDo[K]>(key: K,value: V): ToDo {
     return {...this,[key]: value}
   }
