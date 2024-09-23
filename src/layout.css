@@ -18,11 +18,24 @@ button, input, textarea, select {
   font-size: inherit;
 }
 
+body {
+  display: grid;
+  grid-template-rows: 150px 450px;
+  grid-template-columns: 800px;
+  justify-content: center;
+}
+
 header {
-  margin: 1em;
+  font-size: 1.5rem;
+  margin: 2em;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #9cc4a3;
+}
+
+header button {
+  font-size: 1rem;
 }
 
 button {
@@ -42,21 +55,17 @@ body, header, main {
 }
 
 main {
-  display: grid;
-  grid-template-columns: 200px / 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 #projects {
-  grid-column: 1 / 2;
   display: flex;
+  margin: 0 2em;
   flex-direction: column;
-  margin: 1em;
   font-size: 1.5em;
-  justify-content: center;
-}
-
-#projects h1 {
-  margin: 0 1em;
+  justify-content: right;
 }
 
 .current-project {
@@ -67,18 +76,11 @@ main {
   color: var(--bg-light);
 }
 
-#content {
-  grid-column: 2 / 3;
-}
-
-#content > div {
-  width: 20em;
-  margin: 0 auto;
+#cards {
+  margin-right: auto;
   background-color: white;
-  display: grid;
-  grid-template-rows: repeat(auto,20em);
-  gap: 10px;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   padding: 1em;
   height: 25em;
 }
