@@ -59,6 +59,14 @@ main {
   margin: 0 1em;
 }
 
+.current-project {
+  color: var(--bg-light);
+}
+
+.project:hover {
+  color: var(--bg-light);
+}
+
 #content {
   grid-column: 2 / 3;
 }

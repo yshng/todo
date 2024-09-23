@@ -27,15 +27,13 @@ const sample2 = new ToDo(
 export let master: Project[] = [];
 export let currentProject = 0;
 
-const firstProj = new Project("To Do List",[]);
-const project1 = new Project("project1",[]);
-const project2 = new Project("project2",[]);
+const defaultAll = new Project("All Projects",[]);
+const project1 = new Project("Project 1",[sample1,sample2]);
+const project2 = new Project("Project 2",[]);
 
-master.push(firstProj);
+master.push(defaultAll);
 master.push(project1);
 master.push(project2);
-
-
 
 
 updateDisplay();
@@ -54,7 +52,7 @@ function createProjects(): HTMLDivElement {
   for (let i = 0; i < master.length; i++) {
     const h1 = document.createElement("h1");
     h1.textContent = master[i].title;
-    //if (i == master.currentProject) {h1.classList.add("inview")};
+    if (i == currentProject) {h1.classList.add("current-project")};
     h1.classList.add("project");
     projectDiv.appendChild(h1);
   }
