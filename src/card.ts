@@ -12,14 +12,19 @@ export function createCard(item: ToDo): HTMLDivElement {
   title.classList.add("title");
   title.textContent = item.title;
 
+  const project = document.createElement("p");
+  project.classList.add("project-name");
+  project.textContent = item.project;
+
   card.append(
     title,
+    project,
     createDueDate(item.dueDate),
     createPriority(item.priority),
     createTimescale(item.timescale),
-    createStatus(item.status),
     //createChecklist(item.checklist),
     createNotes(item.notes),
+    createStatus(item.status),
     createTimestamp(item.created)
   );
 

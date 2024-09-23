@@ -1,22 +1,40 @@
+.todo {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 10px auto;
+  width: 100%;
+  height: 20em;
+  padding: 20px;
+}
+
 .title {
   font-weight: 600;
-  padding-bottom: 1em;
+}
+
+.project-name {
+  text-transform: uppercase ;
+  font-size: .8em;
+  margin-bottom: 2rem;
 }
 
 .description, .due-date-div, .priority-div, .notes-div, .checklist-div, .status-div, .timescale-div {
-  padding-bottom: .3em;
+  width: 100%;
+  height: 1.5rem;
 }
 
-.todo {
-  border: 1px solid black;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 275px;
+.notes-div {
+  margin-top: 1rem;
 }
 
-.status-div, .due-date-div {
+
+
+.timestamp {
+  font-size: .6em;
+}
+.status-div {
+  margin-top: auto;
   display: flex;
   flex-direction: row;
   align-items: baseline;
@@ -40,11 +58,5 @@
   overflow: scroll;
 }
 
-.checklist input {
-  margin-right: .5em;
-}
 
-.timestamp {
-  font-size: .6em;
-  margin-top: auto;
-}
+
