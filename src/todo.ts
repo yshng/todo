@@ -1,4 +1,6 @@
 
+import { Project } from "./project";
+
 export class ToDo {
   title: string;
   dueDate?: Date;
@@ -8,8 +10,9 @@ export class ToDo {
   status: number;
   timescale: number; 
   created: Date;
+  project: string; 
 
-  constructor(title: string,dueDate: Date | undefined,priority: number,notes: string, timescale: number) {
+  constructor(title: string,dueDate: Date | undefined,priority: number,notes: string, timescale: number, project: string) {
     this.title = title,
     this.dueDate = dueDate,
     this.priority = priority,
@@ -17,6 +20,7 @@ export class ToDo {
     this.timescale = timescale,
     this.status = 0,
     this.created = new Date();
+    this.project = project;
   }
 
   toString(): string {
