@@ -1,6 +1,6 @@
 import { ToDo } from "./todo";
-import { currentProject, master, updateDisplay } from ".";
-import { Project } from "./project";
+import { currentProject, updateDisplay } from ".";
+// import { Project } from "./project";
 
 const dialog = document.querySelector<HTMLDialogElement>("dialog");
 const addBtn = document.querySelector<HTMLButtonElement>("#submit");
@@ -13,10 +13,7 @@ newItemBtn?.addEventListener("click", () => {
 });
 
 addBtn?.addEventListener("click", ()=> {
-  let update = master[currentProject].addItem(newItem());
-  master[currentProject] = update;
-  updateDisplay();
-  dialog?.close();
+
 })
 
 cancelBtn?.addEventListener("click", () => {
@@ -40,6 +37,9 @@ function newItem(): ToDo {
   let timescaleSelect = document.querySelector<HTMLSelectElement>("#timescale");
   let timescale = timescaleSelect!.selectedIndex;
 
+  let projectSelect = document.querySelector<HTMLSelectElement>("project");
+  let project = projectSelect!.selectedOptions[projectSelect!.selectedIndex].text;
+
   //let checklist: string[] = [];
   
   return new ToDo(
@@ -47,7 +47,8 @@ function newItem(): ToDo {
     dueDate,
     priority, 
     notes,
-    timescale
+    timescale,
+    project
   )
   
 }
