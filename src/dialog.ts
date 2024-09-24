@@ -1,5 +1,5 @@
 import { ToDo } from "./todo";
-import { currentProject, updateDisplay } from ".";
+import { updateDisplay } from ".";
 // import { Project } from "./project";
 
 const dialog = document.querySelector<HTMLDialogElement>("dialog");

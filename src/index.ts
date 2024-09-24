@@ -3,9 +3,8 @@ import './layout.css';
 import './dialog.css';
 import {ToDo} from './todo';
 import './dialog';
-import './project';
-import {createCard} from './card'
-import { getProjects } from './project';
+import { createCard } from './card'
+import { Project, addProjectButtons, addProjectDropdown } from './project';
 
 const sample1 = new ToDo(
   "Sample Task",
@@ -25,41 +24,50 @@ const sample2 = new ToDo(
   "Project 2"
 );
 
-export let todos: ToDo[] = [sample1, sample2];
-export let projects: string[] = getProjects();
-export let currentProject = 0;
 
-updateDisplay();
-
-export function updateDisplay() {
-  const main = document.querySelector<HTMLDivElement>("main");
-  const content = document.createElement("div");
-  content.setAttribute("id","content");
-  content.append(createCards());
-  main?.replaceChildren(createProjects(),content);
+export interface State {
+  projects: Project[];
+  todos: ToDo[];
+  currentProject: number;
 }
 
-function createProjects(): HTMLDivElement {
+export let currentState: State = {
+  projects: [new Project("default")],
+  todos: [sample1, sample2],
+  currentProject: 0
+}
+updateDisplay(currentState);
+addProjectButtons(currentState);
+
+export function updateDisplay(state: State) {
+  const main = document.querySelector<HTMLDivElement>("main");
+  main?.replaceChildren(createProjects(state),createContent(state));  
+  addProjectDropdown(state);
+}
+
+function createProjects(state: State): HTMLDivElement {
   const projectDiv = document.createElement("div");
   projectDiv.setAttribute("id","projects");  
-  for (let i = 0; i < projects.length; i++) {
+  for (let i = 0; i < state.projects.length; i++) {
     const h1 = document.createElement("h1");
-    h1.textContent = projects[i];
-    if (i == currentProject) {h1.classList.add("current-project")};
+    h1.textContent = state.projects[i].title;
+    if (i == state.currentProject) {h1.classList.add("current-project")};
     h1.classList.add("project");
     projectDiv.appendChild(h1);
   }
   return projectDiv;
 }
 
-function createCards(): HTMLDivElement {
+function createContent(state: State): HTMLDivElement {
+  const contentDiv = document.createElement("div");
+  contentDiv.setAttribute("id","content");
   const cardHolder = document.createElement("div");
   cardHolder.setAttribute("id","cards");
-  todos.map((todo) => {
-  if (todos.length) {
+  state.todos.map((todo) => {
+  if (state.todos.length) {
       const card = createCard(todo);
       cardHolder.append(card);
-    
   }})
-  return cardHolder;
+  contentDiv.append(cardHolder);
+  return contentDiv;
 }
