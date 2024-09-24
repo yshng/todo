@@ -10,7 +10,7 @@
     <h1>Out of Sight</h1>
     <div id="panel">
       <button id="new-item">New Item</button>
-      <button id="new-project">New Project</button>
+      <button class="new-project">New Project</button>
     </div>
   </header>
   <main>
@@ -32,7 +32,7 @@
         </div>
         <div class="row">
           <label for="notes">Notes</label><textarea name="notes" id="notes"></textarea></div>
-          <div class="row">
+          <div class="row" id="timescale">
             <label for="timescale">Timescale</label>
             <select id="timescale" required>
               <option value="0">Less than 5 minutes</option>
@@ -44,18 +44,8 @@
               <option value="6">Years</option>
             </select>
           </div>
-          <div class="row">
-            <label for="project">Add to Project</label>
-            <select id="project" required>
-              <option value="">(none)</option>
-              <option value="less-hour"></option>
-              <option value="hours">Hours</option>
-              <option value="days">Days</option>
-              <option value="weeks">Weeks</option>
-              <option value="months">Months</option>
-              <option value="years">Years</option>
-            </select>
-          </div>
+          <div class="row" id="project-dropdown">
+            </div>
         <div class="buttons row">
           <button type="button" id="cancel">Cancel</button>
           <button type="button" id="submit">Add item</button>
