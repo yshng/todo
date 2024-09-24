@@ -14,7 +14,7 @@ export function createCard(item: ToDo): HTMLDivElement {
 
   const project = document.createElement("p");
   project.classList.add("project-name");
-  project.textContent = item.project;
+  project.textContent = item.projectID;
 
   card.append(
     title,

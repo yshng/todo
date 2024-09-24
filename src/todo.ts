@@ -7,7 +7,7 @@ export class ToDo {
   status: number;
   timescale: number; 
   created: Date;
-  project: string; 
+  projectID: string; 
 
   constructor(title: string,dueDate: Date | undefined,priority: number,notes: string, timescale: number, project: string) {
     this.title = title,
@@ -17,7 +17,7 @@ export class ToDo {
     this.timescale = timescale,
     this.status = 0,
     this.created = new Date();
-    this.project = project;
+    this.projectID = project;
   }
 
   toString(): string {
