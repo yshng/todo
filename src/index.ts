@@ -4,7 +4,7 @@ import './dialog.css';
 import {ToDo} from './todo';
 import './dialog';
 import { createCard } from './card'
-import { Projects, addProjectButtons, addProjectDropdown } from './project';
+import { Projects, addProjectButtons, addProjectDropdown, enableProjectSelection } from './project';
 
 const sample1 = new ToDo(
   "Sample Task",
@@ -27,7 +27,7 @@ const sample2 = new ToDo(
 export interface State {
   projects: Projects;
   todos: ToDo[];
-  currentProject?: string;
+  currentProject: string | null;
 }
 
 let initial = new Projects();
@@ -35,22 +35,25 @@ let initial = new Projects();
 let currentState: State = {
   projects: initial,
   todos: [],
-  currentProject: undefined
+  currentProject: null
 }
 
 currentState = currentState.projects.addProject(currentState, "View All");
+currentState.currentProject = "00000";
+
 currentState = currentState.projects.addProject(currentState, "Project 1");
 currentState = currentState.projects.addProject(currentState, "Project 2");
 currentState.todos = sample1.addToDo(currentState);
 currentState.todos = sample2.addToDo(currentState);
 
 updateDisplay(currentState);
-addProjectButtons(currentState);
 
 export function updateDisplay(state: State) {
   const main = document.querySelector<HTMLDivElement>("main");
   main?.replaceChildren(populateProjects(state),populateContent(state));  
   addProjectDropdown(state);
+  addProjectButtons(currentState);
+  enableProjectSelection(state);
 }
 
 function populateProjects(state: State): HTMLDivElement {
@@ -59,6 +62,7 @@ function populateProjects(state: State): HTMLDivElement {
   for (let [key,value] of state.projects.entries()) {
     const h1 = document.createElement("h1");
     h1.textContent = value;
+    h1.setAttribute("id",key);
     if (key == state.currentProject) {h1.classList.add("current-project")};
     h1.classList.add("project");
     projectDiv.appendChild(h1);

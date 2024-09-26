@@ -39,8 +39,16 @@ export function addProjectButtons(state: State) {
   button.addEventListener("click", () => {
     let title = prompt("Name your new project: ","Another Project");
     if (title) state = state.projects.addProject(state, title);
-    updateDisplay(state);
     })
   })}
 
-export function selectProject(state: State) {}
+export function enableProjectSelection(state: State) {
+  const titles = document.querySelectorAll(".project");
+  console.log(titles);
+  titles.forEach( (button) => {
+    button.addEventListener("click", () => {
+    state.currentProject = button.getAttribute("id");
+    updateDisplay(state);
+    })  
+  })
+}
