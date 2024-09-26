@@ -4,7 +4,7 @@ import './dialog.css';
 import {ToDo} from './todo';
 import './dialog';
 import { createCard } from './card'
-import { Projects, addProjectButtons, addProjectDropdown, enableProjectSelection } from './project';
+import { Projects, enableAddProject, addProjectDropdown, enableProjectSelection } from './project';
 
 const sample1 = new ToDo(
   "Sample Task",
@@ -47,12 +47,12 @@ currentState.todos = sample1.addToDo(currentState);
 currentState.todos = sample2.addToDo(currentState);
 
 updateDisplay(currentState);
+enableAddProject(currentState);
 
 export function updateDisplay(state: State) {
   const main = document.querySelector<HTMLDivElement>("main");
   main?.replaceChildren(populateProjects(state),populateContent(state));  
   addProjectDropdown(state);
-  addProjectButtons(currentState);
   enableProjectSelection(state);
 }
 

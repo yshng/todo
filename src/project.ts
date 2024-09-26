@@ -33,12 +33,13 @@ export function addProjectDropdown(state: State) {
   projectDiv?.replaceChildren(head,dropdown);
 }
 
-export function addProjectButtons(state: State) {
+export function enableAddProject (state: State) {
   const buttons = document.querySelectorAll(".new-project");
   buttons.forEach( (button) => {
   button.addEventListener("click", () => {
     let title = prompt("Name your new project: ","Another Project");
     if (title) state = state.projects.addProject(state, title);
+    updateDisplay(state);
     })
   })}
 
