@@ -38,7 +38,9 @@ export function addProjectButtons(state: State) {
   buttons.forEach( (button) => {
   button.addEventListener("click", () => {
     let title = prompt("Name your new project: ","Another Project");
-    if (title) state.projects.addProject(state, title);
+    if (title) state = state.projects.addProject(state, title);
     updateDisplay(state);
     })
   })}
+
+export function selectProject(state: State) {}
