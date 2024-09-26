@@ -1,3 +1,5 @@
+import { State } from ".";
+
 export class ToDo {
   title: string;
   dueDate?: Date;
@@ -23,6 +25,11 @@ export class ToDo {
   toString(): string {
     return this.title;
   }
+
+  addToDo(state: State): State {
+    let amendedItems = state.todos.concat(this);
+    return {...structuredClone(state), todos: amendedItems};
+  } 
 
   update<K extends keyof ToDo, V extends ToDo[K]>(key: K,value: V): ToDo {
     return {...this,[key]: value}

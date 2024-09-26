@@ -4,7 +4,7 @@ import './dialog.css';
 import {ToDo} from './todo';
 import './dialog';
 import { createCard } from './card'
-import { Project, addProjectButtons, addProjectDropdown } from './project';
+import { Projects, addProjectButtons, addProjectDropdown } from './project';
 
 const sample1 = new ToDo(
   "Sample Task",
@@ -12,7 +12,7 @@ const sample1 = new ToDo(
   2,
   "Here are some notes",
   1,
-  "project00001"
+  "00001"
 );
 
 const sample2 = new ToDo(
@@ -21,21 +21,27 @@ const sample2 = new ToDo(
   3,
   "Here are some notes. Even more notes.",
   2,
-  "project00002"
+  "00002"
 );
 
-
 export interface State {
-  projects: Project[];
+  projects: Projects;
   todos: ToDo[];
-  currentProject: number;
+  currentProject: string;
 }
 
-export let currentState: State = {
-  projects: [new Project("View all"), new Project("Project 1"), new Project("Project 2")],
-  todos: [sample1, sample2],
-  currentProject: 0
+let currentState: State = {
+  projects: new Projects(),
+  todos: [],
+  currentProject: "00000"
 }
+
+currentState = currentState.projects.addProject(currentState, "View All");
+currentState = currentState.projects.addProject(currentState, "Project 1");
+currentState = currentState.projects.addProject(currentState, "Project 2");
+currentState = sample1.addToDo(currentState);
+currentState = sample2.addToDo(currentState);
+
 updateDisplay(currentState);
 addProjectButtons(currentState);
 
@@ -48,10 +54,10 @@ export function updateDisplay(state: State) {
 function populateProjects(state: State): HTMLDivElement {
   const projectDiv = document.createElement("div");
   projectDiv.setAttribute("id","projects");  
-  for (let i = 0; i < state.projects.length; i++) {
+  for (let [key,value] of state.projects.entries()) {
     const h1 = document.createElement("h1");
-    h1.textContent = state.projects[i].title;
-    if (i == state.currentProject) {h1.classList.add("current-project")};
+    h1.textContent = value;
+    if (key == state.currentProject) {h1.classList.add("current-project")};
     h1.classList.add("project");
     projectDiv.appendChild(h1);
   }
@@ -64,12 +70,12 @@ function populateContent(state: State): HTMLDivElement {
   const cardHolder = document.createElement("div");
   cardHolder.setAttribute("id","cards");
   let forDisplay = state.todos;
-  if (state.currentProject != 0) {
-    forDisplay = state.todos.filter( (todo) => todo.projectID == state.projects[state.currentProject].ID )
+  if (state.currentProject != "00000") {
+    forDisplay = state.todos.filter( (todo) => todo.projectID == state.currentProject)
   }
   if (forDisplay.length) {
     forDisplay.map((todo) => {
-      const card = createCard(todo);
+      const card = createCard(state, todo);
       cardHolder.append(card);
     })
   } else {
