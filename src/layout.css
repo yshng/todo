@@ -11,6 +11,7 @@
   font-family: system-ui, sans-serif;
   --bg-color: #84B68D;
   --bg-light: #e6f0e8;
+  --bg-dark: #4f6d54;
   display: flex;
 }
 
@@ -66,17 +67,25 @@ main {
 
 #projects {
   display: flex;
+  flex: 1 1 20%;
   margin: 0 2em;
   flex-direction: column;
+  flex-wrap: wrap;
   font-size: 1.5em;
-  justify-content: right;
+  align-items: right;
+  overflow-y: scroll;
+  color: var(--bg-dark);
+}
+
+#content {
+  flex: 1 1 20%;
 }
 
 .current-project {
-  color: var(--bg-light);
+  color: black;
 }
 
-.project:hover {
+.project:hover:not(.current-project) {
   color: var(--bg-light);
 }
 
