@@ -12,7 +12,7 @@ const sample1 = new ToDo(
   2,
   "Here are some notes",
   1,
-  "Project 1"
+  "project00001"
 );
 
 const sample2 = new ToDo(
@@ -21,7 +21,7 @@ const sample2 = new ToDo(
   3,
   "Here are some notes. Even more notes.",
   2,
-  "Project 2"
+  "project00002"
 );
 
 
@@ -32,7 +32,7 @@ export interface State {
 }
 
 export let currentState: State = {
-  projects: [new Project("View all")],
+  projects: [new Project("View all"), new Project("Project 1"), new Project("Project 2")],
   todos: [sample1, sample2],
   currentProject: 0
 }

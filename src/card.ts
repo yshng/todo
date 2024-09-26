@@ -3,8 +3,9 @@ import { ToDo } from "./todo";
 import { createPriority } from "./priority";
 import { createStatus } from "./status";
 import { createTimescale } from "./timescale";
+import { State } from ".";
 
-export function createCard(item: ToDo): HTMLDivElement {
+export function createCard(state: State, item: ToDo): HTMLDivElement {
   const card = document.createElement("div");
   card.classList.add("todo");
 
@@ -14,7 +15,7 @@ export function createCard(item: ToDo): HTMLDivElement {
 
   const project = document.createElement("p");
   project.classList.add("project-name");
-  project.textContent = item.projectID;
+  project.textContent = state.projects[projectID;
 
   card.append(
     title,
