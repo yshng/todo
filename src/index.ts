@@ -32,7 +32,7 @@ export interface State {
 }
 
 export let currentState: State = {
-  projects: [new Project("default")],
+  projects: [new Project("View all")],
   todos: [sample1, sample2],
   currentProject: 0
 }
@@ -41,11 +41,11 @@ addProjectButtons(currentState);
 
 export function updateDisplay(state: State) {
   const main = document.querySelector<HTMLDivElement>("main");
-  main?.replaceChildren(createProjects(state),createContent(state));  
+  main?.replaceChildren(populateProjects(state),populateContent(state));  
   addProjectDropdown(state);
 }
 
-function createProjects(state: State): HTMLDivElement {
+function populateProjects(state: State): HTMLDivElement {
   const projectDiv = document.createElement("div");
   projectDiv.setAttribute("id","projects");  
   for (let i = 0; i < state.projects.length; i++) {
@@ -58,16 +58,25 @@ function createProjects(state: State): HTMLDivElement {
   return projectDiv;
 }
 
-function createContent(state: State): HTMLDivElement {
+function populateContent(state: State): HTMLDivElement {
   const contentDiv = document.createElement("div");
   contentDiv.setAttribute("id","content");
   const cardHolder = document.createElement("div");
   cardHolder.setAttribute("id","cards");
-  state.todos.map((todo) => {
-  if (state.todos.length) {
+  let forDisplay = state.todos;
+  if (state.currentProject != 0) {
+    forDisplay = state.todos.filter( (todo) => todo.projectID == state.projects[state.currentProject].ID )
+  }
+  if (forDisplay.length) {
+    forDisplay.map((todo) => {
       const card = createCard(todo);
       cardHolder.append(card);
-  }})
+    })
+  } else {
+    const noCardsText = document.createElement("p");
+    noCardsText.textContent = "There are no items in this project.";
+    cardHolder.append(noCardsText);
+  }
   contentDiv.append(cardHolder);
   return contentDiv;
 }
