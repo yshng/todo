@@ -5,10 +5,13 @@
   line-height: 1.2;
 }
 
+
+
 :root {
   font-family: system-ui, sans-serif;
   --bg-color: #84B68D;
   --bg-light: #e6f0e8;
+  display: flex;
 }
 
 
@@ -23,6 +26,7 @@ body {
   grid-template-rows: 150px 450px;
   grid-template-columns: 800px;
   justify-content: center;
+  margin-right: auto;
 }
 
 header {
