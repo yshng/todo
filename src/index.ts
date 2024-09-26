@@ -27,20 +27,22 @@ const sample2 = new ToDo(
 export interface State {
   projects: Projects;
   todos: ToDo[];
-  currentProject: string;
+  currentProject?: string;
 }
 
+let initial = new Projects();
+
 let currentState: State = {
-  projects: new Projects(),
+  projects: initial,
   todos: [],
-  currentProject: "00000"
+  currentProject: undefined
 }
 
 currentState = currentState.projects.addProject(currentState, "View All");
 currentState = currentState.projects.addProject(currentState, "Project 1");
 currentState = currentState.projects.addProject(currentState, "Project 2");
-currentState = sample1.addToDo(currentState);
-currentState = sample2.addToDo(currentState);
+currentState.todos = sample1.addToDo(currentState);
+currentState.todos = sample2.addToDo(currentState);
 
 updateDisplay(currentState);
 addProjectButtons(currentState);

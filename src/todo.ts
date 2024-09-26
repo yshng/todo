@@ -26,9 +26,8 @@ export class ToDo {
     return this.title;
   }
 
-  addToDo(state: State): State {
-    let amendedItems = state.todos.concat(this);
-    return {...structuredClone(state), todos: amendedItems};
+  addToDo(state: State): ToDo[] {
+    return state.todos.concat(this);
   } 
 
   update<K extends keyof ToDo, V extends ToDo[K]>(key: K,value: V): ToDo {
