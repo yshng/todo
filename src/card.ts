@@ -15,7 +15,8 @@ export function createCard(state: State, item: ToDo): HTMLDivElement {
 
   const project = document.createElement("p");
   project.classList.add("project-name");
-  project.textContent = state.projects[projectID;
+  let text = state.projects.get(item.projectID);
+  if (text) {project.textContent = text}
 
   card.append(
     title,
@@ -23,7 +24,6 @@ export function createCard(state: State, item: ToDo): HTMLDivElement {
     createDueDate(item.dueDate),
     createPriority(item.priority),
     createTimescale(item.timescale),
-    //createChecklist(item.checklist),
     createNotes(item.notes),
     createStatus(item.status),
     createTimestamp(item.created)
