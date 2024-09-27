@@ -5,6 +5,10 @@
   line-height: 1.2;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 :root {
   font-family: system-ui, sans-serif;
   --bg-color: #84B68D;
