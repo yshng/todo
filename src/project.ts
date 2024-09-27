@@ -12,7 +12,7 @@ export class Projects extends Map<string,string> {
 }
 
 export function addProjectDropdown(state: State) {
-  const projectDiv = document.querySelector("#project-dropdown");
+  const projectDiv = document.querySelector("#project-select");
   const head = document.createElement("p");
   head.classList.add("project-head");
   head.textContent = "Project";
