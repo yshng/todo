@@ -22,6 +22,9 @@ export function addProjectDropdown(state: State) {
     const opt = document.createElement("option");
     opt.setAttribute("value",key);
     opt.textContent = value;
+    if (key == "00000") {
+      opt.textContent = "(no project)";
+    }
     dropdown.appendChild(opt);
   }
   const addProject = document.createElement("option");

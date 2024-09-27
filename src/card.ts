@@ -13,14 +13,9 @@ export function createCard(state: State, item: ToDo): HTMLDivElement {
   title.classList.add("title");
   title.textContent = item.title;
 
-  const project = document.createElement("p");
-  project.classList.add("project-name");
-  let text = state.projects.get(item.projectID);
-  if (text) {project.textContent = text}
-
   card.append(
     title,
-    project,
+    getProjectName(state, item.projectID),
     createDueDate(item.dueDate),
     createPriority(item.priority),
     createTimescale(item.timescale),
@@ -30,6 +25,18 @@ export function createCard(state: State, item: ToDo): HTMLDivElement {
   );
 
   return card;
+}
+
+function getProjectName(state: State, id: string): HTMLParagraphElement {
+  const project = document.createElement("p");
+  if (id != "00000") {
+    let projectName = state.projects.get(id);
+    if (projectName) {
+      project.classList.add("project-name");
+      project.textContent = projectName;
+    }
+  }
+  return project;
 }
 
 function createDueDate(dueDate: Date | undefined): HTMLDivElement {
