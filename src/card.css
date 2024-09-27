@@ -60,5 +60,6 @@
   scrollbar-width: none;
 }
 
-
-
+.message {
+  text-align: center;
+}

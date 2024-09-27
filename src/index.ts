@@ -32,7 +32,7 @@ export interface State {
 
 let initial = new Projects();
 
-let currentState: State = {
+export let currentState: State = {
   projects: initial,
   todos: [],
   currentProject: null
@@ -76,19 +76,23 @@ function populateContent(state: State): HTMLDivElement {
   const cardHolder = document.createElement("div");
   cardHolder.setAttribute("id","cards");
   let forDisplay = state.todos;
+  let message: HTMLParagraphElement = document.createElement("p");
+  message.classList.add("message");
   if (state.currentProject != "00000") {
     forDisplay = state.todos.filter( (todo) => todo.projectID == state.currentProject)
   }
   if (forDisplay.length) {
     forDisplay.map((todo) => {
-      const card = createCard(state, todo);
-      cardHolder.append(card);
+      let cards = createCard(state, todo);
+      cardHolder.append(cards);
     })
+    message.textContent = "End of list."
+  } else if (state.currentProject == "00000") {
+    message.textContent = "What would you like to do?"
   } else {
-    const noCardsText = document.createElement("p");
-    noCardsText.textContent = "There are no items in this project.";
-    cardHolder.append(noCardsText);
+    message.textContent = "There are no items in this project.";
   }
+  cardHolder.append(message);
   contentDiv.append(cardHolder);
   return contentDiv;
 }
