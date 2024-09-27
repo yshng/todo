@@ -52,10 +52,11 @@
 
 .notes {
   height: 4em;
+  text-wrap: wrap;
 }
 
 .notes, .checklist {
-  overflow: scroll;
+  overflow-y: scroll;
   scrollbar-width: none;
 }
 
