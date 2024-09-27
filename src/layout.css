@@ -5,8 +5,6 @@
   line-height: 1.2;
 }
 
-
-
 :root {
   font-family: system-ui, sans-serif;
   --bg-color: #84B68D;
@@ -23,16 +21,20 @@ button, input, textarea, select {
 }
 
 body {
+  background-color: var(--bg-color);
   display: grid;
   grid-template-rows: 150px 450px;
-  grid-template-columns: 800px;
+  grid-template-columns: 50px 750px;
   justify-content: center;
   margin-right: auto;
 }
 
+header, main {
+  grid-column: 2 / 3 ;
+}
+
 header {
   font-size: 1.5rem;
-  margin: 2em;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -55,30 +57,20 @@ button {
   border: 1px solid black;
 }
 
-body, header, main {
-  background-color: var(--bg-color);
-}
-
 main {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  
 }
 
 #projects {
-  display: flex;
-  flex: 1 1 20%;
-  margin: 0 2em;
-  flex-direction: column;
-  flex-wrap: wrap;
-  font-size: 1.5em;
-  align-items: right;
+  font-size: 1.5rem;
   overflow-y: scroll;
-  color: var(--bg-dark);
+  scrollbar-width: none;
 }
 
-#content {
-  flex: 1 1 20%;
+.project {
+  color: var(--bg-dark);
 }
 
 .current-project {
@@ -90,10 +82,12 @@ main {
 }
 
 #cards {
-  margin-right: auto;
+  margin-right: 0 auto;
   background-color: white;
   overflow-y: scroll;
   overflow-x: hidden;
   padding: 1em;
   height: 25em;
+  width: 100%;
+  scrollbar-width: none;
 }
