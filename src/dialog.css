@@ -22,7 +22,7 @@ form {
   justify-content: flex-start;
 }
 
-.row {
+form .row {
   flex: 1 1 100%;
   margin-top: 1em;
   display: flex;
@@ -55,7 +55,7 @@ dialog input, dialog textarea, dialog select {
 }
 
 button {
-  background-color: none;
+  background-color: white;
   border-radius: 0;
   border: 1px solid black;
   padding: .25em .5em;
