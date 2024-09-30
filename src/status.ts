@@ -1,23 +1,54 @@
-const statuses = ["done", "started", "not started", "paused"];
+import { currentState } from ".";
+import {ToDo} from "./todo";
 
-export function createStatus(state: number): HTMLDivElement {
-  const container = document.createElement("div");
-  container.classList.add("status-div");
-  const head = document.createElement("p");
-  head.classList.add("status-head");
-  head.textContent = "Status: ";
+const statuses = ["not yet started", "started", "paused", "done"];
 
-  const status = document.createElement("select");
-  status.classList.add("status");
+export function createStatus(state: number): HTMLParagraphElement {
+  const status = document.createElement("p");
   status.textContent = statuses[state];
-  for (let st of statuses) {
-    const option = document.createElement("option");
-    if (st == statuses[state]) {
-      option.setAttribute("selected","");
-    }
-    option.textContent = st;
-    status.appendChild(option);
+  status.classList.add("status");
+  return status;
+}
+
+export function createStatusButtons(todo: ToDo): HTMLDivElement {
+  const container = document.createElement("div");
+  container.classList.add("status-button-div");
+  if(todo.status == 0 || 2) {
+    container.append(playButton(),checkButton(),trashButton());
+  } else if (todo.status == 3) {
+    container.append(completedButton())
+  } else if (todo.status == 1) {
+    container.append(pauseButton(), checkButton(), trashButton());
   }
-  container.append (head, status);
   return container;
+}
+
+function playButton(): HTMLButtonElement {
+  const play = document.createElement("button");
+  play.classList.add("status-button","play-button");
+  return play;
+}
+
+function pauseButton(): HTMLButtonElement {
+  const check = document.createElement("button");
+  check.classList.add("status-button","check-button");
+  return check;
+}
+
+function checkButton(): HTMLButtonElement {
+  const check = document.createElement("button");
+  check.classList.add("status-button","check-button");
+  return check;
+}
+
+function trashButton(): HTMLButtonElement {
+  const trash = document.createElement("button");
+  trash.classList.add("status-button","trash-button");
+  return trash;
+}
+
+function completedButton(): HTMLButtonElement {
+  const completed = document.createElement("button");
+  completed.classList.add("status-button","completed-button");
+  return completed;
 }

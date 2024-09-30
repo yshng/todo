@@ -11,13 +11,74 @@
   height: 340px;
 }
 
+.todo:first-of-type {
+  margin-top: 0;
+}
+
 .title {
   font-weight: 600;
 }
 
-.project-name {
+.card-row {
+  margin-top: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items:start;
+}
+
+.status-button-div {
+  margin-left: auto;
+}
+
+.status-button {
+  width: 16px;
+  height: 16px;
+  border: none;
+  background-color: var(--bg-light);
+  margin-right: 5px;
+}
+
+.status-button:active{
+  color: var(--bg-color);
+  background-color: var(--bg-light);
+}
+
+.play-button {
+  background-image: url(assets/play.svg);
+}
+
+.pause-button {
+  background-image: url(assets/pause.svg);
+}
+
+.check-button {
+  background-image: url(assets/check.svg);
+}
+
+.trash-button {
+  background-image: url(assets/trash.svg);
+}
+
+.completed-button {
+  background-image: url(assets/check-square.svg)
+}
+
+.project-name, .status {
   text-transform: uppercase ;
   font-size: .8rem;
+}
+
+.project-name {
+  margin-bottom: 1rem;
+}
+
+.status {
+  background-color: var(--bg-dark);
+  padding: 2px 5px;
+  color: var(--bg-light);
+  border-radius: 4px;
+  width: fit-content;
   margin-bottom: 1rem;
 }
 
@@ -28,14 +89,6 @@
 
 .notes-div {
   margin: 1rem 0;
-}
-
-.status-div {
-  margin-top: auto;
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  gap: 10px;
 }
 
 .notes-head {
@@ -52,7 +105,7 @@
 }
 
 .timestamp {
-  margin-top: .25rem;
+  margin-top: auto;
   font-size: .6rem;
 }
 
