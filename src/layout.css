@@ -27,7 +27,7 @@ button, input, textarea, select {
 body {
   background-color: var(--bg-color);
   display: grid;
-  grid-template-rows: 150px 450px;
+  grid-template-rows: 150px 1fr;
   grid-template-columns: 50px 750px;
   justify-content: center;
   margin-right: auto;
@@ -64,6 +64,7 @@ button {
 main {
   display: grid;
   grid-template-columns: 1fr 400px;
+  gap: 20px;
   
 }
 
@@ -86,6 +87,7 @@ main {
 }
 
 #cards {
+  scroll-snap-type: y mandatory;
   margin-right: 0 auto;
   background-color: white;
   overflow-y: scroll;
@@ -94,4 +96,6 @@ main {
   height: 25em;
   width: 100%;
   scrollbar-width: none;
+  scroll-snap-stop: always;
+  background-color: var(--bg-color);
 }
