@@ -11,6 +11,8 @@
   --bg-light: #e6f0e8;
   --bg-dark: #4f6d54;
   display: flex;
+  font-size: 14px;
+
 }
 
 
@@ -46,7 +48,7 @@ header button {
 }
 
 button {
-  background-color: none;
+  background-color: white;
   border-radius: 0;
   border: 1px solid white;
   padding: 1em;
@@ -88,7 +90,6 @@ main {
   background-color: white;
   overflow-y: scroll;
   overflow-x: hidden;
-  padding: 1em;
   height: 25em;
   width: 100%;
   scrollbar-width: none;
