@@ -3,7 +3,7 @@ import { State } from ".";
 export class ToDo {
   title: string;
   dueDate?: Date;
-  priority?: number; // from 0 to 4, 4 being most important
+  priority: number; // from 0 to 4, 4 being most important
   notes: string;
   //checklist?: string[];
   status: number;

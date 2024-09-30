@@ -48,7 +48,6 @@ export function enableAddProject (state: State) {
 
 export function enableProjectSelection(state: State) {
   const titles = document.querySelectorAll(".project");
-  console.log(titles);
   titles.forEach( (button) => {
     button.addEventListener("click", () => {
     state.currentProject = button.getAttribute("id");

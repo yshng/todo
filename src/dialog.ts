@@ -34,13 +34,13 @@ function newItem(): ToDo {
   if (!notes) {notes = "(no notes)"};
 
   let priority = document.querySelector<HTMLSelectElement>("#priority")?.selectedIndex;
-  if (!priority) {priority = 2};
+  if (priority == undefined) {priority = 2};
 
-  let timescaleSelect = document.querySelector<HTMLSelectElement>("#timescale");
-  let timescale = timescaleSelect!.selectedIndex;
+  let timescale = document.querySelector<HTMLSelectElement>("#timescale")?.selectedIndex;
+  if (timescale == undefined) {timescale = 1};
+
 
   let projectSelect = document.querySelector<HTMLSelectElement>(".project-dropdown");
-  console.log(projectSelect);
   let projectID = projectSelect?.options[projectSelect.selectedIndex].value;
   if (!projectID) {projectID = "00000"}
   
