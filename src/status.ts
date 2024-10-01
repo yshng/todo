@@ -1,4 +1,3 @@
-import { currentState } from ".";
 import {ToDo} from "./todo";
 
 const statuses = ["not yet started", "started", "paused", "done"];
@@ -13,7 +12,7 @@ export function createStatus(state: number): HTMLParagraphElement {
 export function createStatusButtons(todo: ToDo): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("status-button-div");
-  if(todo.status == 0 || 2) {
+  if(todo.status == 0 || todo.status == 2) {
     container.append(playButton(),checkButton(),trashButton());
   } else if (todo.status == 3) {
     container.append(completedButton())
@@ -31,7 +30,7 @@ function playButton(): HTMLButtonElement {
 
 function pauseButton(): HTMLButtonElement {
   const check = document.createElement("button");
-  check.classList.add("status-button","check-button");
+  check.classList.add("status-button","pause-button");
   return check;
 }
 
