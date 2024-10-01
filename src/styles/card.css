@@ -45,23 +45,23 @@
 }
 
 .play-button {
-  background-image: url(assets/play.svg);
+  background-image: url(../assets/play.svg);
 }
 
 .pause-button {
-  background-image: url(assets/pause.svg);
+  background-image: url(../assets/pause.svg);
 }
 
 .check-button {
-  background-image: url(assets/check.svg);
+  background-image: url(../assets/check.svg);
 }
 
 .trash-button {
-  background-image: url(assets/trash.svg);
+  background-image: url(../assets/trash.svg);
 }
 
 .completed-button {
-  background-image: url(assets/check-square.svg)
+  background-image: url(../assets/check-square.svg)
 }
 
 .project-name, .status {
