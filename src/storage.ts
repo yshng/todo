@@ -7,13 +7,36 @@ export interface Schema {
   currentProject: number;
 }
 
-export function setTypedItem<T extends keyof Schema>(key: T, value: Schema[T]): void {
+function setTypedItem<T extends keyof Schema>(key: T, value: Schema[T]): void {
   window.localStorage.setItem(key, JSON.stringify(value));
 }
 
-export function getTypedItem<T extends keyof Schema>(key: T): Schema[T] | null {
+function getTypedItem<T extends keyof Schema>(key: T): Schema[T] | undefined {
   let result = window.localStorage.getItem(key);
   if (result) return JSON.parse(result); 
-  else return null;
+  else return undefined;
 }
 
+export function getProjects(): Projects {
+  let projects = getTypedItem("projects");
+  if (!projects) {
+    projects = new Projects;
+    setTypedItem("projects", projects);
+  }
+  return projects;
+}
+
+export function getToDos(): ToDo[] {
+  let todos = getTypedItem("todos");
+  if (!todos) {
+    todos = [];
+    setTypedItem("todos", todos);
+  }
+  return todos;
+}
+
+export function getCurrentProject(): number {
+  let current = getTypedItem("currentProject");
+  if (current == undefined) {return 0;} 
+  else {return current;}
+}
