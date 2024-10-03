@@ -22,14 +22,6 @@ export class ToDo {
     this.projectID = project;
   }
 
-  toString(): string {
-    return this.title;
-  }
-
-  addToDo(state: State): ToDo[] {
-    return state.todos.concat(this);
-  } 
-
   update<K extends keyof ToDo, V extends ToDo[K]>(key: K,value: V): ToDo {
     return {...this,[key]: value}
   }
