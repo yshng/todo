@@ -79,7 +79,7 @@ function trashButton(id: number): HTMLButtonElement {
   trash.addEventListener("click", () => {
     setTypedItem(
       "todos",
-      getToDos().filter((todo) => todo.created == id)
+      getToDos().filter( (todo) => id != todo.created )
     );
     updateDisplay();
   });
