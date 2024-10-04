@@ -31,14 +31,16 @@ const sample2 = {
   created: 123412341234
 }
 
-
 setTypedItem("todos",[sample1, sample2]);
 addProject("Project 1");
 updateDisplay();
 
-export function updateDisplay() {
+export function updateDisplay(position?: number) {
   const main = document.querySelector<HTMLDivElement>("main");
-  main?.replaceChildren(populateProjects(),populateContent());  
+  main?.replaceChildren(populateProjects(),populateContent()); 
+  if (position != undefined) {
+    let element = document.querySelector(`#card${position}`);
+    if (element) element.scrollIntoView();}
   addProjectDropdown();
 }
 

@@ -39,7 +39,7 @@ function playButton(id: number): HTMLButtonElement {
   play.classList.add("status-button", "play-button");
   play.addEventListener("click", () => {
     updateToDo(id, "status", 1); 
-    updateDisplay()});
+    updateDisplay(id)});
   return play;
 }
 
@@ -48,7 +48,7 @@ function pauseButton(id: number): HTMLButtonElement {
   pause.classList.add("status-button", "pause-button");
   pause.addEventListener("click", () => {
     updateToDo(id, "status", 2);
-    updateDisplay();
+    updateDisplay(id);
   });
   return pause;
 }
@@ -58,7 +58,7 @@ function checkButton(id: number): HTMLButtonElement {
   check.classList.add("status-button", "check-button");
   check.addEventListener("click", () => {
     updateToDo(id, "status", 3);
-    updateDisplay();
+    updateDisplay(id);
   });
   return check;
 }
@@ -68,7 +68,7 @@ function completedButton(id: number): HTMLButtonElement {
   completed.classList.add("status-button", "completed-button");
   completed.addEventListener("click", () => {
     updateToDo(id, "status", 0);
-    updateDisplay();
+    updateDisplay(id);
   });
   return completed;
 }
