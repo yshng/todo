@@ -7,15 +7,27 @@ export interface ToDo {
   notes: string;
   //checklist?: string[];
   status: number;
-  timescale: number; 
+  timescale: number;
   created: number;
-  projectID: number; 
+  projectID: number;
 }
 
-function updateToDo<K extends keyof ToDo, V extends ToDo[K]>(todo: ToDo, key: K,value: V): ToDo {
-  return {...todo,[key]: value}
+class ToDoNotFoundError extends Error {};
+
+export function updateToDo<K extends keyof ToDo, V extends ToDo[K]>(
+  id: number,
+  key: K,
+  value: V
+) {
+  let oldArray: ToDo[] = getToDos();
+  let oldToDo = oldArray.find((todo) => id == todo.created);
+  if (oldToDo) {
+    setTypedItem("todos", oldArray.filter( (todo) => id != todo.created).concat({...oldToDo, [key]: value}))
+  } else {
+    throw new ToDoNotFoundError("No To Do found with ID: " + id); 
+  }
 }
 
 export function addToDo(todo: ToDo) {
-  setTypedItem("todos",getToDos().concat(todo));
+  setTypedItem("todos", getToDos().concat(todo));
 }

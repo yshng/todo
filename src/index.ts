@@ -17,7 +17,7 @@ const sample1: ToDo = {
   status: 1,
   projectID: -1,
   timescale: 3,
-  created: Date.now()
+  created: 456745674567
 }
 
 const sample2 = {
@@ -28,7 +28,7 @@ const sample2 = {
   status: 2,
   projectID: -1,
   timescale: 2,
-  created: Date.now()
+  created: 123412341234
 }
 
 
