@@ -17,7 +17,7 @@ const sample1: ToDo = {
   status: 1,
   projectID: -1,
   timescale: 3,
-  created: Date.now()
+  created: 456745674567
 }
 
 const sample2 = {
@@ -28,17 +28,19 @@ const sample2 = {
   status: 2,
   projectID: -1,
   timescale: 2,
-  created: Date.now()
+  created: 123412341234
 }
-
 
 setTypedItem("todos",[sample1, sample2]);
 addProject("Project 1");
 updateDisplay();
 
-export function updateDisplay() {
+export function updateDisplay(position?: number) {
   const main = document.querySelector<HTMLDivElement>("main");
-  main?.replaceChildren(populateProjects(),populateContent());  
+  main?.replaceChildren(populateProjects(),populateContent()); 
+  if (position != undefined) {
+    let element = document.querySelector(`#card${position}`);
+    if (element) element.scrollIntoView();}
   addProjectDropdown();
 }
 
