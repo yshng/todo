@@ -1,6 +1,5 @@
 import { ToDo, addToDo } from "./todo";
 import { updateDisplay } from ".";
-// import { Project } from "./project";
 
 const dialog = document.querySelector<HTMLDialogElement>("dialog");
 const addBtn = document.querySelector<HTMLButtonElement>("#submit");
@@ -26,7 +25,7 @@ function newItem(): ToDo {
   let title = document.querySelector<HTMLInputElement>("#title")?.value;
   if (!title) {title = "Another To Do";}
 
-  let dueDate = undefined;
+  let dueDate: Date | undefined = undefined;
   let dateString = document.querySelector<HTMLInputElement>("#due-date")?.value;
   if (dateString) {dueDate = new Date(dateString);}
 
