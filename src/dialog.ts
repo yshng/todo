@@ -39,7 +39,7 @@ function newItem(): ToDo {
   let timescale = document.querySelector<HTMLSelectElement>("#timescale")?.selectedIndex;
   if (timescale == undefined) {timescale = 1};
 
-  let projectSelect = document.querySelector<HTMLSelectElement>(".project-dropdown");
+  let projectSelect = document.querySelector<HTMLSelectElement>("#project-dropdown");
   let projectID = Number(projectSelect?.options[projectSelect.selectedIndex].value);
   if (!projectID) {projectID = -1}
   

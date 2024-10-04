@@ -13,11 +13,11 @@ export function addProject(title: string) {
 
 export function addProjectDropdown() {
   const projectDiv = document.querySelector("#project-select");
-  const head = document.createElement("p");
-  head.classList.add("project-head");
-  head.textContent = "Project";
+  const label = document.createElement("label");
+  label.setAttribute("for","project-dropdown");
+  label.textContent = "Project";
   const dropdown = document.createElement("select");
-  dropdown.classList.add("project-dropdown");
+  dropdown.setAttribute("id","project-dropdown");
 
   for (let {id,title} of getProjects()) {
     const opt = document.createElement("option");
@@ -32,7 +32,7 @@ export function addProjectDropdown() {
   span.textContent = "Add new project";
   addProject.appendChild(span);
   dropdown.appendChild(addProject);
-  projectDiv?.replaceChildren(head,dropdown);
+  projectDiv?.replaceChildren(label,dropdown);
 }
 
 export function selectProject(id: number) {
