@@ -1,4 +1,4 @@
-import { State } from ".";
+import { getToDos, setTypedItem } from "./storage";
 
 export class ToDo {
   title: string;
@@ -9,9 +9,9 @@ export class ToDo {
   status: number;
   timescale: number; 
   created: Date;
-  projectID: string; 
+  projectID: number; 
 
-  constructor(title: string,dueDate: Date | undefined,priority: number,notes: string, timescale: number, project: string) {
+  constructor(title: string,dueDate: Date | undefined,priority: number,notes: string, timescale: number, project: number) {
     this.title = title,
     this.dueDate = dueDate,
     this.priority = priority,
@@ -27,3 +27,6 @@ export class ToDo {
   }
 }
 
+export function addToDo(todo: ToDo) {
+  setTypedItem("todos",getToDos().concat(todo));
+}

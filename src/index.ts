@@ -1,10 +1,13 @@
-import './card.css';
-import './layout.css';
-import './dialog.css';
+import './styles/card.css';
+import './styles/layout.css';
+import './styles/dialog.css';
 import {ToDo} from './todo';
 import './dialog';
 import { createCard } from './card'
-import { Projects, enableAddProject, addProjectDropdown, enableProjectSelection } from './project';
+import { addProject, selectProject, addProjectDropdown } from './project';
+import { initializeStorage, getCurrentProject, setTypedItem, getProjects, getToDos } from './storage';
+
+initializeStorage();
 
 const sample1 = new ToDo(
   "Sample Task",
@@ -12,7 +15,7 @@ const sample1 = new ToDo(
   2,
   "Here are some notes",
   1,
-  "00001"
+  -1
 );
 
 const sample2 = new ToDo(
@@ -21,73 +24,54 @@ const sample2 = new ToDo(
   3,
   "Here are some notes. Even more notes.",
   2,
-  "00002"
+  -1
 );
 
-export interface State {
-  projects: Projects;
-  todos: ToDo[];
-  currentProject: string | null;
-}
+setTypedItem("todos",[sample1, sample2]);
+addProject("Project 1");
+updateDisplay();
 
-let initial = new Projects();
-
-export let currentState: State = {
-  projects: initial,
-  todos: [],
-  currentProject: null
-}
-
-currentState = currentState.projects.addProject(currentState, "View All");
-currentState.currentProject = "00000";
-
-currentState = currentState.projects.addProject(currentState, "Project 1");
-currentState = currentState.projects.addProject(currentState, "Project 2");
-currentState.todos = sample1.addToDo(currentState);
-currentState.todos = sample2.addToDo(currentState);
-
-updateDisplay(currentState);
-enableAddProject(currentState);
-
-export function updateDisplay(state: State) {
+export function updateDisplay() {
   const main = document.querySelector<HTMLDivElement>("main");
-  main?.replaceChildren(populateProjects(state),populateContent(state));  
-  addProjectDropdown(state);
-  enableProjectSelection(state);
+  main?.replaceChildren(populateProjects(),populateContent());  
+  addProjectDropdown();
 }
 
-function populateProjects(state: State): HTMLDivElement {
+function populateProjects(): HTMLDivElement {
   const projectDiv = document.createElement("div");
-  projectDiv.setAttribute("id","projects");  
-  for (let [key,value] of state.projects.entries()) {
+  projectDiv.setAttribute("id","projects");
+
+  for (let {id,title} of getProjects()) {
     const h1 = document.createElement("h1");
-    h1.textContent = value;
-    h1.setAttribute("id",key);
-    if (key == state.currentProject) {h1.classList.add("current-project")};
+    h1.textContent = title;
+    if (id == -1) {h1.textContent = "View all"};
+    h1.setAttribute("id",`${id}`);
+    if (id == getCurrentProject()) {h1.classList.add("current-project")};
     h1.classList.add("project");
+    h1.addEventListener("click", () => selectProject(id))
     projectDiv.appendChild(h1);
   }
   return projectDiv;
 }
 
-function populateContent(state: State): HTMLDivElement {
+function populateContent(): HTMLDivElement {
   const contentDiv = document.createElement("div");
   contentDiv.setAttribute("id","content");
   const cardHolder = document.createElement("div");
   cardHolder.setAttribute("id","cards");
-  let forDisplay = state.todos;
+  let forDisplay = getToDos();
   let message: HTMLParagraphElement = document.createElement("p");
   message.classList.add("message");
-  if (state.currentProject != "00000") {
-    forDisplay = state.todos.filter( (todo) => todo.projectID == state.currentProject)
+  if (getCurrentProject() != -1) {
+    forDisplay = forDisplay.filter( (todo) => todo.projectID == getCurrentProject())
   }
   if (forDisplay.length) {
     forDisplay.map((todo) => {
-      let cards = createCard(state, todo);
+      let cards = createCard(todo);
       cardHolder.append(cards);
     })
     message.textContent = "End of list."
-  } else if (state.currentProject == "00000") {
+  } else if (getCurrentProject() == -1) {
     message.textContent = "What would you like to do?"
   } else {
     message.textContent = "There are no items in this project.";

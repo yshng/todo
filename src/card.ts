@@ -3,14 +3,14 @@ import { ToDo } from "./todo";
 import { createPriority } from "./priority";
 import { createStatus, createStatusButtons } from "./status";
 import { createTimescale } from "./timescale";
-import { State } from ".";
+import { getProjects } from "./storage";
 
-export function createCard(state: State, item: ToDo): HTMLDivElement {
+export function createCard(item: ToDo): HTMLDivElement {
   const card = document.createElement("div");
   card.classList.add("todo");
   card.append(
     createRow(createTitle(item.title),createStatusButtons(item)),
-    getProjectName(state,item.projectID),
+    getProjectName(item.projectID),
     createStatus(item.status),
     createDueDate(item.dueDate),
     createPriority(item.priority),
@@ -35,10 +35,10 @@ function createTitle(title: string): HTMLParagraphElement {
   titleText.textContent = title;
   return titleText;
 }
-function getProjectName(state: State, id: string): HTMLParagraphElement {
+function getProjectName(id: number): HTMLParagraphElement {
   const project = document.createElement("p");
-  if (id != "00000") {
-    let projectName = state.projects.get(id);
+  if (id != -1) {
+    let projectName = getProjects().filter( (project) => project.id == id)[0].title;
     if (projectName) {
       project.classList.add("project-name");
       project.textContent = projectName;

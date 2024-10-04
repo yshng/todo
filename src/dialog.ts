@@ -1,5 +1,5 @@
-import { ToDo } from "./todo";
-import { currentState, updateDisplay } from ".";
+import { ToDo, addToDo } from "./todo";
+import { updateDisplay } from ".";
 // import { Project } from "./project";
 
 const dialog = document.querySelector<HTMLDialogElement>("dialog");
@@ -13,8 +13,8 @@ newItemBtn?.addEventListener("click", () => {
 });
 
 addBtn?.addEventListener("click", ()=> {
-  currentState.todos = newItem().addToDo(currentState);
-  updateDisplay(currentState);
+  addToDo(newItem());
+  updateDisplay();
   dialog?.close();
 })
 
@@ -39,10 +39,9 @@ function newItem(): ToDo {
   let timescale = document.querySelector<HTMLSelectElement>("#timescale")?.selectedIndex;
   if (timescale == undefined) {timescale = 1};
 
-
   let projectSelect = document.querySelector<HTMLSelectElement>(".project-dropdown");
-  let projectID = projectSelect?.options[projectSelect.selectedIndex].value;
-  if (!projectID) {projectID = "00000"}
+  let projectID = Number(projectSelect?.options[projectSelect.selectedIndex].value);
+  if (!projectID) {projectID = -1}
   
   return new ToDo(
     title,
