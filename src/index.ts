@@ -9,23 +9,28 @@ import { initializeStorage, getCurrentProject, setTypedItem, getProjects, getToD
 
 initializeStorage();
 
-const sample1 = new ToDo(
-  "Sample Task",
-  new Date(2025,12,1),
-  2,
-  "Here are some notes",
-  1,
-  -1
-);
+const sample1: ToDo = {
+  title :"Sample Task",
+  dueDate: new Date(2025,12,1),
+  priority: 2,
+  notes: "Here are some notes",
+  status: 1,
+  projectID: -1,
+  timescale: 3,
+  created: Date.now()
+}
 
-const sample2 = new ToDo(
-  "Another Sample Task",
-  new Date(2025,12,1),
-  3,
-  "Here are some notes. Even more notes.",
-  2,
-  -1
-);
+const sample2 = {
+  title: "Another Sample Task",
+  dueDate: new Date(2025,12,1),
+  priority: 3,
+  notes: "Here are some notes. Even more notes.",
+  status: 2,
+  projectID: -1,
+  timescale: 2,
+  created: Date.now()
+}
+
 
 setTypedItem("todos",[sample1, sample2]);
 addProject("Project 1");

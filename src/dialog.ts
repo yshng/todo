@@ -43,13 +43,15 @@ function newItem(): ToDo {
   let projectID = Number(projectSelect?.options[projectSelect.selectedIndex].value);
   if (!projectID) {projectID = -1}
   
-  return new ToDo(
+  return {
     title,
     dueDate,
     priority, 
     notes,
     timescale,
-    projectID
-  )
+    projectID,
+    status: 0,
+    created: Date.now()
+  }
   
 }
