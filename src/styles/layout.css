@@ -52,8 +52,6 @@ header:hover {
   color: var(--bg-light);
 }
 
-
-
 header button {
   font-size: 1rem;
 }
@@ -85,7 +83,8 @@ main {
 
 #projects h1 {
   display: flex;
-  align-items: center;
+  flex-flow: row nowrap;
+  align-items: start;
 }
 
 .project {
@@ -93,11 +92,12 @@ main {
 }
 
 .project-badge {
-  font-size: .5em;
-  margin-right: .5em; 
+  font-size: 16px;
+  margin-right: 1em; 
   background-color: var(--low-contrast);
-  padding: .2em .4em;
+  padding: 4px 8px;
   color: var(--bg-color);
+  transform: translateY(12px);
 }
 
 .current-project {
@@ -114,17 +114,4 @@ h1.project:hover:not(.current-project) {
 
 :not(.current-project):hover > span.project-badge {
   background-color: var(--bg-dark);
-}
-
-#cards {
-  scroll-snap-type: y mandatory;
-  margin-right: 0 auto;
-  background-color: white;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  height: 25em;
-  width: 100%;
-  scrollbar-width: none;
-  scroll-snap-stop: always;
-  background-color: var(--bg-color);
 }
