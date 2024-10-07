@@ -25,14 +25,29 @@ function populateProjects(): HTMLDivElement {
 
   for (let {id,title} of getProjects()) {
     const h1 = document.createElement("h1");
-    h1.textContent = title;
-    if (id == -1) {h1.textContent = "View all"};
+    h1.classList.add("project");
+    if (id == -1) {
+      h1.textContent = "View all"
+    } else {
+      h1.textContent = title;
+    }
     h1.setAttribute("id",`${id}`);
     if (id == getCurrentProject()) {h1.classList.add("current-project")};
-    h1.classList.add("project");
+
+    // show number of todos in each project, or total number for default 
+    const badge = document.createElement("span");
+    if (id == -1) {
+      badge.textContent = getToDos().length.toString();
+    } else {
+      badge.textContent = getToDos().filter((todo) => todo.projectID == id).length.toString();
+    } 
+    badge.classList.add("project-badge");
     h1.addEventListener("click", () => selectProject(id))
+
+    h1.prepend(badge);
     projectDiv.appendChild(h1);
   }
+
   return projectDiv;
 }
 

@@ -10,6 +10,8 @@
   --bg-color: #84B68D;
   --bg-light: #e6f0e8;
   --bg-dark: #4f6d54;
+  --low-contrast: #9cc4a3;
+  --bg-darker: #374c3a;
   display: flex;
   font-size: 14px;
 
@@ -40,7 +42,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #9cc4a3;
+  color: var(--low-contrast);
 }
 
 header button {
@@ -72,16 +74,37 @@ main {
   scrollbar-width: none;
 }
 
+#projects h1 {
+  display: flex;
+  align-items: center;
+}
+
 .project {
-  color: var(--bg-dark);
+  color: var(--low-contrast);
 }
 
 .current-project {
-  color: black;
+  color: var(--bg-darker);
 }
 
-.project:hover:not(.current-project) {
-  color: var(--bg-light);
+.project-badge {
+  font-size: .5em;
+  margin-right: .5em; 
+  background-color: var(--low-contrast);
+  padding: .2em .4em;
+  color: var(--bg-color);
+}
+
+.current-project > .project-badge {
+  background-color: var(--bg-darker);
+}
+
+h1.project:hover:not(.current-project) {
+  color: var(--bg-dark);
+}
+
+:not(.current-project):hover > span.project-badge {
+  background-color: var(--bg-dark);
 }
 
 #cards {
