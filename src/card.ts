@@ -8,7 +8,7 @@ import { getProjects } from "./storage";
 export function createCard(item: ToDo): HTMLDivElement {
   const card = document.createElement("div");
   card.classList.add("todo");
-  card.setAttribute("id",`card${item.created}`);
+  card.setAttribute("id",`c${item.created}`);
   card.append(
     createRow(createTitle(item.title),createStatusButtons(item)),
     getProjectName(item.projectID),

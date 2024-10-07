@@ -21,8 +21,8 @@ export function updateDisplay(position?: number) {
   const main = document.querySelector<HTMLDivElement>("main");
   main?.replaceChildren(populateProjects(), populateContent());
   if (position != undefined) {
-    let element = document.querySelector(`#card${position}`);
-    if (element) element.scrollIntoView();
+    let element = document.querySelector(`[id$=${CSS.escape(position.toString())}]`);
+    if (element) element.scrollIntoView({behavior: "smooth", block: "center" });
   }
   addProjectDropdown();
 }
@@ -39,7 +39,7 @@ function populateProjects(): HTMLDivElement {
     } else {
       h1.textContent = title;
     }
-    h1.setAttribute("id", `${id}`);
+    h1.setAttribute("id", `p${id}`);
     if (id == getCurrentProject()) {
       h1.classList.add("current-project");
     }
