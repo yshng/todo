@@ -4,33 +4,10 @@ import './styles/dialog.css';
 import {ToDo} from './todo';
 import './dialog';
 import { createCard } from './card'
-import { addProject, selectProject, addProjectDropdown } from './project';
-import { getCurrentProject, setTypedItem, getProjects, getToDos, checkStorage } from './storage';
+import { selectProject, addProjectDropdown } from './project';
+import { getCurrentProject, getProjects, getToDos, checkStorage } from './storage';
 
 checkStorage();
-
-const sample1: ToDo = {
-  title :"Sample Task",
-  dueDate: new Date(2025,12,1),
-  priority: 2,
-  notes: "Here are some notes",
-  status: 1,
-  projectID: -1,
-  timescale: 3,
-  created: 456745674567
-}
-
-const sample2 = {
-  title: "Another Sample Task",
-  dueDate: new Date(2025,12,1),
-  priority: 3,
-  notes: "Here are some notes. Even more notes.",
-  status: 2,
-  projectID: -1,
-  timescale: 2,
-  created: 123412341234
-}
-
 updateDisplay();
 
 export function updateDisplay(position?: number) {
