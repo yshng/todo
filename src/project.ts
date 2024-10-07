@@ -6,11 +6,6 @@ export interface Project {
   title: string;
 }
 
-// when adding new project, generate unix timestamp key/ID for it
-export function addProject(title: string) {
-  setTypedItem("projects",getProjects().concat({id: Date.now(),title})); 
-}
-
 export function addProjectDropdown() {
   const projectDiv = document.querySelector("#project-select");
   const label = document.createElement("label");
@@ -41,13 +36,16 @@ export function selectProject(id: number) {
 }
 
 // make add project button work
-const button = document.querySelector<HTMLButtonElement>(".new-project");
-button?.addEventListener("click", () => {
+
+function addProject() {
   let title: string | null = null;
   while (!title) {
     title = prompt("Name your new project: ","Another Project");
   }
-  addProject(title);
+  setTypedItem("projects",getProjects().concat({id: Date.now(),title})); 
   updateDisplay();
-})
+}
+
+const button = document.querySelector<HTMLButtonElement>(".new-project");
+button?.addEventListener("click", () => addProject)
 
