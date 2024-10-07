@@ -5,9 +5,9 @@ import {ToDo} from './todo';
 import './dialog';
 import { createCard } from './card'
 import { addProject, selectProject, addProjectDropdown } from './project';
-import { initializeStorage, getCurrentProject, setTypedItem, getProjects, getToDos } from './storage';
+import { getCurrentProject, setTypedItem, getProjects, getToDos, checkStorage } from './storage';
 
-initializeStorage();
+checkStorage();
 
 const sample1: ToDo = {
   title :"Sample Task",
@@ -31,8 +31,6 @@ const sample2 = {
   created: 123412341234
 }
 
-setTypedItem("todos",[sample1, sample2]);
-addProject("Project 1");
 updateDisplay();
 
 export function updateDisplay(position?: number) {

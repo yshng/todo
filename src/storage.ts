@@ -14,7 +14,14 @@ export interface Schema {
   currentProject: number;
 }
 
-export function initializeStorage() {
+export function checkStorage() {
+  const projects = getTypedItem("projects");
+  if (!projects || projects[0].id != -1) {
+    initializeStorage();
+  }
+}
+
+function initializeStorage() {
   // set up empty default "no project / all projects" project as current 
   setTypedItem("projects",[{id: -1, title: "default"}]);
   setTypedItem("todos",[]);
