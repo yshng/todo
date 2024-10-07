@@ -92,10 +92,6 @@ main {
   color: var(--low-contrast);
 }
 
-.current-project {
-  color: var(--bg-darker);
-}
-
 .project-badge {
   font-size: .5em;
   margin-right: .5em; 
@@ -104,8 +100,12 @@ main {
   color: var(--bg-color);
 }
 
+.current-project {
+  color: var(--bg-light);
+}
+
 .current-project > .project-badge {
-  background-color: var(--bg-darker);
+  background-color: var(--bg-light);
 }
 
 h1.project:hover:not(.current-project) {
