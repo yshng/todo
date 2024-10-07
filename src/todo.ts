@@ -21,8 +21,9 @@ export function updateToDo<K extends keyof ToDo, V extends ToDo[K]>(
 ) {
   let oldArray: ToDo[] = getToDos();
   let oldToDo = oldArray.find((todo) => id == todo.created);
+  let bookmark = oldArray.findIndex((todo) => id == todo.created);
   if (oldToDo) {
-    setTypedItem("todos", oldArray.filter( (todo) => id != todo.created).concat({...oldToDo, [key]: value}))
+    setTypedItem("todos", oldArray.toSpliced(bookmark,1,{...oldToDo, [key]: value}))
   } else {
     throw new ToDoNotFoundError("No To Do found with ID: " + id); 
   }
