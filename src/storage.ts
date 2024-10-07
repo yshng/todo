@@ -12,6 +12,8 @@ export interface Schema {
   projects: Project[];
   todos: ToDo[];
   currentProject: number;
+  prevProjects: Project[];
+  prevToDos: ToDo[];
 }
 
 export function checkStorage() {
@@ -21,7 +23,7 @@ export function checkStorage() {
   }
 }
 
-function initializeStorage() {
+export function initializeStorage() {
   // set up empty default "no project / all projects" project as current 
   setTypedItem("projects",[{id: -1, title: "default"}]);
   setTypedItem("todos",[]);

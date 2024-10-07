@@ -1,5 +1,6 @@
 import { updateDisplay } from ".";
-import { getProjects, setTypedItem } from "./storage";
+import { getProjects, setTypedItem, getToDos } from "./storage";
+import { ToDo, updateToDo } from "./todo";
 
 export interface Project {
   id: number;
@@ -21,7 +22,6 @@ export function addProjectDropdown() {
     if (id == -1) {opt.textContent = "(no project)"}
     dropdown.appendChild(opt);
   }
-
   const addProject = document.createElement("option");
   const span = document.createElement("span");
   span.textContent = "Add new project";
@@ -47,5 +47,22 @@ function addProject() {
 }
 
 const button = document.querySelector<HTMLButtonElement>(".new-project");
-button?.addEventListener("click", () => addProject)
+button?.addEventListener("click", () => addProject());
 
+export function deleteProject(id: number) {
+  if (id != -1) {
+
+    setTypedItem("prevProjects", getProjects());
+    setTypedItem("projects",getProjects().filter((project) => project.id != id));
+
+    setTypedItem("prevToDos", getToDos());
+    //remove references to deleted project in existing todos
+    setTypedItem("todos", getToDos().map( (todo): ToDo => {
+      if (todo.projectID == id) {
+        return {...todo, "projectID": -1};
+      } else {
+        return todo;
+      }}))
+  }
+  updateDisplay();
+}
