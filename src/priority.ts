@@ -1,4 +1,4 @@
-const priorities = ["Very High","High","Normal","Low","Very Low"] as const;
+const priorities = ["Very High", "High", "Normal", "Low", "Very Low"] as const;
 
 export function createPriority(priority: number): HTMLDivElement {
   const container = document.createElement("div");
@@ -6,8 +6,6 @@ export function createPriority(priority: number): HTMLDivElement {
   const body = document.createElement("p");
   body.classList.add("priority");
   body.textContent = priorities[priority] + " priority";
-  container.append (
-    body
-  );  
+  container.append(body);
   return container;
 }

@@ -18,7 +18,7 @@ export function createStatusButtons(todo: ToDo): HTMLDivElement {
     container.append(
       playButton(todo.created),
       checkButton(todo.created),
-      trashButton(todo.created)
+      trashButton(todo.created),
     );
   } else if (todo.status == 3) {
     container.append(completedButton(todo.created), trashButton(todo.created));
@@ -26,7 +26,7 @@ export function createStatusButtons(todo: ToDo): HTMLDivElement {
     container.append(
       pauseButton(todo.created),
       checkButton(todo.created),
-      trashButton(todo.created)
+      trashButton(todo.created),
     );
   }
   return container;

@@ -1,6 +1,6 @@
 export function createChecklist(array: string[] | undefined): HTMLDivElement {
   const container = document.createElement("div");
-  container.classList.add("checklist-div"); 
+  container.classList.add("checklist-div");
 
   const head = document.createElement("p");
   head.classList.add("checklist-head");
@@ -10,7 +10,7 @@ export function createChecklist(array: string[] | undefined): HTMLDivElement {
   add.classList.add("checklist-add");
   add.textContent = "+";
 
-  container.append(head,add);
+  container.append(head, add);
 
   if (array != undefined) {
     const list = document.createElement("ul");
@@ -18,8 +18,8 @@ export function createChecklist(array: string[] | undefined): HTMLDivElement {
     array.map((listitem) => {
       const li = document.createElement("li");
       const checkbox = document.createElement("input");
-      checkbox.setAttribute("type","checkbox");
-      checkbox.setAttribute("name",listitem);
+      checkbox.setAttribute("type", "checkbox");
+      checkbox.setAttribute("name", listitem);
       const text = document.createTextNode(listitem);
       li.append(checkbox, text);
       list.appendChild(li);

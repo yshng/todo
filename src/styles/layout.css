@@ -7,17 +7,19 @@
 
 :root {
   font-family: system-ui, sans-serif;
-  --bg-color: #84B68D;
+  --bg-color: #84b68d;
   --bg-light: #e6f0e8;
   --bg-dark: #4f6d54;
   --low-contrast: #9cc4a3;
   --bg-darker: #374c3a;
   display: flex;
   font-size: 14px;
-
 }
 
-button, input, textarea, select {
+button,
+input,
+textarea,
+select {
   font-family: inherit;
   line-height: inherit;
   font-size: inherit;
@@ -32,8 +34,9 @@ body {
   margin-right: auto;
 }
 
-header, main {
-  grid-column: 2 / 3 ;
+header,
+main {
+  grid-column: 2 / 3;
 }
 
 header {
@@ -74,7 +77,6 @@ main {
   display: grid;
   grid-template-columns: 400px 1fr;
   gap: 20px;
-  
 }
 
 #projects {
@@ -96,7 +98,7 @@ main {
 
 .project-badge {
   font-size: 16px;
-  margin-right: 1em; 
+  margin-right: 1em;
   background-color: var(--low-contrast);
   padding: 4px 8px;
   color: var(--bg-color);

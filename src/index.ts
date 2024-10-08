@@ -10,7 +10,7 @@ import {
   getProjects,
   getToDos,
   checkStorage,
-  initializeStorage
+  initializeStorage,
 } from "./storage";
 
 checkStorage();
@@ -21,8 +21,11 @@ export function updateDisplay(position?: number) {
   const main = document.querySelector<HTMLDivElement>("main");
   main?.replaceChildren(populateContent(), populateProjects());
   if (position != undefined) {
-    let element = document.querySelector(`[id$=${CSS.escape(position.toString())}]`);
-    if (element) element.scrollIntoView({behavior: "smooth", block: "center" });
+    let element = document.querySelector(
+      `[id$=${CSS.escape(position.toString())}]`,
+    );
+    if (element)
+      element.scrollIntoView({ behavior: "smooth", block: "center" });
   }
   addProjectDropdown();
 }
@@ -70,10 +73,10 @@ function populateContent(): HTMLDivElement {
   cardHolder.setAttribute("id", "cards");
   let forDisplay = getToDos();
   let message: HTMLParagraphElement = document.createElement("div");
-  message.classList.add("todo","message");
+  message.classList.add("todo", "message");
   if (getCurrentProject() != -1) {
     forDisplay = forDisplay.filter(
-      (todo) => todo.projectID == getCurrentProject()
+      (todo) => todo.projectID == getCurrentProject(),
     );
   }
   if (forDisplay.length) {
@@ -91,7 +94,7 @@ function populateContent(): HTMLDivElement {
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete project";
     deleteButton.addEventListener("click", () =>
-      deleteProject(getCurrentProject())
+      deleteProject(getCurrentProject()),
     );
     message.append(deleteButton);
   }

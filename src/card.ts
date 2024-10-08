@@ -8,16 +8,16 @@ import { getProjects } from "./storage";
 export function createCard(item: ToDo): HTMLDivElement {
   const card = document.createElement("div");
   card.classList.add("todo");
-  card.setAttribute("id",`c${item.created}`);
+  card.setAttribute("id", `c${item.created}`);
   card.append(
-    createRow(createTitle(item.title),createStatusButtons(item)),
+    createRow(createTitle(item.title), createStatusButtons(item)),
     getProjectName(item.projectID),
     createStatus(item.status),
     createDueDate(item.dueDate),
     createPriority(item.priority),
     createTimescale(item.timescale),
     createNotes(item.notes),
-    createTimestamp(item.created)
+    createTimestamp(item.created),
   );
 
   return card;
@@ -39,7 +39,8 @@ function createTitle(title: string): HTMLParagraphElement {
 function getProjectName(id: number): HTMLParagraphElement {
   const project = document.createElement("p");
   if (id != -1) {
-    let projectName = getProjects().filter( (project) => project.id == id)[0].title;
+    let projectName = getProjects().filter((project) => project.id == id)[0]
+      .title;
     if (projectName) {
       project.classList.add("project-name");
       project.textContent = projectName;
@@ -52,11 +53,11 @@ function createDueDate(dueDate: Date | undefined): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("due-date-div");
   const date = document.createElement("p");
-  
+
   if (dueDate == undefined) {
     date.textContent = "(none)";
   } else {
-    date.textContent = "Due by " + formatDate(dueDate, 'EEEE MMM dd, yyyy');
+    date.textContent = "Due by " + formatDate(dueDate, "EEEE MMM dd, yyyy");
     container.append(date);
   }
   return container;
@@ -74,11 +75,11 @@ function createNotes(notes: string): HTMLDivElement {
   body.classList.add("notes");
   if (notes == "") {
     body.textContent = "(none)";
-  } else { 
+  } else {
     body.textContent = notes;
   }
 
-  container.append(head,body);
+  container.append(head, body);
 
   return container;
 }
@@ -89,4 +90,3 @@ function createTimestamp(timestamp: number): HTMLDivElement {
   container.textContent = `Created ${formatDistance(timestamp, new Date())} ago`;
   return container;
 }
-

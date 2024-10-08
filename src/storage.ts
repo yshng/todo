@@ -2,8 +2,7 @@ import storageAvailable from "storage-available";
 import { Project } from "./project";
 import { ToDo } from "./todo";
 
-if (storageAvailable('localStorage')) {
-  ;
+if (storageAvailable("localStorage")) {
 } else {
   alert("This site is not compatible with your browser :( ");
 }
@@ -24,27 +23,29 @@ export function checkStorage() {
 }
 
 export function initializeStorage() {
-  // set up empty default "no project / all projects" project as current 
-  setTypedItem("projects",[{id: -1, title: "default"}]);
-  setTypedItem("todos",[]);
-  setTypedItem("currentProject",-1);
+  // set up empty default "no project / all projects" project as current
+  setTypedItem("projects", [{ id: -1, title: "default" }]);
+  setTypedItem("todos", []);
+  setTypedItem("currentProject", -1);
 }
 
-
-export function setTypedItem<T extends keyof Schema>(key: T, value: Schema[T]): void {
+export function setTypedItem<T extends keyof Schema>(
+  key: T,
+  value: Schema[T],
+): void {
   window.localStorage.setItem(key, JSON.stringify(value));
 }
 
 function getTypedItem<T extends keyof Schema>(key: T): Schema[T] | undefined {
   let result = window.localStorage.getItem(key);
-  if (result) return JSON.parse(result); 
+  if (result) return JSON.parse(result);
   else return undefined;
 }
 
 export function getProjects(): Project[] {
   let projects = getTypedItem("projects");
   if (!projects) {
-    projects = [{id: -1, title: "default"}];
+    projects = [{ id: -1, title: "default" }];
     setTypedItem("projects", projects);
   }
   return projects;
@@ -61,6 +62,9 @@ export function getToDos(): ToDo[] {
 
 export function getCurrentProject(): number {
   let current = getTypedItem("currentProject");
-  if (current == undefined) {return -1;} 
-  else {return current;}
+  if (current == undefined) {
+    return -1;
+  } else {
+    return current;
+  }
 }

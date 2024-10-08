@@ -12,20 +12,23 @@ export interface ToDo {
   projectID: number;
 }
 
-class ToDoNotFoundError extends Error {};
+class ToDoNotFoundError extends Error {}
 
 export function updateToDo<K extends keyof ToDo, V extends ToDo[K]>(
   id: number,
   key: K,
-  value: V
+  value: V,
 ) {
   let oldArray: ToDo[] = getToDos();
   let oldToDo = oldArray.find((todo) => id == todo.created);
   let bookmark = oldArray.findIndex((todo) => id == todo.created);
   if (oldToDo) {
-    setTypedItem("todos", oldArray.toSpliced(bookmark,1,{...oldToDo, [key]: value}))
+    setTypedItem(
+      "todos",
+      oldArray.toSpliced(bookmark, 1, { ...oldToDo, [key]: value }),
+    );
   } else {
-    throw new ToDoNotFoundError("No To Do found with ID: " + id); 
+    throw new ToDoNotFoundError("No To Do found with ID: " + id);
   }
 }
 
@@ -37,6 +40,6 @@ export function removeToDo(id: number) {
   setTypedItem("prevToDos", getToDos());
   setTypedItem(
     "todos",
-    getToDos().filter( (todo) => id != todo.created )
-  )
+    getToDos().filter((todo) => id != todo.created),
+  );
 }

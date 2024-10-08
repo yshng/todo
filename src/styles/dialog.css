@@ -1,12 +1,12 @@
 dialog[open] {
-  background-color: #E4EDF3;
+  background-color: #e4edf3;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: min(50vw, 400px);
   min-width: 300px;
-  height: min(60vh,600px);
+  height: min(60vh, 600px);
   min-height: 400px;
   padding: 1rem 2rem;
 }
@@ -43,11 +43,15 @@ label {
   flex: 0 1 30%;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   flex: 1 1 60%;
 }
 
-dialog input, dialog textarea, dialog select {
+dialog input,
+dialog textarea,
+dialog select {
   outline: none;
   border: 1px solid black;
   inset: none;
@@ -58,11 +62,11 @@ button {
   background-color: white;
   border-radius: 0;
   border: 1px solid black;
-  padding: .25em .5em;
+  padding: 0.25em 0.5em;
   font-weight: 400;
 }
 
-button:active{
+button:active {
   background-color: white;
   transform: scale(95%);
 }

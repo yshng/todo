@@ -10,16 +10,18 @@ export interface Project {
 export function addProjectDropdown() {
   const projectDiv = document.querySelector("#project-select");
   const label = document.createElement("label");
-  label.setAttribute("for","project-dropdown");
+  label.setAttribute("for", "project-dropdown");
   label.textContent = "Project";
   const dropdown = document.createElement("select");
-  dropdown.setAttribute("id","project-dropdown");
+  dropdown.setAttribute("id", "project-dropdown");
 
-  for (let {id,title} of getProjects()) {
+  for (let { id, title } of getProjects()) {
     const opt = document.createElement("option");
-    opt.setAttribute("value",id.toString());
+    opt.setAttribute("value", id.toString());
     opt.textContent = title;
-    if (id == -1) {opt.textContent = "(no project)"}
+    if (id == -1) {
+      opt.textContent = "(no project)";
+    }
     dropdown.appendChild(opt);
   }
   const addProject = document.createElement("option");
@@ -27,7 +29,7 @@ export function addProjectDropdown() {
   span.textContent = "Add new project";
   addProject.appendChild(span);
   dropdown.appendChild(addProject);
-  projectDiv?.replaceChildren(label,dropdown);
+  projectDiv?.replaceChildren(label, dropdown);
 }
 
 export function selectProject(id: number) {
@@ -40,9 +42,9 @@ export function selectProject(id: number) {
 function addProject() {
   let title: string | null = null;
   while (!title) {
-    title = prompt("Name your new project: ","Another Project");
+    title = prompt("Name your new project: ", "Another Project");
   }
-  setTypedItem("projects",getProjects().concat({id: Date.now(),title})); 
+  setTypedItem("projects", getProjects().concat({ id: Date.now(), title }));
   updateDisplay();
 }
 
@@ -51,21 +53,27 @@ button?.addEventListener("click", () => addProject());
 
 export function deleteProject(id: number) {
   if (id != -1) {
-
     setTypedItem("prevProjects", getProjects());
-    setTypedItem("projects",getProjects().filter((project) => project.id != id));
+    setTypedItem(
+      "projects",
+      getProjects().filter((project) => project.id != id),
+    );
 
     setTypedItem("prevToDos", getToDos());
     //remove references to deleted project in existing todos
-    setTypedItem("todos", getToDos().map( (todo): ToDo => {
-      if (todo.projectID == id) {
-        return {...todo, "projectID": -1};
-      } else {
-        return todo;
-      }}))
+    setTypedItem(
+      "todos",
+      getToDos().map((todo): ToDo => {
+        if (todo.projectID == id) {
+          return { ...todo, projectID: -1 };
+        } else {
+          return todo;
+        }
+      }),
+    );
 
-    setTypedItem("currentProject",-1);
+    setTypedItem("currentProject", -1);
   }
-  
+
   updateDisplay();
 }

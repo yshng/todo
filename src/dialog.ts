@@ -11,46 +11,62 @@ newItemBtn?.addEventListener("click", () => {
   if (dialog) dialog.showModal();
 });
 
-addBtn?.addEventListener("click", ()=> {
+addBtn?.addEventListener("click", () => {
   addToDo(newItem());
   updateDisplay();
   dialog?.close();
-})
+});
 
 cancelBtn?.addEventListener("click", () => {
   dialog?.close();
-})
+});
 
 function newItem(): ToDo {
   let title = document.querySelector<HTMLInputElement>("#title")?.value;
-  if (!title) {title = "Another To Do";}
+  if (!title) {
+    title = "Another To Do";
+  }
 
   let dueDate: Date | undefined = undefined;
   let dateString = document.querySelector<HTMLInputElement>("#due-date")?.value;
-  if (dateString) {dueDate = new Date(dateString);}
+  if (dateString) {
+    dueDate = new Date(dateString);
+  }
 
   let notes = document.querySelector<HTMLTextAreaElement>("#notes")?.value;
-  if (!notes) {notes = "(no notes)"};
+  if (!notes) {
+    notes = "(no notes)";
+  }
 
-  let priority = document.querySelector<HTMLSelectElement>("#priority")?.selectedIndex;
-  if (priority == undefined) {priority = 2};
+  let priority =
+    document.querySelector<HTMLSelectElement>("#priority")?.selectedIndex;
+  if (priority == undefined) {
+    priority = 2;
+  }
 
-  let timescale = document.querySelector<HTMLSelectElement>("#timescale")?.selectedIndex;
-  if (timescale == undefined) {timescale = 1};
+  let timescale =
+    document.querySelector<HTMLSelectElement>("#timescale")?.selectedIndex;
+  if (timescale == undefined) {
+    timescale = 1;
+  }
 
-  let projectSelect = document.querySelector<HTMLSelectElement>("#project-dropdown");
-  let projectID = Number(projectSelect?.options[projectSelect.selectedIndex].value);
-  if (!projectID) {projectID = -1}
-  
+  let projectSelect =
+    document.querySelector<HTMLSelectElement>("#project-dropdown");
+  let projectID = Number(
+    projectSelect?.options[projectSelect.selectedIndex].value,
+  );
+  if (!projectID) {
+    projectID = -1;
+  }
+
   return {
     title,
     dueDate,
-    priority, 
+    priority,
     notes,
     timescale,
     projectID,
     status: 0,
-    created: Date.now()
-  }
-  
+    created: Date.now(),
+  };
 }
