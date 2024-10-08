@@ -19,7 +19,7 @@ updateDisplay();
 
 export function updateDisplay(position?: number) {
   const main = document.querySelector<HTMLDivElement>("main");
-  main?.replaceChildren(populateProjects(), populateContent());
+  main?.replaceChildren(populateContent(), populateProjects());
   if (position != undefined) {
     let element = document.querySelector(`[id$=${CSS.escape(position.toString())}]`);
     if (element) element.scrollIntoView({behavior: "smooth", block: "center" });
@@ -70,7 +70,7 @@ function populateContent(): HTMLDivElement {
   cardHolder.setAttribute("id", "cards");
   let forDisplay = getToDos();
   let message: HTMLParagraphElement = document.createElement("div");
-  message.classList.add("todo");
+  message.classList.add("todo","message");
   if (getCurrentProject() != -1) {
     forDisplay = forDisplay.filter(
       (todo) => todo.projectID == getCurrentProject()

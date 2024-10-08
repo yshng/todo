@@ -26,7 +26,11 @@
   flex: 1 0 25em;
 }
 
-.todo:last-of-type {
+.message {
+  text-align: center;
+}
+
+.todo:last-of-type:not(:first-of-type) {
   flex: 0 1 10em;
   background-color: var(--bg-color);
   border: none;

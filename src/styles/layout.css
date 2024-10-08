@@ -41,13 +41,16 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+header > h1 {
   color: var(--low-contrast);
   transition-property: color;
   transition-duration: 1s;
   transition-timing-function: ease-in-out;
 }
 
-header:hover {
+header > h1:hover {
   color: var(--bg-light);
 }
 
@@ -69,13 +72,13 @@ button {
 
 main {
   display: grid;
-  grid-template-columns: 1fr 400px;
+  grid-template-columns: 400px 1fr;
   gap: 20px;
   
 }
 
 #projects {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   overflow-y: scroll;
   scrollbar-width: none;
   height: 400px;
@@ -97,7 +100,7 @@ main {
   background-color: var(--low-contrast);
   padding: 4px 8px;
   color: var(--bg-color);
-  transform: translateY(12px);
+  transform: translateY(8px);
 }
 
 .current-project {
