@@ -66,7 +66,7 @@ function newItem(): ToDo {
     notes,
     timescale,
     projectID,
-    status: 0,
+    status: "not yet started",
     created: Date.now(),
   };
 }
