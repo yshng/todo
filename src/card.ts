@@ -23,7 +23,7 @@ export function createCard(item: ToDo): HTMLDivElement {
   return card;
 }
 
-function createRow(...elements: HTMLElement[]) {
+export function createRow(...elements: HTMLElement[]) {
   const row = document.createElement("div");
   row.classList.add("card-row");
   row.append(...elements);
