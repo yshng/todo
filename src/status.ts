@@ -1,4 +1,4 @@
-import { updateToDo, ToDo } from "./todo";
+import { updateToDo, ToDo, removeToDo } from "./todo";
 import { setTypedItem, getToDos } from "./storage";
 import { updateDisplay } from ".";
 
@@ -21,9 +21,7 @@ export function createStatusButtons(todo: ToDo): HTMLDivElement {
       trashButton(todo.created)
     );
   } else if (todo.status == 3) {
-    container.append(
-      completedButton(todo.created), 
-      trashButton(todo.created));
+    container.append(completedButton(todo.created), trashButton(todo.created));
   } else if (todo.status == 1) {
     container.append(
       pauseButton(todo.created),
@@ -34,42 +32,36 @@ export function createStatusButtons(todo: ToDo): HTMLDivElement {
   return container;
 }
 
+function pushStatusButton(id: number, status: number) {
+  updateToDo(id, "status", status);
+  updateDisplay(id);
+}
+
 function playButton(id: number): HTMLButtonElement {
   const play = document.createElement("button");
   play.classList.add("status-button", "play-button");
-  play.addEventListener("click", () => {
-    updateToDo(id, "status", 1); 
-    updateDisplay(id)});
+  play.addEventListener("click", () => pushStatusButton(id, 1));
   return play;
 }
 
 function pauseButton(id: number): HTMLButtonElement {
   const pause = document.createElement("button");
   pause.classList.add("status-button", "pause-button");
-  pause.addEventListener("click", () => {
-    updateToDo(id, "status", 2);
-    updateDisplay(id);
-  });
+  pause.addEventListener("click", () => pushStatusButton(id, 2));
   return pause;
 }
 
 function checkButton(id: number): HTMLButtonElement {
   const check = document.createElement("button");
   check.classList.add("status-button", "check-button");
-  check.addEventListener("click", () => {
-    updateToDo(id, "status", 3);
-    updateDisplay(id);
-  });
+  check.addEventListener("click", () => pushStatusButton(id, 3));
   return check;
 }
 
 function completedButton(id: number): HTMLButtonElement {
   const completed = document.createElement("button");
   completed.classList.add("status-button", "completed-button");
-  completed.addEventListener("click", () => {
-    updateToDo(id, "status", 0);
-    updateDisplay(id);
-  });
+  completed.addEventListener("click", () => pushStatusButton(id, 0));
   return completed;
 }
 
@@ -77,10 +69,7 @@ function trashButton(id: number): HTMLButtonElement {
   const trash = document.createElement("button");
   trash.classList.add("status-button", "trash-button");
   trash.addEventListener("click", () => {
-    setTypedItem(
-      "todos",
-      getToDos().filter( (todo) => id != todo.created )
-    );
+    removeToDo(id);
     updateDisplay();
   });
   return trash;

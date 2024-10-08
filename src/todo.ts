@@ -32,3 +32,11 @@ export function updateToDo<K extends keyof ToDo, V extends ToDo[K]>(
 export function addToDo(todo: ToDo) {
   setTypedItem("todos", getToDos().concat(todo));
 }
+
+export function removeToDo(id: number) {
+  setTypedItem("prevToDos", getToDos());
+  setTypedItem(
+    "todos",
+    getToDos().filter( (todo) => id != todo.created )
+  )
+}
