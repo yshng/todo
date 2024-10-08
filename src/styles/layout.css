@@ -17,7 +17,6 @@
 
 }
 
-
 button, input, textarea, select {
   font-family: inherit;
   line-height: inherit;
@@ -79,6 +78,7 @@ main {
   font-size: 1.5rem;
   overflow-y: scroll;
   scrollbar-width: none;
+  height: 400px;
 }
 
 #projects h1 {

@@ -32,7 +32,7 @@ export function addProjectDropdown() {
 
 export function selectProject(id: number) {
   setTypedItem("currentProject", id);
-  updateDisplay();
+  updateDisplay(id);
 }
 
 // make add project button work
@@ -63,6 +63,9 @@ export function deleteProject(id: number) {
       } else {
         return todo;
       }}))
+
+    setTypedItem("currentProject",-1);
   }
+  
   updateDisplay();
 }
