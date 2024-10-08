@@ -35,6 +35,7 @@ export function addProjectDropdown() {
 export function selectProject(id: number) {
   setTypedItem("currentProject", id);
   updateDisplay(id);
+  updateDisplay(id);
 }
 
 // make add project button work
@@ -61,19 +62,12 @@ export function deleteProject(id: number) {
 
     setTypedItem("prevToDos", getToDos());
     //remove references to deleted project in existing todos
-    setTypedItem(
-      "todos",
-      getToDos().map((todo): ToDo => {
-        if (todo.projectID == id) {
-          return { ...todo, projectID: -1 };
-        } else {
-          return todo;
-        }
-      }),
-    );
-
-    setTypedItem("currentProject", -1);
+    setTypedItem("todos", getToDos().map( (todo): ToDo => {
+      if (todo.projectID == id) {
+        return {...todo, "projectID": -1};
+      } else {
+        return todo;
+      }}))
   }
-
   updateDisplay();
 }
