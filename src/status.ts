@@ -19,17 +19,16 @@ export function createStatusButtons(todo: ToDo): HTMLDivElement {
     container.append(
       playButton(todo.created),
       checkButton(todo.created),
-      trashButton(todo.created),
     );
   } else if (todo.status == "done") {
-    container.append(completedButton(todo.created), trashButton(todo.created));
+    container.append(completedButton(todo.created));
   } else if (todo.status == "started") {
     container.append(
       pauseButton(todo.created),
       checkButton(todo.created),
-      trashButton(todo.created),
     );
   }
+  container.append(editButton(todo.created), trashButton(todo.created));
   return container;
 }
 
@@ -64,6 +63,13 @@ function completedButton(id: number): HTMLButtonElement {
   completed.classList.add("status-button", "completed-button");
   completed.addEventListener("click", () => pushStatusButton(id, "not yet started"));
   return completed;
+}
+
+function editButton(id: number): HTMLButtonElement {
+  const edit = document.createElement("button");
+  edit.classList.add("status-button","edit-button");
+  // edit.addEventListener("click", () => toggleEdit());
+  return edit;
 }
 
 function trashButton(id: number): HTMLButtonElement {

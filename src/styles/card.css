@@ -45,6 +45,10 @@
   font-weight: 600;
 }
 
+input.title {
+  height: fit-content;
+}
+
 .card-row {
   margin-top: 0;
   display: flex;
@@ -55,6 +59,7 @@
 
 .status-button-div {
   margin-left: auto;
+  height: 16px;
 }
 
 .status-button {
@@ -90,6 +95,10 @@
   background-image: url(../assets/check-square.svg);
 }
 
+.edit-button {
+  background-image: url(../assets/edit-2.svg);
+}
+
 .project-name,
 .status {
   text-transform: uppercase;
@@ -117,6 +126,14 @@
 .timescale-div {
   width: 100%;
   height: 1.25rem;
+}
+
+.timescale-div {
+  text-transform: lowercase;
+}
+
+.timescale-div::first-letter {
+  text-transform: uppercase;
 }
 
 .notes-div {

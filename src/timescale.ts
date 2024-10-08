@@ -1,11 +1,11 @@
 const timescales = [
-  "less than 5 minutes",
-  "less than an hour",
-  "hours",
-  "days",
-  "weeks",
-  "months",
-  "years",
+  "Less than 5 minutes",
+  "Less than an hour",
+  "Hours",
+  "Days",
+  "Weeks",
+  "Months",
+  "Years",
 ];
 
 export function createTimescale(index: number): HTMLDivElement {
@@ -19,6 +19,26 @@ export function createTimescale(index: number): HTMLDivElement {
   return container;
 }
 
+export function createTimescaleDropdown(index?: number): HTMLDivElement {
+  const container = document.createElement("div");
+  container.classList.add("timescale-div");
+  const label = document.createElement("label");
+  label.setAttribute("for","timescale-dropdown");
+  label.textContent = "How long should this take?"
+  const timescale = document.createElement("select");
+  timescale.setAttribute("id","timescale-dropdown");
+  for (let i = 0; i < timescales.length; i++) {
+    const opt = document.createElement("option");
+    opt.value = i.toString();
+    opt.textContent = timescales[i];
+    if (i == index) {
+      opt.selected = true;
+    }
+    timescale.appendChild(opt);
+  }
+  container.append(label, timescale);
+  return container;
+}
 // for (let scale of timescales) {
 //   const option = document.createElement("option");
 //   if (scale == timescales[index]) {

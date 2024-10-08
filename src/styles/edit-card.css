@@ -1,0 +1,56 @@
+.todo.editing {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.editing input {
+  width: 10em;
+  border: none;
+  background-color: var(--bg-light);
+}
+
+.editing input:hover {
+  background-color: var(--bg-color);
+}
+
+.editing #project-dropdown {
+  margin-bottom: 1rem;
+}
+
+.editing select {
+  background-color: var(--bg-light);
+  padding: none;
+  outline: none;
+  border: none;
+  overflow-x: hidden;
+  width: 10em;
+}
+
+.editing select:hover {
+  cursor:pointer;
+  background-color: var(--bg-color);
+}
+
+.editing input[type="datetime-local"]:hover {
+  cursor: text;
+}
+
+#priority-dropdown option, #priority-dropdown{
+  margin-left: -4px;
+}
+
+#timescale-dropdown {
+  width: fit-content;
+}
+
+.editing .notes {
+  width: 100%;
+  padding: .1em;
+  outline: none;
+  border: none;
+  background-color: var(--bg-light);
+}
+
+.save-button {
+  background-image: url(../assets/edit-3.svg);
+}

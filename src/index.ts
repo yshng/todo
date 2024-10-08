@@ -1,8 +1,10 @@
 import "./styles/card.css";
 import "./styles/layout.css";
-import "./styles/dialog.css";
+import "./styles/button.css";
+import "./styles/edit-card.css";
 import { ToDo } from "./todo";
 import "./dialog";
+import { editCard } from "./edit-card";
 import { createCard } from "./card";
 import { selectProject, addProjectDropdown, deleteProject } from "./project";
 import {
@@ -71,6 +73,8 @@ function populateContent(): HTMLDivElement {
   contentDiv.setAttribute("id", "content");
   const cardHolder = document.createElement("div");
   cardHolder.setAttribute("id", "cards");
+  let newCard = editCard();
+  cardHolder.append(newCard);
   let forDisplay = getToDos();
   let message: HTMLParagraphElement = document.createElement("div");
   message.classList.add("todo", "message");
