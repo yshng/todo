@@ -1,27 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To Do</title>
-<script defer src="bundle.js"></script></head>
-<body>
-  <header>
-    <h1>Out of Sight</h1>
-    <div id="panel">
-      <button id="new-item">New Item</button>
-      <button class="new-project">New Project</button>
-    </div>
-  </header>
-  <main>
-  </main>
-  <dialog>
-    <form id="item-form" method="dialog">
-      <h1>New Item</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do</title>
+  <script defer src="bundle.js"></script></head>
+  <body>
+    <header>
+      <h1>Out of Sight</h1>
+      <div id="panel">
+        <button id="new-item">New Item</button>
+        <button class="new-project">New Project</button>
+      </div>
+    </header>
+    <main></main>
+    <dialog>
+      <form id="item-form" method="dialog">
+        <h1>New Item</h1>
 
-        <div class="row"><label for="title">Title</label><input id="title" type="text" placeholder="Another To Do"></div>
-        <div class="row"><label for="due-date">Due Date</label><input id="due-date" type="date">    </div>        
-        <div class="row"><label for="priority">Priority</label>
+        <div class="row">
+          <label for="title">Title</label
+          ><input id="title" type="text" placeholder="Another To Do" />
+        </div>
+        <div class="row">
+          <label for="due-date">Due Date</label
+          ><input id="due-date" type="date" />
+        </div>
+        <div class="row">
+          <label for="priority">Priority</label>
           <select id="priority">
             <option value="0">Very High</option>
             <option value="1">High</option>
@@ -31,26 +37,27 @@
           </select>
         </div>
         <div class="row">
-          <label for="notes">Notes</label><textarea name="notes" id="notes"></textarea></div>
-          <div class="row" id="timescale-select">
-            <label for="timescale">Timescale</label>
-            <select id="timescale" required>
-              <option selected>Less than 5 minutes</option>
-              <option>Less than an hour</option>
-              <option>Hours</option>
-              <option>Days</option>
-              <option>Weeks</option>
-              <option">Months</option>
-              <option>Years</option>
-            </select>
-          </div>
-          <div class="row" id="project-select">
-            </div>
+          <label for="notes">Notes</label
+          ><textarea name="notes" id="notes"></textarea>
+        </div>
+        <div class="row" id="timescale-select">
+          <label for="timescale">Timescale</label>
+          <select id="timescale" required>
+            <option selected>Less than 5 minutes</option>
+            <option>Less than an hour</option>
+            <option>Hours</option>
+            <option>Days</option>
+            <option>Weeks</option>
+            <option>Months</option>
+            <option>Years</option>
+          </select>
+        </div>
+        <div class="row" id="project-select"></div>
         <div class="buttons row">
           <button type="button" id="cancel">Cancel</button>
           <button type="button" id="submit">Add item</button>
         </div>
-    </form>
-</dialog>
-</body>
+      </form>
+    </dialog>
+  </body>
 </html>
