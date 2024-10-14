@@ -51,7 +51,7 @@ function editButton(id: number): HTMLButtonElement {
   return edit;
 }
 
-function trashButton(id: number): HTMLButtonElement {
+export function trashButton(id: number): HTMLButtonElement {
   const trash = document.createElement("button");
   trash.classList.add("status-button", "trash-button");
   trash.addEventListener("click", () => {

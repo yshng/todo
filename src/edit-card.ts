@@ -5,12 +5,13 @@ import { createProjectDropdown } from "./project";
 import { createRow } from "./card";
 import { formatDistanceToNow } from "date-fns";
 import { updateDisplay } from ".";
+import { trashButton } from "./status";
 
 export function editCard(todo: ToDo): HTMLDivElement {
   const card = document.createElement("div");
   card.classList.add("todo","editing");
   card.append(
-    createRow(createTitleField(todo.title), createSaveButton(todo.created)),
+    createRow(createTitleField(todo.title), createSaveButton(todo.created), trashButton(todo.created)),
     createProjectDropdown(todo.projectID),
     createDueDateSelector(todo.dueDate?.toDateString()),
     createPriorityDropdown(todo.priority),
