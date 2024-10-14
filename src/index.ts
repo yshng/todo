@@ -2,7 +2,7 @@ import "./styles/card.css";
 import "./styles/layout.css";
 import "./styles/button.css";
 import "./styles/edit-card.css";
-import "./dialog";
+import "./new-item-button";
 import { createCard } from "./card";
 import { selectProject, addProjectDropdown, deleteProject } from "./project";
 import {
