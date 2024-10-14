@@ -1,9 +1,9 @@
 import { updateToDo, ToDo, removeToDo } from "./todo";
 import { updateDisplay } from ".";
 
-const statuses = ["not yet started", "started", "paused", "done"];
-export type Status = typeof statuses[number];
+export type Status = "not yet started" | "started" | "paused" | "done";
 
+// display status
 
 export function createStatus(state: Status): HTMLParagraphElement {
   const status = document.createElement("p");
@@ -12,58 +12,37 @@ export function createStatus(state: Status): HTMLParagraphElement {
   return status;
 }
 
-export function createStatusButtons(todo: ToDo): HTMLDivElement {
-  const container = document.createElement("div");
-  container.classList.add("status-button-div");
-  if (todo.status == "not yet started" || todo.status == "paused") {
-    container.append(
-      playButton(todo.created),
-      checkButton(todo.created),
-    );
-  } else if (todo.status == "done") {
-    container.append(completedButton(todo.created));
-  } else if (todo.status == "started") {
-    container.append(
-      pauseButton(todo.created),
-      checkButton(todo.created),
-    );
-  }
-  container.append(editButton(todo.created), trashButton(todo.created));
-  return container;
-}
-
-function pushStatusButton(id: number, status: Status) {
+// logic
+function changeStatus(id: number, status: Status) {
   updateToDo(id, "status", status);
   updateDisplay(id);
 }
 
-function playButton(id: number): HTMLButtonElement {
-  const play = document.createElement("button");
-  play.classList.add("status-button", "play-button");
-  play.addEventListener("click", () => pushStatusButton(id, "started"));
-  return play;
+// status buttons
+function makeStatusButton(id: number, className: string, state: Status){
+  const button = document.createElement("button");
+  button.classList.add("status-button", className);
+  button.addEventListener("click", () => changeStatus(id,state));
+  return button;
 }
 
-function pauseButton(id: number): HTMLButtonElement {
-  const pause = document.createElement("button");
-  pause.classList.add("status-button", "pause-button");
-  pause.addEventListener("click", () => pushStatusButton(id, "paused"));
-  return pause;
+function playButton(id: number) { 
+  return makeStatusButton(id, "play-button","started"); 
 }
 
-function checkButton(id: number): HTMLButtonElement {
-  const check = document.createElement("button");
-  check.classList.add("status-button", "check-button");
-  check.addEventListener("click", () => pushStatusButton(id, "done"));
-  return check;
+function pauseButton(id: number) { 
+  return makeStatusButton(id, "pause-button","paused"); 
 }
 
-function completedButton(id: number): HTMLButtonElement {
-  const completed = document.createElement("button");
-  completed.classList.add("status-button", "completed-button");
-  completed.addEventListener("click", () => pushStatusButton(id, "not yet started"));
-  return completed;
+function checkButton(id: number) { 
+  return makeStatusButton(id, "check-button","done"); 
 }
+
+function completedButton(id: number) { 
+  return makeStatusButton(id, "completed-button","not yet started"); 
+}
+
+// edit and trash buttons
 
 function editButton(id: number): HTMLButtonElement {
   const edit = document.createElement("button");
@@ -80,4 +59,25 @@ function trashButton(id: number): HTMLButtonElement {
     updateDisplay();
   });
   return trash;
+}
+
+// put the buttons on the card
+export function createStatusButtons(todo: ToDo): HTMLDivElement {
+  const container = document.createElement("div");
+  container.classList.add("status-button-div");
+  if (todo.status == "not yet started" || todo.status == "paused") {
+    container.append(
+      playButton(todo.created),
+      checkButton(todo.created)
+    );
+  } else if (todo.status == "started") {
+    container.append(
+      pauseButton(todo.created),  
+      checkButton(todo.created)
+    );
+  } else if (todo.status == "done") {
+    container.append(completedButton(todo.created));
+  }
+  container.append(editButton(todo.created), trashButton(todo.created));
+  return container;
 }
