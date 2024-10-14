@@ -15,26 +15,57 @@ export interface ToDo {
 
 class ToDoNotFoundError extends Error {}
 
+export function getToDoByID(id: number): ToDo | undefined {
+  return getToDos().find((todo) => id == todo.created);
+}
+
 export function updateToDo<K extends keyof ToDo, V extends ToDo[K]>(
   id: number,
   key: K,
   value: V,
 ) {
-  let oldArray: ToDo[] = getToDos();
-  let oldToDo = oldArray.find((todo) => id == todo.created);
-  let bookmark = oldArray.findIndex((todo) => id == todo.created);
+  let oldToDo = getToDoByID(id);
+  let bookmark = getToDos().findIndex((todo) => id == todo.created);
   if (oldToDo) {
     setTypedItem(
       "todos",
-      oldArray.toSpliced(bookmark, 1, { ...oldToDo, [key]: value }),
+      getToDos().toSpliced(bookmark, 1, { ...oldToDo, [key]: value }),
     );
   } else {
     throw new ToDoNotFoundError("No To Do found with ID: " + id);
   }
 }
 
+export function replaceToDo(id: number, newToDo: ToDo) {
+  let oldToDo = getToDoByID(id);
+  let bookmark = getToDos().findIndex((todo) => id == todo.created);
+  if (oldToDo) {
+    setTypedItem(
+      "todos",
+      getToDos().toSpliced(bookmark, 1, newToDo),
+    );
+  } else {
+    throw new ToDoNotFoundError("No To Do found with ID: " + id);
+  }
+}
+
+export function addEmptyToDo(projectID?: number): ToDo {
+  let todo: ToDo = {
+    title: "To Do Item",
+    dueDate: undefined,
+    priority: 2,
+    status: "not yet started",
+    notes: "(no notes)",
+    timescale: 0,
+    created: Date.now(),
+    projectID: projectID || -1
+  }
+  addToDo(todo);
+  return todo;
+}
+
 export function addToDo(todo: ToDo) {
-  setTypedItem("todos", getToDos().concat(todo));
+  setTypedItem("todos", [todo].concat(getToDos()));
 }
 
 export function removeToDo(id: number) {
