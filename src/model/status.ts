@@ -1,0 +1,1 @@
+export type Status = "not yet started" | "started" | "paused" | "done";

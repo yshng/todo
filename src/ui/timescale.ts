@@ -1,11 +1,9 @@
 const timescales = [
   "Less than 5 minutes",
   "Less than an hour",
-  "Hours",
-  "Days",
-  "Weeks",
-  "Months",
-  "Years",
+  "Several hours",
+  "A day",
+  "Several days"
 ];
 
 export function createTimescale(index: number): HTMLDivElement {
@@ -39,11 +37,3 @@ export function createTimescaleDropdown(index?: number): HTMLDivElement {
   container.append(label, timescale);
   return container;
 }
-// for (let scale of timescales) {
-//   const option = document.createElement("option");
-//   if (scale == timescales[index]) {
-//     option.setAttribute("selected","");
-//   }
-//   option.textContent = scale;
-//   timescale.appendChild(option);
-// }

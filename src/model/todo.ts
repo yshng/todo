@@ -1,12 +1,11 @@
 import { getToDos, setTypedItem } from "./storage";
-import {Status} from "./status";
+import { Status } from "./status";
 
 export interface ToDo {
   title: string;
   dueDate?: string;
   priority: number; // from 0 to 4, 4 being most important
   notes?: string;
-  //checklist?: string[];
   status: Status;
   timescale: number;
   created: number;
