@@ -30,7 +30,7 @@ select {
 body {
   background-color: var(--bg-color);
   display: grid;
-  grid-template-rows: 150px 1fr;
+  grid-template-rows: 80px 1fr;
   grid-template-columns: 50px 750px;
   justify-content: center;
   margin-right: auto;
@@ -76,12 +76,14 @@ button {
 }
 
 main {
+  transform: translateY(-40px);
   display: grid;
   grid-template-columns: 400px 1fr;
   gap: 20px;
 }
 
 #projects {
+  margin-top: 60px;
   font-size: 1.25rem;
   overflow-y: scroll;
   scrollbar-width: none;
@@ -121,4 +123,12 @@ h1.project:hover:not(.current-project) {
 
 :not(.current-project):hover > span.project-badge {
   background-color: var(--bg-dark);
+}
+
+#content {
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
 }

@@ -1,14 +1,14 @@
+
 #cards {
   scroll-snap-type: y mandatory;
   margin-right: 0 auto;
-  background-color: white;
+  background-color: var(--bg-color);
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 25em;
-  width: 100%;
+  height: 27em;
+  width: 90%;
   scrollbar-width: none;
   scroll-snap-stop: always;
-  background-color: var(--bg-color);
   display: flex;
   flex-flow: column nowrap;
 }
@@ -19,30 +19,35 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin: 10px auto;
+  margin: 5px auto;
   padding: 20px;
   scroll-snap-align: center;
   width: 100%;
-  flex: 1 0 25em;
+  flex: 1 0 23em;
 }
 
 .message {
+  font-weight: 600;
   text-align: center;
+  align-items: center;
+}
+
+.message > button {
+  margin-top: 10px;
+  width: fit-content;
 }
 
 .todo:last-of-type:not(:first-of-type) {
   flex: 0 1 10em;
   background-color: var(--bg-color);
   border: none;
-  text-align: center;
+  text-align: left;
+  margin: 5px auto;
+  padding: 0;
 }
 
 .todo:first-of-type {
-  margin-top: 0;
-}
-
-.title {
-  font-weight: 600;
+  margin-top: 25px;
 }
 
 input.title {
@@ -57,8 +62,13 @@ input.title {
   align-items: start;
 }
 
+.title {
+  font-weight: 600;
+  flex: 1 0 200px;
+}
+
 .status-button-div {
-  margin-left: auto;
+  padding-left: 5px;
   height: 16px;
 }
 
@@ -156,8 +166,4 @@ input.title {
 .timestamp {
   margin-top: auto;
   font-size: 0.6rem;
-}
-
-.message {
-  text-align: center;
 }
