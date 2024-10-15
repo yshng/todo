@@ -4,7 +4,7 @@ import "./styles/button.css";
 import "./styles/edit-card.css";
 import "./ui/new-item-button";
 import { createCard } from "./ui/card";
-import { selectProject, addProjectDropdown, deleteProject } from "./model/project";
+import { selectProject, deleteProject } from "./model/project";
 import {
   getCurrentProject,
   getProjects,
@@ -12,6 +12,7 @@ import {
   checkStorage,
   //initializeStorage,
 } from "./model/storage";
+import { makeNewItemButton } from "./ui/new-item-button";
 
 checkStorage();
 // initializeStorage();
@@ -27,7 +28,6 @@ export function updateDisplay(position?: number) {
     if (element)
       element.scrollIntoView({ block: "center" });
   }
-  addProjectDropdown();
 }
 
 function populateProjects(): HTMLDivElement {
@@ -83,23 +83,37 @@ function populateContent(): HTMLDivElement {
     forDisplay.map((todo) => {
       let cards = createCard(todo);
       cardHolder.append(cards);
+
     });
+    message.append(contentItemButton("Add another task"));
   } else if (getCurrentProject() == -1) {
-    message.textContent = "What would you like to do?";
+    message.textContent = "You have no pending To Do items.";
   } else {
     message.textContent = "There are no items in this project.";
+    message.append(contentItemButton("Add a task"));
   }
 
   if (getCurrentProject() != -1) {
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete project";
-    deleteButton.addEventListener("click", () =>
-      deleteProject(getCurrentProject()),
-    );
-    message.append(deleteButton);
+    message.append(contentDeleteButton());
   }
 
   cardHolder.append(message);
   contentDiv.append(cardHolder);
   return contentDiv;
+}
+
+function contentItemButton(message: string): HTMLButtonElement {
+  const addItem = document.createElement("button");
+  addItem.textContent = message;
+  makeNewItemButton(addItem);
+  return addItem;
+}
+
+function contentDeleteButton(): HTMLButtonElement {
+  const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete project";
+    deleteButton.addEventListener("click", () =>
+      deleteProject(getCurrentProject()),
+    );
+  return deleteButton;
 }
