@@ -1,5 +1,5 @@
-import { updateToDo, ToDo, removeToDo } from "../model/todo";
-import { Status } from "../model/status";
+import { ToDo, removeToDo } from "../model/todo";
+import { Status, changeStatus } from "../model/status";
 import { updateDisplay } from "..";
 
 // display status
@@ -9,12 +9,6 @@ export function createStatus(state: Status): HTMLParagraphElement {
   status.textContent = state;
   status.classList.add("status");
   return status;
-}
-
-// logic
-function changeStatus(id: number, status: Status) {
-  updateToDo(id, "status", status);
-  updateDisplay(id);
 }
 
 // status buttons
