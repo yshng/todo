@@ -1,9 +1,9 @@
 import { formatDate, formatDistance } from "date-fns";
-import { ToDo } from "./todo";
+import { ToDo } from "../model/todo";
 import { createPriority } from "./priority";
 import { createStatus, createStatusButtons } from "./status";
 import { createTimescale } from "./timescale";
-import { getProjects } from "./storage";
+import { getProjects } from "../model/storage";
 
 export function createCard(item: ToDo): HTMLDivElement {
   const card = document.createElement("div");

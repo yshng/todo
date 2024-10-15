@@ -2,16 +2,16 @@ import "./styles/card.css";
 import "./styles/layout.css";
 import "./styles/button.css";
 import "./styles/edit-card.css";
-import "./new-item-button";
-import { createCard } from "./card";
-import { selectProject, addProjectDropdown, deleteProject } from "./project";
+import "./ui/new-item-button";
+import { createCard } from "./ui/card";
+import { selectProject, addProjectDropdown, deleteProject } from "./model/project";
 import {
   getCurrentProject,
   getProjects,
   getToDos,
   checkStorage,
   //initializeStorage,
-} from "./storage";
+} from "./model/storage";
 
 checkStorage();
 // initializeStorage();

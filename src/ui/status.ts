@@ -1,5 +1,5 @@
-import { updateToDo, ToDo, removeToDo } from "./todo";
-import { updateDisplay } from ".";
+import { updateToDo, ToDo, removeToDo } from "../model/todo";
+import { updateDisplay } from "..";
 
 export type Status = "not yet started" | "started" | "paused" | "done";
 

@@ -1,6 +1,6 @@
-import { updateDisplay } from ".";
+import { updateDisplay } from "..";
 import { getProjects, setTypedItem, getToDos } from "./storage";
-import { ToDo } from "./todo";
+import { ToDo } from "../todo";
 
 export interface Project {
   id: number;

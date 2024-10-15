@@ -1,4 +1,4 @@
-import { addEmptyToDo } from "./todo";
+import { addEmptyToDo } from "../model/todo";
 import { editCard } from "./edit-card";
 
 const newItemBtn = document.querySelector<HTMLButtonElement>("#new-item");

@@ -2,7 +2,7 @@ import { replaceToDo, getToDoByID, ToDo } from "./todo";
 import { createPriorityDropdown } from "./priority";
 import { createTimescaleDropdown } from "./timescale";
 import { createProjectDropdown } from "./project";
-import { createRow } from "./card";
+import { createRow } from "./ui/card";
 import { formatDistanceToNow } from "date-fns";
 import { updateDisplay } from ".";
 import { trashButton } from "./status";
