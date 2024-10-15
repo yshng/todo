@@ -7,10 +7,15 @@
   width: 10em;
   border: none;
   background-color: var(--bg-light);
+  font-weight: 800;
 }
 
-.editing input:hover {
-  background-color: var(--bg-color);
+.editing input:focus, .editing select:focus {
+  outline: none;
+}
+
+.editing select:focus {
+  background-color: lightsalmon;
 }
 
 .editing #project-dropdown {
@@ -19,6 +24,7 @@
 
 .editing select {
   background-color: var(--bg-light);
+  font-weight: 800;
   padding: none;
   outline: none;
   border: none;
@@ -28,7 +34,6 @@
 
 .editing select:hover {
   cursor:pointer;
-  background-color: var(--bg-color);
 }
 
 .editing input[type="datetime-local"]:hover {

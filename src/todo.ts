@@ -3,9 +3,9 @@ import {Status} from "./status";
 
 export interface ToDo {
   title: string;
-  dueDate?: Date;
+  dueDate?: string;
   priority: number; // from 0 to 4, 4 being most important
-  notes: string;
+  notes?: string;
   //checklist?: string[];
   status: Status;
   timescale: number;
@@ -51,11 +51,11 @@ export function replaceToDo(id: number, newToDo: ToDo) {
 
 export function addEmptyToDo(projectID?: number): ToDo {
   let todo: ToDo = {
-    title: "To Do Item",
+    title: "",
     dueDate: undefined,
     priority: 2,
     status: "not yet started",
-    notes: "(no notes)",
+    notes: undefined,
     timescale: 0,
     created: Date.now(),
     projectID: projectID || -1

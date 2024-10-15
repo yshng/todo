@@ -7,13 +7,14 @@ import { formatDistanceToNow } from "date-fns";
 import { updateDisplay } from ".";
 import { trashButton } from "./status";
 
-export function editCard(todo: ToDo): HTMLDivElement {
-  const card = document.createElement("div");
+export function editCard(todo: ToDo): HTMLFormElement {
+  const card = document.createElement("form");
+  card.setAttribute("autocomplete","off");
   card.classList.add("todo","editing");
   card.append(
     createRow(createTitleField(todo.title), createSaveButton(todo.created), trashButton(todo.created)),
     createProjectDropdown(todo.projectID),
-    createDueDateSelector(todo.dueDate?.toDateString()),
+    createDueDateSelector(todo.dueDate),
     createPriorityDropdown(todo.priority),
     createTimescaleDropdown(todo.timescale),
     createNotesField(todo.notes),
@@ -25,7 +26,8 @@ function createTitleField(title: string): HTMLInputElement {
   const titleField = document.createElement("input");
   titleField.setAttribute("type","text");
   titleField.setAttribute("id","title-field");
-  titleField.value = title || "To Do Item";
+  titleField.value = title;
+  titleField.setAttribute("placeholder","To Do Item");
   titleField.classList.add("title");
   return titleField;
 }
@@ -34,6 +36,7 @@ function createSaveButton(id: number): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("status-button-div");
   const save = document.createElement("button");
+  save.setAttribute("type","submit");
   save.classList.add("save-button","status-button");
   save.addEventListener("click", () => pushSaveButton(id));
   container.append(save);
@@ -47,7 +50,7 @@ function createDueDateSelector(duedate?: string): HTMLDivElement {
   const label = document.createElement("label");
   label.setAttribute("for","due-date");
   label.textContent = "Due by ";
-  date.setAttribute("type","datetime-local");
+  date.setAttribute("type","date");
   date.setAttribute("id","due-date");
   if (duedate) date.value = duedate;
   container.append(label,date);
@@ -86,36 +89,23 @@ function createTimestamp(timestamp?: number): HTMLDivElement {
 
 function newToDoFromCard(id: number) {
     
-  let title = document.querySelector<HTMLInputElement>("#title-field")?.value;
-  if (!title) {title = "To Do Item";}
+  let title = document.querySelector<HTMLInputElement>("#title-field")?.value || "";
 
-  let dueDate: Date | undefined = undefined;
-  let dateString = document.querySelector<HTMLInputElement>("#due-date")?.value;
-  if (dateString) {dueDate = new Date(dateString);}
+  let dueDate = document.querySelector<HTMLInputElement>("#due-date")?.value || undefined;
 
-  let notes = document.querySelector<HTMLTextAreaElement>("#notes")?.value;
-  if (!notes) {notes = "(no notes)";}
+  let notes = document.querySelector<HTMLTextAreaElement>("#notes")?.value || "";
 
   let priority =
-    document.querySelector<HTMLSelectElement>("#priority")?.selectedIndex;
-  if (priority == undefined) {
-    priority = 2;
-  }
+    document.querySelector<HTMLSelectElement>("#priority")?.selectedIndex || 2;
 
   let timescale =
-    document.querySelector<HTMLSelectElement>("#timescale")?.selectedIndex;
-  if (timescale == undefined) {
-    timescale = 1;
-  }
+    document.querySelector<HTMLSelectElement>("#timescale")?.selectedIndex || 1;
 
   let projectSelect =
     document.querySelector<HTMLSelectElement>("#project-dropdown");
   let projectID = Number(
     projectSelect?.options[projectSelect.selectedIndex].value,
-  );
-  if (!projectID) {
-    projectID = -1;
-  }
+  ) || -1;
 
   return {
     title,

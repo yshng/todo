@@ -5,7 +5,10 @@ const newItemBtn = document.querySelector<HTMLButtonElement>("#new-item");
 
 newItemBtn?.addEventListener("click", () => {
   const cardholder = document.querySelector("#cards");
-  const editor = editCard(addEmptyToDo());
-  cardholder?.prepend(editor);
-  editor.scrollIntoView();
+  if (!document.querySelector(".editing")) {
+    const editor = editCard(addEmptyToDo());
+    cardholder?.prepend(editor);
+    document.querySelector<HTMLInputElement>("#title-field")?.focus();
+    editor.scrollIntoView();
+  }
 });

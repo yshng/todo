@@ -49,7 +49,7 @@ function getProjectName(id: number): HTMLParagraphElement {
   return project;
 }
 
-function createDueDate(dueDate: Date | undefined): HTMLDivElement {
+function createDueDate(dueDate: string | undefined): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("due-date-div");
   const date = document.createElement("p");
@@ -57,13 +57,13 @@ function createDueDate(dueDate: Date | undefined): HTMLDivElement {
   if (dueDate == undefined) {
     date.textContent = "(none)";
   } else {
-    date.textContent = "Due by " + formatDate(dueDate, "EEEE MMM dd, yyyy");
+    date.textContent = "Due by " + formatDate(dueDate, "eeee, MMMM d, yyyy");
     container.append(date);
   }
   return container;
 }
 
-function createNotes(notes: string): HTMLDivElement {
+function createNotes(notes?: string): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("notes-div");
 
@@ -73,9 +73,7 @@ function createNotes(notes: string): HTMLDivElement {
 
   const body = document.createElement("p");
   body.classList.add("notes");
-  if (notes == "") {
-    body.textContent = "(none)";
-  } else {
+  if (notes != undefined) {
     body.textContent = notes;
   }
 
