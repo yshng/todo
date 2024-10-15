@@ -25,7 +25,7 @@ export function updateDisplay(position?: number) {
       `[id$=${CSS.escape(position.toString())}]`,
     );
     if (element)
-      element.scrollIntoView({ behavior: "smooth", block: "center" });
+      element.scrollIntoView({ block: "center" });
   }
   addProjectDropdown();
 }
