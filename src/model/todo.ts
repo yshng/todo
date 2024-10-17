@@ -14,7 +14,7 @@ export interface ToDo {
 
 class ToDoNotFoundError extends Error {}
 
-export function getToDoByID(id: number): ToDo | undefined {
+export function getToDoByID(id: number) {
   return getToDos().find((todo) => id == todo.created);
 }
 

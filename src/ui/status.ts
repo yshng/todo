@@ -1,6 +1,9 @@
-import { ToDo, removeToDo } from "../model/todo";
+import { ToDo, getToDoByID, removeToDo } from "../model/todo";
 import { Status, changeStatus } from "../model/status";
 import { updateDisplay } from "..";
+import { editCard } from "./edit-card";
+import { replaceCard } from "./card";
+
 
 // display status
 
@@ -40,8 +43,13 @@ function completedButton(id: number) {
 function editButton(id: number): HTMLButtonElement {
   const edit = document.createElement("button");
   edit.classList.add("status-button", "edit-button");
-  // edit.addEventListener("click", () => toggleEdit());
+  edit.addEventListener("click", () => pushEditButton(id));
   return edit;
+}
+
+function pushEditButton(id: number) {
+  const todo = getToDoByID(id);
+  if (todo) replaceCard(id, editCard(todo));
 }
 
 export function trashButton(id: number): HTMLButtonElement {

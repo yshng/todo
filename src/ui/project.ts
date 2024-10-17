@@ -1,7 +1,7 @@
 import { getProjects } from "../model/storage";
 import { addProject } from "../model/project";
 
-export function createProjectDropdown(id?: number) {
+export function createProjectDropdown(itemID?: number) {
   const projectDiv = document.createElement("div");
   projectDiv.setAttribute("id","project-select-div");
   const dropdown = document.createElement("select");
@@ -14,8 +14,12 @@ export function createProjectDropdown(id?: number) {
     if (id == -1) {
       opt.textContent = "(no project)";
     }
+    if (id == itemID) {
+      opt.setAttribute("selected","true");
+    }
     dropdown.appendChild(opt);
   }
+
   projectDiv.append(dropdown);
   return projectDiv;
 }

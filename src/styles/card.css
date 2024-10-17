@@ -6,7 +6,7 @@
   overflow-y: scroll;
   overflow-x: hidden;
   height: 27em;
-  width: 90%;
+  width: 100%;
   scrollbar-width: none;
   scroll-snap-stop: always;
   display: flex;
@@ -37,7 +37,7 @@
   width: fit-content;
 }
 
-.todo:last-of-type:not(:first-of-type) {
+.todo:last-child:not(:first-child) {
   flex: 0 1 10em;
   background-color: var(--bg-color);
   border: none;
@@ -46,7 +46,7 @@
   padding: 0;
 }
 
-.todo:first-of-type {
+.todo:first-child {
   margin-top: 25px;
 }
 

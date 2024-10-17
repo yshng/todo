@@ -4,6 +4,7 @@ import { createPriority } from "./priority";
 import { createStatus, createStatusButtons } from "./status";
 import { createTimescale } from "./timescale";
 import { getProjects } from "../model/storage";
+import { getElementByID } from "..";
 
 export function createCard(item: ToDo): HTMLDivElement {
   const card = document.createElement("div");
@@ -87,4 +88,10 @@ function createTimestamp(timestamp: number): HTMLDivElement {
   container.classList.add("timestamp");
   container.textContent = `Created ${formatDistance(timestamp, new Date())} ago`;
   return container;
+}
+
+export function replaceCard(id: number, el: Element) {
+  let card = getElementByID(id);
+  let cardholder = document.querySelector("#cards");
+  if (card) cardholder?.replaceChild(el, card);
 }

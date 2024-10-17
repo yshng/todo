@@ -7,9 +7,8 @@ import { formatDistanceToNow } from "date-fns";
 import { updateDisplay } from "..";
 import { trashButton } from "./status";
 
-export function editCard(todo: ToDo): HTMLFormElement {
+export function editCard(todo: ToDo) {
   const card = document.createElement("form");
-  card.setAttribute("autocomplete","off");
   card.classList.add("todo","editing");
   card.append(
     createRow(createTitleField(todo.title), createSaveButton(todo.created), trashButton(todo.created)),

@@ -6,16 +6,19 @@
 .editing input {
   width: 10em;
   border: none;
-  background-color: var(--bg-light);
-  font-weight: 800;
+  background-color: var(--highlight);
 }
 
 .editing input:focus, .editing select:focus {
   outline: none;
 }
 
-.editing select:focus {
-  background-color: lightsalmon;
+.editing input:focus, .editing input:hover {
+  background-color: var(--bg-light);
+}
+
+.editing select:hover{
+  background-color: var(--bg-color);
 }
 
 .editing #project-dropdown {
@@ -23,8 +26,7 @@
 }
 
 .editing select {
-  background-color: var(--bg-light);
-  font-weight: 800;
+  background-color: var(--highlight);
   padding: none;
   outline: none;
   border: none;
@@ -54,6 +56,10 @@
   outline: none;
   border: none;
   background-color: var(--bg-light);
+}
+
+textarea {
+  resize: none;
 }
 
 .save-button {

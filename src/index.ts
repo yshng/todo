@@ -18,13 +18,15 @@ checkStorage();
 // initializeStorage();
 updateDisplay();
 
+export function getElementByID(id: number) {
+  return document.querySelector(`[id$=${CSS.escape(id.toString())}]`);
+}
+
 export function updateDisplay(position?: number) {
   const main = document.querySelector<HTMLDivElement>("main");
   main?.replaceChildren(populateContent(), populateProjects());
   if (position != undefined) {
-    let element = document.querySelector(
-      `[id$=${CSS.escape(position.toString())}]`,
-    );
+    let element = getElementByID(position);
     if (element)
       element.scrollIntoView({ block: "center" });
   }
