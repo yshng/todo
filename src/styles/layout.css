@@ -54,6 +54,7 @@ header > h1 {
   transition-property: color;
   transition-duration: 1s;
   transition-timing-function: ease-in-out;
+  z-index: 1;
 }
 
 header > h1:hover {
@@ -72,6 +73,10 @@ button {
   font-weight: 800;
 }
 
+#panel {
+  z-index: 1;
+}
+
 #panel > button:active {
   border: 1px solid black;
 }
@@ -81,50 +86,9 @@ main {
   display: grid;
   grid-template-columns: 400px 1fr;
   gap: 20px;
+  overflow-x: visible;
 }
 
-#projects {
-  margin-top: 60px;
-  font-size: 1.25rem;
-  overflow-y: scroll;
-  scrollbar-width: none;
-  height: 400px;
-}
-
-#projects h1 {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: start;
-}
-
-.project {
-  color: var(--low-contrast);
-}
-
-.project-badge {
-  font-size: 16px;
-  margin-right: 1em;
-  background-color: var(--low-contrast);
-  padding: 4px 8px;
-  color: var(--bg-color);
-  transform: translateY(8px);
-}
-
-.current-project {
-  color: var(--bg-light);
-}
-
-.current-project > .project-badge {
-  background-color: var(--bg-light);
-}
-
-h1.project:hover:not(.current-project) {
-  color: var(--bg-dark);
-}
-
-:not(.current-project):hover > span.project-badge {
-  background-color: var(--bg-dark);
-}
 
 #content {
   z-index: 1;

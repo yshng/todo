@@ -7,21 +7,27 @@ export interface Project {
   title: string;
 }
 
-export function selectProject(id: number) {
+export function selectProject(id: number | string) {
+  if (typeof id == "string") id = Number(id);
   setTypedItem("currentProject", id);
   updateDisplay(id);
 }
 
 // make add project button work
 
-export function addProject() {
-  let title: string | null = null;
-  while (!title) {
-    title = prompt("Name your new project: ", "Another Project");
-  }
-  setTypedItem("projects", getProjects().concat({ id: Date.now(), title }));
-  updateDisplay();
+export function addProject(title: string) {
+  let id = Date.now();
+  setTypedItem("projects", getProjects().concat({ id, title }));
+  selectProject(id);
 }
+
+/*
+function getNewestProject() {
+  const newest = getProjects().reduce((latest, current) => {
+    return current.id > latest.id ? current : latest;
+  });
+}
+*/
 
 export function deleteProject(id: number) {
   if (id != -1) {
@@ -33,12 +39,16 @@ export function deleteProject(id: number) {
 
     setTypedItem("prevToDos", getToDos());
     //remove references to deleted project in existing todos
-    setTypedItem("todos", getToDos().map( (todo): ToDo => {
-      if (todo.projectID == id) {
-        return {...todo, "projectID": -1};
-      } else {
-        return todo;
-      }}))
+    setTypedItem(
+      "todos",
+      getToDos().map((todo): ToDo => {
+        if (todo.projectID == id) {
+          return { ...todo, projectID: -1 };
+        } else {
+          return todo;
+        }
+      }),
+    );
   }
   updateDisplay();
 }

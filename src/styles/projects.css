@@ -1,0 +1,68 @@
+#projects {
+  margin-top: 60px;
+  font-size: 1.25rem;
+  overflow-y: scroll;
+  overflow-x: visible;
+  scrollbar-width: none;
+  height: 400px;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+#projects h1 {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: start;
+  overflow-x: visible;
+  word-wrap: break-word;
+}
+
+.project {
+  color: var(--low-contrast);
+}
+
+.project-badge {
+  font-size: 1rem;
+  margin-right: 1rem;
+  line-height: 1.25;
+  background-color: var(--low-contrast);
+  flex: 0 0 2rem;
+  aspect-ratio: 1 / 1;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg-color);
+  transform: translateY(.5em);
+}
+
+.current-project {
+  color: var(--bg-light);
+}
+
+.current-project > .project-badge {
+  background-color: var(--bg-light);
+}
+
+h1.project:hover:not(.current-project) {
+  color: var(--bg-dark);
+}
+
+:not(.current-project):hover > span.project-badge {
+  background-color: var(--bg-dark);
+}
+
+#projects input {
+  font-size: 2rem;
+  font-weight: 700;
+  outline: none;
+  border: none;
+  background-color: var(--low-contrast);
+  padding: 5px;
+  color: var(--bg-darker);
+  width: 100%;
+}
+
+#projects form button {
+  visibility: hidden;
+}

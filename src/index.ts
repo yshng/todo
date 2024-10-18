@@ -2,20 +2,19 @@ import "./styles/card.css";
 import "./styles/layout.css";
 import "./styles/button.css";
 import "./styles/edit-card.css";
+import "./styles/projects.css";
 import "./ui/new-item-button";
 import { createCard } from "./ui/card";
-import { selectProject, deleteProject } from "./model/project";
+import { deleteProject } from "./model/project";
 import {
   getCurrentProject,
-  getProjects,
   getToDos,
   checkStorage,
-  //initializeStorage,
 } from "./model/storage";
+import { populateProjects } from "./ui/project";
 import { makeNewItemButton } from "./ui/new-item-button";
 
 checkStorage();
-// initializeStorage();
 updateDisplay();
 
 export function getElementByID(id: number) {
@@ -30,42 +29,6 @@ export function updateDisplay(position?: number) {
     if (element)
       element.scrollIntoView({ block: "center" });
   }
-}
-
-function populateProjects(): HTMLDivElement {
-  const projectDiv = document.createElement("div");
-  projectDiv.setAttribute("id", "projects");
-
-  for (let { id, title } of getProjects()) {
-    const h1 = document.createElement("h1");
-    h1.classList.add("project");
-    if (id == -1) {
-      h1.textContent = "View all";
-    } else {
-      h1.textContent = title;
-    }
-    h1.setAttribute("id", `p${id}`);
-    if (id == getCurrentProject()) {
-      h1.classList.add("current-project");
-    }
-
-    // show number of todos in each project, or total number for default
-    const badge = document.createElement("span");
-    if (id == -1) {
-      badge.textContent = getToDos().length.toString();
-    } else {
-      badge.textContent = getToDos()
-        .filter((todo) => todo.projectID == id)
-        .length.toString();
-    }
-    badge.classList.add("project-badge");
-    h1.addEventListener("click", () => selectProject(id));
-
-    h1.prepend(badge);
-    projectDiv.appendChild(h1);
-  }
-
-  return projectDiv;
 }
 
 function populateContent(): HTMLDivElement {
