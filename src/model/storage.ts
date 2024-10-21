@@ -1,6 +1,7 @@
 import storageAvailable from "storage-available";
 import { Project } from "./project";
 import { ToDo } from "./todo";
+import { updateDisplay } from "..";
 
 if (storageAvailable("localStorage")) {
 } else {
@@ -67,4 +68,19 @@ export function getCurrentProject(): number {
   } else {
     return current;
   }
+}
+
+export function restoreToDos(id?: number) {
+  const prev = getTypedItem("prevToDos");
+  if (prev) setTypedItem("todos",prev); 
+  updateDisplay(id);
+}
+
+export function restoreProjects(id: number) {
+  const prev = getTypedItem("prevProjects");
+  if (prev) {
+    setTypedItem("projects",prev);
+    setTypedItem("currentProject",id);
+  }
+  restoreToDos();
 }

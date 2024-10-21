@@ -1,0 +1,29 @@
+.confirm > button#undo {
+  background-color: inherit;
+  padding: 0 .5rem;
+  border: none;
+  text-decoration: underline;
+}
+
+#undo:hover {
+  font-weight: 600;
+}
+
+.confirm {
+  background-color: lightcoral;
+  padding: .25rem 0 .25rem 1rem;
+  animation-name: fade-in;
+  animation-duration: .75s;
+  position: sticky;
+  top: 0px;
+}
+
+@keyframes fade-in {
+  0% {
+    background-color: var(--bg-color);
+  }
+
+  100% {
+    background-color: lightcoral;
+  }
+}

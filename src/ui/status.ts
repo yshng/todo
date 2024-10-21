@@ -1,8 +1,8 @@
 import { ToDo, getToDoByID, removeToDo } from "../model/todo";
 import { Status, changeStatus } from "../model/status";
-import { updateDisplay } from "..";
 import { editCard } from "./edit-card";
 import { replaceCard } from "./card";
+import { confirmToDoDelete } from "./delete-message";
 
 
 // display status
@@ -55,11 +55,14 @@ function pushEditButton(id: number) {
 export function trashButton(id: number): HTMLButtonElement {
   const trash = document.createElement("button");
   trash.classList.add("status-button", "trash-button");
-  trash.addEventListener("click", () => {
-    removeToDo(id);
-    updateDisplay();
-  });
+  trash.addEventListener("click", () => pushTrashButton(id));
   return trash;
+}
+
+function pushTrashButton(id: number) {
+  const title = getToDoByID(id)?.title;
+  removeToDo(id);
+  if (title) confirmToDoDelete(title,id);
 }
 
 // put the buttons on the card

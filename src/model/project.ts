@@ -50,5 +50,10 @@ export function deleteProject(id: number) {
       }),
     );
   }
+  setTypedItem("currentProject",-1);
   updateDisplay();
+}
+
+export function getProjectByID(id: number) {
+  return getProjects().filter( (project) => project.id == id)[0];
 }

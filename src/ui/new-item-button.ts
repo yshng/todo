@@ -7,8 +7,10 @@ export function makeNewItemButton(element: HTMLButtonElement) {
     if (!document.querySelector(".editing")) {
       const editor = editCard(addEmptyToDo());
       cardholder?.prepend(editor);
+      const message = document.querySelector<HTMLElement>(".message");
+      if (message) message.style.visibility = "hidden";
       document.querySelector<HTMLInputElement>("#title-field")?.focus();
-      editor.scrollIntoView();
+      editor.scrollIntoView({ block: "center" });
     }
   });
 }

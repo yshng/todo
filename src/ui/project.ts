@@ -46,12 +46,22 @@ export function createProjectDropdown(itemID?: number) {
     const opt = document.createElement("option");
     opt.setAttribute("value", id.toString());
     opt.textContent = title;
+
+    // text for default project option
     if (id == -1) {
       opt.textContent = "(no project)";
     }
+
+    // if given an existing item, pre-select its project
     if (id == itemID) {
       opt.setAttribute("selected","true");
     }
+
+    // if in a project view already, pre-select that project name
+    if (getCurrentProject() !== -1 && getCurrentProject() == id) {
+      opt.setAttribute("selected","true");
+    }
+
     dropdown.appendChild(opt);
   }
 

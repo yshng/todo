@@ -3,9 +3,10 @@ import "./styles/layout.css";
 import "./styles/button.css";
 import "./styles/edit-card.css";
 import "./styles/projects.css";
+import "./styles/delete-message.css"
 import "./ui/new-item-button";
 import { createCard } from "./ui/card";
-import { deleteProject } from "./model/project";
+import { deleteProject, getProjectByID } from "./model/project";
 import {
   getCurrentProject,
   getToDos,
@@ -13,6 +14,7 @@ import {
 } from "./model/storage";
 import { populateProjects } from "./ui/project";
 import { makeNewItemButton } from "./ui/new-item-button";
+import { confirmProjectDelete } from "./ui/delete-message";
 
 checkStorage();
 updateDisplay();
@@ -31,13 +33,13 @@ export function updateDisplay(position?: number) {
   }
 }
 
-function populateContent(): HTMLDivElement {
+function populateContent() {
   const contentDiv = document.createElement("div");
   contentDiv.setAttribute("id", "content");
   const cardHolder = document.createElement("div");
   cardHolder.setAttribute("id", "cards");
   let forDisplay = getToDos();
-  let message: HTMLParagraphElement = document.createElement("div");
+  let message = document.createElement("div");
   message.classList.add("todo", "message");
   if (getCurrentProject() != -1) {
     forDisplay = forDisplay.filter(
@@ -52,9 +54,10 @@ function populateContent(): HTMLDivElement {
     });
     message.append(contentItemButton("Add another task"));
   } else if (getCurrentProject() == -1) {
-    message.textContent = "You have no pending To Do items.";
+    message.textContent = "You have no pending tasks.";
+    message.append(contentItemButton("Add a task"));
   } else {
-    message.textContent = "There are no items in this project.";
+    message.textContent = "Add a task to this project?";
     message.append(contentItemButton("Add a task"));
   }
 
@@ -67,18 +70,23 @@ function populateContent(): HTMLDivElement {
   return contentDiv;
 }
 
-function contentItemButton(message: string): HTMLButtonElement {
+function contentItemButton(message: string) {
   const addItem = document.createElement("button");
   addItem.textContent = message;
   makeNewItemButton(addItem);
   return addItem;
 }
 
-function contentDeleteButton(): HTMLButtonElement {
+function contentDeleteButton() {
   const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete project";
-    deleteButton.addEventListener("click", () =>
-      deleteProject(getCurrentProject()),
-    );
+    deleteButton.addEventListener("click", () => pushDeleteProjectButton())
   return deleteButton;
+}
+
+function pushDeleteProjectButton() {
+  const id = getCurrentProject();
+  const title = getProjectByID(id).title;
+  deleteProject(id);
+  confirmProjectDelete(title, id);
 }

@@ -1,5 +1,6 @@
 import { getToDos, setTypedItem } from "./storage";
 import { Status } from "./status";
+import { updateDisplay } from "..";
 
 export interface ToDo {
   title: string;
@@ -73,4 +74,5 @@ export function removeToDo(id: number) {
     "todos",
     getToDos().filter((todo) => id != todo.created),
   );
+  updateDisplay();
 }
