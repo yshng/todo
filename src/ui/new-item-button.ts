@@ -7,8 +7,13 @@ export function makeNewItemButton(element: HTMLButtonElement) {
     if (!document.querySelector(".editing")) {
       const editor = editCard(addEmptyToDo());
       cardholder?.prepend(editor);
-      const message = document.querySelector<HTMLElement>(".message");
-      if (message) message.style.visibility = "hidden";
+
+      //check for message and confirm divs and remove them 
+      const checkForMessage = document.querySelector<HTMLElement>(".message");
+      if (checkForMessage) checkForMessage.remove();
+      const checkForConfirm = document.querySelector(".confirm");
+      if (checkForConfirm) checkForConfirm.remove();
+
       document.querySelector<HTMLInputElement>("#title-field")?.focus();
       editor.scrollIntoView({ block: "center" });
     }
