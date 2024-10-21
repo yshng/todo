@@ -1,21 +1,12 @@
-.confirm > button#undo {
-  background-color: inherit;
-  padding: 0 .5rem;
-  border: none;
-  text-decoration: underline;
-}
-
-#undo:hover {
-  font-weight: 600;
-}
-
 .confirm {
   background-color: lightcoral;
-  padding: .25rem 0 .25rem 1rem;
-  animation-name: fade-in;
-  animation-duration: .75s;
+  padding: .25rem 1rem;
+  animation-name: fade-in .75s;
   position: sticky;
   top: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
 @keyframes fade-in {
@@ -26,4 +17,23 @@
   100% {
     background-color: lightcoral;
   }
+}
+
+.confirm button {
+  font-size: inherit;
+  background-color: inherit;
+  border: none;
+}
+
+
+.confirm button:hover {
+  font-weight: 600;
+}
+
+#undo {
+  text-decoration: underline;
+}
+
+#exit {
+  margin-left: auto;
 }

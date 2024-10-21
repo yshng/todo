@@ -10,6 +10,7 @@ import { trashButton } from "./edit-trash-buttons";
 export function editCard(todo: ToDo) {
   const card = document.createElement("form");
   card.classList.add("todo","editing");
+  card.setAttribute("autocomplete","off");
   card.append(
     createRow(createTitleField(todo.title), createSaveButton(todo.created), trashButton(todo.created)),
     createProjectDropdown(todo.projectID),
@@ -27,7 +28,6 @@ function createTitleField(title: string): HTMLInputElement {
   titleField.setAttribute("id","title-field");
   titleField.value = title;
   titleField.setAttribute("placeholder","To Do Item");
-  titleField.classList.add("title");
   return titleField;
 }
 
