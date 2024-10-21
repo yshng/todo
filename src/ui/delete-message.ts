@@ -14,7 +14,7 @@ function makeConfirm(message: string, option: string, restore: Function) {
 }
 
 export function confirmToDoDelete(title: string, id: number) {
-  makeConfirm(`Task ${title} deleted.`, "Undo?", () => restoreToDos(id));
+  makeConfirm(`Task "${title}" deleted.`, "Undo?", () => restoreToDos(id));
 }
 
 export function confirmProjectDelete(title: string, id: number) {
