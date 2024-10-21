@@ -1,7 +1,8 @@
 import { formatDate, formatDistance } from "date-fns";
 import { ToDo } from "../model/todo";
 import { createPriority } from "./priority";
-import { createStatus, createStatusButtons } from "./status";
+import { createStatus, playButton, pauseButton, checkButton, completedButton  } from "./status";
+import { trashButton, editButton } from "./edit-trash-buttons";
 import { createTimescale } from "./timescale";
 import { getProjects } from "../model/storage";
 import { getElementByID } from "..";
@@ -48,6 +49,20 @@ function getProjectName(id: number): HTMLParagraphElement {
     }
   }
   return project;
+}
+
+function createStatusButtons(todo: ToDo): HTMLDivElement {
+  const container = document.createElement("div");
+  container.classList.add("status-button-div");
+  if (todo.status == "not yet started" || todo.status == "paused") {
+    container.append(playButton(todo.created), checkButton(todo.created));
+  } else if (todo.status == "started") {
+    container.append(pauseButton(todo.created), checkButton(todo.created));
+  } else if (todo.status == "done") {
+    container.append(completedButton(todo.created));
+  }
+  container.append(editButton(todo.created), trashButton(todo.created));
+  return container;
 }
 
 function createDueDate(dueDate: string | undefined): HTMLDivElement {

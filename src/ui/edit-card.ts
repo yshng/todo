@@ -5,7 +5,7 @@ import { createProjectDropdown } from "./project";
 import { createRow } from "../ui/card";
 import { formatDistanceToNow } from "date-fns";
 import { updateDisplay } from "..";
-import { trashButton } from "./status";
+import { trashButton } from "./edit-trash-buttons";
 
 export function editCard(todo: ToDo) {
   const card = document.createElement("form");
