@@ -1,15 +1,13 @@
 #projects {
-  margin-top: 5.25rem;
   font-size: 1.25rem;
   overflow-y: scroll;
   overflow-x: visible;
   scrollbar-width: none;
   word-wrap: break-word;
   word-break: break-word;
-  grid-row: 1 / 2;
-  grid-column: 2 / 3;
   padding-bottom: 10em;
   padding-left: 20px;
+  scroll-snap-type: y proximity;
 }
 
 #projects h1 {
@@ -18,6 +16,11 @@
   align-items: start;
   overflow-x: visible;
   word-wrap: break-word;
+  scroll-snap-align: center;
+}
+
+.project:first-of-type {
+  margin-top: 1.5rem;
 }
 
 .project {

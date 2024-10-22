@@ -8,9 +8,16 @@
   height: 27em;
   width: 100%;
   scrollbar-width: none;
-  scroll-snap-stop: always;
   display: flex;
   flex-flow: column nowrap;
+}
+
+.buffer {
+  display: block;
+  background-color: red;
+  flex: 0 0 40px;
+  margin: 5px auto;
+  scroll-snap-type: none;
 }
 
 .todo {
@@ -21,6 +28,7 @@
   margin: 5px auto;
   padding: 20px;
   scroll-snap-align: center;
+  scroll-snap-stop: always;
   width: 100%;
   flex: 1 0 23em;
 }
@@ -37,7 +45,7 @@
   background-color: var(--bg-color);
 }
 
-.message:first-child {
+.message:nth-child(2)  {
   padding: 10px 0 0 0;
   background-color: var(--low-contrast);
   flex: 1 0 23em;
@@ -46,10 +54,6 @@
 .message > button {
   margin-top: 10px;
   width: fit-content;
-}
-
-.todo:first-child {
-  margin-top: 20px;
 }
 
 input.title {

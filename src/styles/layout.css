@@ -29,6 +29,10 @@ select {
 body {
   background-color: var(--bg-color);
   display: grid;
+  grid-template-areas: 
+  " . head head . "
+  " . panel1 panel2 . "
+  " . cards projects .";
   grid-template-rows: 80px 30px 1fr;
   grid-template-columns: 100px 400px 300px 1fr ;
   justify-content: center;
@@ -36,7 +40,7 @@ body {
 }
 
 header {
-  grid-area: 1 / 2 / 2 / 4;
+  grid-area: head;
 }
 
 main {
@@ -45,34 +49,23 @@ main {
 }
 
 #new-item{
-  grid-area: 2 / 2;
-    place-self: center end;
-}
-
-#overview{
-  grid-area: 2 / 3;
-  place-self: center end;
+ grid-area: panel1;
+ place-self: center end;
 }
 
 #new-project {
-  grid-area: 2 / 3;
+  grid-area: panel2;
   place-self: center start;
 }
 
-.overlay-top {
-  margin-top: 8px;
-  display: block;
-  background-image: linear-gradient(var(--bg-color), #84b68d00);
-  height: 40px;
-  grid-row: 3 / 4;
-  grid-column: 2 / 5;
-  position: relative;
-  z-index: 2;
+#overview{
+  grid-area: panel2;
+  place-self: center end;
 }
 
 .panel {
   position: relative;
-  z-index: 3;
+  z-index: 1;
 }
 
 header {
@@ -104,18 +97,42 @@ header button:active {
   border: none;
 }
 
-
 main {
-  transform: translateY(-40px);
   display: grid;
-  grid-template-columns: 400px 1fr;
-  grid-template-rows: 500px;
+  grid-template-columns: 400px 300px;
+  grid-template-rows: 400px 50px;
+  grid-template-areas: 
+  " cards projects ";
   overflow-x: visible;
 }
 
+.overlay-top {
+  display: block;
+  background-image: linear-gradient(var(--bg-color) 20%, #84b68d00);
+  width: 700px;
+  height: 40px;
+  grid-area: cards;
+  place-self: top start;
+  position: relative;
+  z-index: 1;
+}
+
+.overlay-bottom {
+  display: block;
+  background-image: linear-gradient(to top, var(--bg-color) 50%, #84b68d00);
+  width: 700px;
+  height: 60px;
+  grid-area: cards;
+  place-self: end start;
+  z-index: 1;
+}
+
 #content {
+  grid-area: cards;
   display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: transparent;
+}
+
+#projects {
+  grid-area: projects;
 }

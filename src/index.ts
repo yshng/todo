@@ -3,7 +3,7 @@ import "./styles/card.css";
 import "./styles/delete-message.css";
 import "./styles/edit-card.css";
 import "./styles/layout.css";
-import "./styles/projects.css";
+import "./styles/projects.css"
 import "./ui/new-item-button";
 import { checkStorage } from "./model/storage";
 import { populateProjects } from "./ui/project";
@@ -18,7 +18,10 @@ export function getElementByID(id: number) {
 
 export function updateDisplay(position?: number) {
   const main = document.querySelector<HTMLDivElement>("main");
-  main?.replaceChildren(populateContent(), populateProjects());
+  const projects = document.querySelector<HTMLDivElement>("#projects");
+  const content = document.querySelector<HTMLDivElement>("#content");
+  if (projects) main?.replaceChild(populateProjects(), projects);
+  if (content) main?.replaceChild(populateContent(), content);
   if (position != undefined) {
     let element = getElementByID(position);
     if (element)

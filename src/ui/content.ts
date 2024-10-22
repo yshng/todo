@@ -8,6 +8,7 @@ export function populateContent() {
   contentDiv.setAttribute("id", "content");
   const cardHolder = document.createElement("div");
   cardHolder.setAttribute("id", "cards");
+  cardHolder.append(createBuffer());
   let forDisplay = getToDos();
   let message = document.createElement("div");
   message.classList.add("todo", "message");
@@ -33,6 +34,7 @@ export function populateContent() {
   }
 
   cardHolder.append(message);
+  cardHolder.append(createBuffer())
   contentDiv.append(cardHolder);
   return contentDiv;
 }
@@ -49,4 +51,10 @@ function pushDeleteProjectButton() {
   const title = getProjectByID(id).title;
   deleteProject(id);
   confirmProjectDelete(title, id);
+}
+
+export function createBuffer() {
+  const buffer = document.createElement("div");
+  buffer.classList.add("buffer");
+  return buffer;
 }

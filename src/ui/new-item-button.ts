@@ -1,12 +1,13 @@
 import { addEmptyToDo } from "../model/todo";
 import { editCard } from "./edit-card";
+import { createBuffer } from "./content";
 
 export function makeNewItemButton(element: HTMLButtonElement) {
   element.addEventListener("click", () => {
     const cardholder = document.querySelector("#cards");
     if (!document.querySelector(".editing")) {
       const editor = editCard(addEmptyToDo());
-      cardholder?.prepend(editor);
+      cardholder?.prepend(createBuffer(), editor);
 
       //check for message and confirm divs and remove them 
       const checkForMessage = document.querySelector<HTMLElement>(".message");
