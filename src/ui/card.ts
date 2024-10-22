@@ -1,16 +1,26 @@
 import { formatDate, formatDistance } from "date-fns";
 import { ToDo } from "../model/todo";
 import { createPriority } from "./priority";
-import { createStatus, playButton, pauseButton, checkButton, completedButton  } from "./status";
+import {
+  createStatus,
+  playButton,
+  pauseButton,
+  checkButton,
+  completedButton,
+} from "./status";
 import { trashButton, editButton } from "./edit-trash-buttons";
 import { createTimescale } from "./timescale";
 import { getProjects } from "../model/storage";
 import { getElementByID } from "..";
+import { createElement } from "./createElement";
 
-export function createCard(item: ToDo): HTMLDivElement {
-  const card = document.createElement("div");
-  card.classList.add("todo");
-  card.setAttribute("id", `c${item.created}`);
+export function createCard(item: ToDo) {
+  const card = createElement({
+    type: "div",
+    id: `c${item.created}`,
+    classes: "todo",
+  });
+
   card.append(
     createRow(createTitle(item.title), createStatusButtons(item)),
     getProjectName(item.projectID),
@@ -26,18 +36,19 @@ export function createCard(item: ToDo): HTMLDivElement {
 }
 
 export function createRow(...elements: HTMLElement[]) {
-  const row = document.createElement("div");
-  row.classList.add("card-row");
+  const row = createElement({type: "div", classes: "card-row"})
   row.append(...elements);
   return row;
 }
 
-function createTitle(title: string): HTMLParagraphElement {
-  const titleText = document.createElement("p");
-  titleText.classList.add("title");
-  titleText.textContent = title;
-  return titleText;
+function createTitle(title: string) {
+  return createElement({
+    type: "p",
+    classes: "title",
+    text: title
+  })
 }
+
 function getProjectName(id: number): HTMLParagraphElement {
   const project = document.createElement("p");
   if (id != -1) {
@@ -51,9 +62,8 @@ function getProjectName(id: number): HTMLParagraphElement {
   return project;
 }
 
-function createStatusButtons(todo: ToDo): HTMLDivElement {
-  const container = document.createElement("div");
-  container.classList.add("status-button-div");
+function createStatusButtons(todo: ToDo) {
+  const container = createElement({type: "div",classes: "status-button-div"});
   if (todo.status == "not yet started" || todo.status == "paused") {
     container.append(playButton(todo.created), checkButton(todo.created));
   } else if (todo.status == "started") {
