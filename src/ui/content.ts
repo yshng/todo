@@ -1,7 +1,6 @@
 import { createCard } from "../ui/card";
 import { deleteProject, getProjectByID } from "../model/project";
 import { getCurrentProject, getToDos } from "../model/storage";
-import { makeNewItemButton } from "../ui/new-item-button";
 import { confirmProjectDelete } from "../ui/delete-message";
 
 export function populateContent() {
@@ -23,13 +22,10 @@ export function populateContent() {
       cardHolder.append(cards);
 
     });
-    message.append(contentItemButton("Add another task"));
   } else if (getCurrentProject() == -1) {
     message.textContent = "You have no pending tasks.";
-    message.append(contentItemButton("Add a task"));
   } else {
-    message.textContent = "Add a task to this project?";
-    message.append(contentItemButton("Add a task"));
+    message.textContent = "This project contains no tasks.";
   }
 
   if (getCurrentProject() != -1) {
@@ -39,13 +35,6 @@ export function populateContent() {
   cardHolder.append(message);
   contentDiv.append(cardHolder);
   return contentDiv;
-}
-
-function contentItemButton(message: string) {
-  const addItem = document.createElement("button");
-  addItem.textContent = message;
-  makeNewItemButton(addItem);
-  return addItem;
 }
 
 function contentDeleteButton() {

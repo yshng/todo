@@ -10,3 +10,18 @@ button:active {
   background-color: white;
   transform: scale(95%);
 }
+
+button.panel {
+  font-family: inherit;
+  background-color: transparent;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--bg-dark);
+}
+
+button.panel:active, button.panel:hover, button.panel:focus {
+  color: var(--bg-light);
+  border: none;
+  outline: none;
+}

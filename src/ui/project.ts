@@ -9,7 +9,7 @@ export function populateProjects(): HTMLDivElement {
     const h1 = document.createElement("h1");
     h1.classList.add("project");
     if (id == -1) {
-      h1.textContent = "View all";
+      h1.textContent = "All";
     } else {
       h1.textContent = title;
     }
@@ -70,7 +70,7 @@ export function createProjectDropdown(itemID?: number) {
 }
 
 // make add project button work
-const button = document.querySelector<HTMLButtonElement>(".new-project");
+const button = document.querySelector<HTMLButtonElement>("#new-project");
 button?.addEventListener("click", () => makeProjectInput());
 
 function makeProjectInput() {

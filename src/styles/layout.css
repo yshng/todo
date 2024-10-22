@@ -29,22 +29,57 @@ select {
 body {
   background-color: var(--bg-color);
   display: grid;
-  grid-template-rows: 80px 1fr;
-  grid-template-columns: 50px 750px;
+  grid-template-rows: 80px 30px 1fr;
+  grid-template-columns: 100px 400px 300px 1fr ;
   justify-content: center;
   margin-right: auto;
 }
 
-header,
+header {
+  grid-area: 1 / 2 / 2 / 4;
+}
+
 main {
-  grid-column: 2 / 3;
+  grid-row: 3 / 4 ;
+  grid-column: 2 / 4;
+}
+
+#new-item{
+  grid-area: 2 / 2;
+    place-self: center end;
+}
+
+#overview{
+  grid-area: 2 / 3;
+  place-self: center end;
+}
+
+#new-project {
+  grid-area: 2 / 3;
+  place-self: center start;
+}
+
+.overlay-top {
+  margin-top: 8px;
+  display: block;
+  background-image: linear-gradient(var(--bg-color), #84b68d00);
+  height: 40px;
+  grid-row: 3 / 4;
+  grid-column: 2 / 5;
+  position: relative;
+  z-index: 2;
+}
+
+.panel {
+  position: relative;
+  z-index: 3;
 }
 
 header {
+  padding-top: 2rem;
   font-size: 1.5rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-flow: column nowrap;
 }
 
 header > h1 {
@@ -61,27 +96,24 @@ header > h1:hover {
 
 header button {
   font-size: 1rem;
+  background-color: var(--low-contrast);
+  border: none;
 }
 
-#panel {
-  z-index: 1;
+header button:active {
+  border: none;
 }
 
-#panel > button:active {
-  border: 1px solid black;
-}
 
 main {
   transform: translateY(-40px);
   display: grid;
   grid-template-columns: 400px 1fr;
-  gap: 20px;
+  grid-template-rows: 500px;
   overflow-x: visible;
 }
 
-
 #content {
-  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
