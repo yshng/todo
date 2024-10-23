@@ -1,6 +1,6 @@
 import { createCard } from "../ui/card";
 import { deleteProject, getProjectByID } from "../model/project";
-import { getCurrentProject, getToDos } from "../model/storage";
+import { getCompleted, getCurrentProject, getIncomplete } from "../model/storage";
 import { confirmProjectDelete } from "../ui/delete-message";
 
 export function populateContent() {
@@ -9,27 +9,31 @@ export function populateContent() {
   const cardHolder = document.createElement("div");
   cardHolder.setAttribute("id", "cards");
   cardHolder.append(createBuffer());
-  let forDisplay = getToDos();
   let message = document.createElement("div");
   message.classList.add("todo", "message");
-  if (getCurrentProject() != -1) {
+  const current = getCurrentProject();
+
+  let forDisplay = getIncomplete();
+  if (current > 0) {
     forDisplay = forDisplay.filter(
-      (todo) => todo.projectID == getCurrentProject(),
+      (todo) => todo.projectID == current,
     );
+  }
+  if(current == -2) {
+    forDisplay = getCompleted();
   }
   if (forDisplay.length) {
     forDisplay.map((todo) => {
       let cards = createCard(todo);
       cardHolder.append(cards);
-
     });
-  } else if (getCurrentProject() == -1) {
+  } else if (current == -1) {
     message.textContent = "You have no pending tasks.";
   } else {
     message.textContent = "This project contains no tasks.";
   }
 
-  if (getCurrentProject() != -1) {
+  if (current > 0) {
     message.append(contentDeleteButton());
   }
 

@@ -17,16 +17,16 @@ export interface Schema {
 }
 
 export function checkStorage() {
-  const projects = getTypedItem("projects");
+  const projects = getProjects();
   if (!projects || projects[0].id != -1) {
     initializeStorage();
-  }
+  } 
 }
 
 export function initializeStorage() {
   // set up empty default "no project / all projects" project as current
   setTypedItem("projects", [{ id: -1, title: "default" }]);
-  setTypedItem("todos", []);
+  setTypedItem("todos",[]);
   setTypedItem("currentProject", -1);
 }
 
@@ -83,4 +83,12 @@ export function restoreProjects(id: number) {
     setTypedItem("currentProject",id);
   }
   restoreToDos();
+}
+
+export function getCompleted() {
+  return getToDos().filter( (todo) => todo.status === "done");
+}
+
+export function getIncomplete() {
+  return getToDos().filter( (todo) => todo.status != "done");
 }

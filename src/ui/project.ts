@@ -1,39 +1,74 @@
-import { getProjects, getCurrentProject, getToDos } from "../model/storage";
+import { getProjects, getCurrentProject, getCompleted, getIncomplete} from "../model/storage";
 import { addProject, selectProject } from "../model/project";
+import { createElement } from "./createElement";
 
 export function populateProjects(): HTMLDivElement {
   const projectDiv = document.createElement("div");
   projectDiv.setAttribute("id", "projects");
 
+  projectDiv.append(createDefaultProject());
   for (let { id, title } of getProjects()) {
-    const h1 = document.createElement("h1");
-    h1.classList.add("project");
-    if (id == -1) {
-      h1.textContent = "All";
-    } else {
-      h1.textContent = title;
+    if (id > 0) {
+      const selector = createProjectSelector(id, title);
+      selector.prepend(createProjectBadge(id));
+      projectDiv.append(selector);
     }
-    h1.setAttribute("id", `p${id}`);
-    if (id == getCurrentProject()) {
-      h1.classList.add("current-project");
-    }
+  }
 
-    // show number of todos in each project, or total number for default
-    const badge = document.createElement("span");
-    if (id == -1) {
-      badge.textContent = getToDos().length.toString();
-    } else {
-      badge.textContent = getToDos()
-        .filter((todo) => todo.projectID == id)
-        .length.toString();
-    }
-    badge.classList.add("project-badge");
-    h1.addEventListener("click", () => selectProject(id));
-
-    h1.prepend(badge);
-    projectDiv.appendChild(h1);
+  if (getCompleted().length > 0) {
+    projectDiv.append(createCompletedProject());
   }
   return projectDiv;
+}
+
+function createDefaultProject() {
+  let selector = createProjectSelector(-1, "All tasks");
+  const badge = createElement({
+    type: "span",
+    text: getIncomplete().length.toString(),
+    classes: "project-badge"
+  })
+  selector.prepend(badge);
+  selector.addEventListener("click", () => selectProject(-1))
+  return selector;
+}
+
+function createProjectSelector(id: number, title: string) {
+  const project = createElement({
+    type: "h1",
+    classes: "project",
+    text: title,
+    id: `p${id}`
+  })
+
+  if (id == getCurrentProject()) {
+    project.classList.add("current-project");
+  }
+  project.addEventListener("click", () => selectProject(id));
+  return project;
+}
+
+function createProjectBadge(id: number) {
+  const badge = createElement({
+    type: "span",
+    text: getIncomplete()
+      .filter((todo) => todo.projectID == id)
+      .length.toString(),
+    classes: "project-badge"
+  })
+  return badge;
+}
+
+function createCompletedProject() {
+  const selector = createProjectSelector(-2,"Completed");
+  const badge = createElement({
+    type: "span",
+    text: getCompleted().length.toString(),
+    classes: "project-badge"
+  })
+  selector.prepend(badge);
+  selector.addEventListener("click", () => selectProject(-2));
+  return selector;
 }
 
 export function createProjectDropdown(itemID?: number) {
