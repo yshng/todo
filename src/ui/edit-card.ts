@@ -4,8 +4,8 @@ import { createTimescaleDropdown } from "./timescale";
 import { createProjectDropdown } from "./project";
 import { createRow } from "../ui/card";
 import { formatDistanceToNow } from "date-fns";
-import { updateDisplay } from "..";
 import { trashButton } from "./edit-trash-buttons";
+import { selectToDo } from "../model/todo";
 
 export function editCard(todo: ToDo) {
   const card = document.createElement("form");
@@ -120,5 +120,5 @@ function newToDoFromCard(id: number) {
 
 function pushSaveButton(id: number) {
   replaceToDo(id, newToDoFromCard(id));
-  updateDisplay(id);
+  selectToDo(id);
 }

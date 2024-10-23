@@ -58,13 +58,14 @@ main {
   place-self: center start;
 }
 
-#overview{
+#overview-button{
   grid-area: panel2;
   place-self: center end;
 }
 
 .panel {
-  position: relative;
+  position: sticky;
+  top: 80px;
   z-index: 1;
 }
 
@@ -135,4 +136,8 @@ main {
 
 #projects {
   grid-area: projects;
+}
+
+#overview {
+  grid-area: cards;
 }

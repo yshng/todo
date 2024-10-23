@@ -1,0 +1,20 @@
+#overview {
+  margin-top: 2em;
+}
+
+.overview-list {
+  padding: 1em;
+}
+
+.overview-list-item {
+  list-style: none;
+  text-indent: 2em;
+}
+
+.overview-link {
+  color: var(--bg-light);
+  text-decoration: none;
+}
+.overview-link:hover {
+  text-decoration: underline;
+}
