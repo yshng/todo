@@ -76,3 +76,9 @@ export function removeToDo(id: number) {
   );
   updateDisplay();
 }
+
+export function selectToDo(id: number) {
+  const todo = getToDoByID(id);
+  if (todo) setTypedItem("currentProject",todo.projectID);
+  updateDisplay(id);
+}

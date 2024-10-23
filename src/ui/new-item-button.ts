@@ -1,9 +1,11 @@
 import { addEmptyToDo } from "../model/todo";
 import { editCard } from "./edit-card";
 import { createBuffer } from "./content";
+import { updateDisplay } from "..";
 
 export function makeNewItemButton(element: HTMLButtonElement) {
   element.addEventListener("click", () => {
+    updateDisplay();
     const cardholder = document.querySelector("#cards");
     if (!document.querySelector(".editing")) {
       const editor = editCard(addEmptyToDo());
