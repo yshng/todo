@@ -25,7 +25,7 @@ export function populateOverview() {
   const projects = getProjects();
 
   for (let project of projects) {
-    if (project.id != -1) {
+    if (project.id > 0) {
     const h1 = createElement({type: "h1", classes: "overview-project-title"})
     const link = createElement({
       type: "a",
