@@ -7,12 +7,16 @@
   <script defer src="bundle.js"></script></head>
   <body>
     <header>
-      <h1>Out of Sight</h1>
-      <div id="panel">
-        <button id="new-item">New Item</button>
-        <button class="new-project">New Project</button>
-      </div>
+      <h1><a href=".">Out of Sight</a></h1>
     </header>
-    <main></main>
+      <button class="panel" id="new-item">+ Task</button>
+      <button class="panel" id="new-project">+ Project</button>
+      <button class="panel" id="overview-button">Overview </button>
+    <main>
+      <div class="overlay-top"></div>
+      <div id="content"></div>
+      <div id="projects"></div>
+      <div class="overlay-bottom"></div>
+    </main>
   </body>
 </html>
