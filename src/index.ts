@@ -37,12 +37,26 @@ export function updateDisplay(position?: number) {
     let element = getElementByID(position);
     if (element) element.scrollIntoView({ block: "center" });
   }
+
+  if (main) addOverlays(main);
 }
 
-function addOverlays() {
-  const overTop = document.querySelector(".overlay-top");
-  if (!overTop) createElement({
-    type: "div",
-    classes: "overlay-"
-  })
+function addOverlays(main: HTMLDivElement) {
+  let overTop = document.querySelector(".overlay-top");
+  if (!overTop) {
+    overTop = createElement({
+      type: "div",
+      classes: "overlay-top"
+    })
+    main.prepend(overTop)
+  }
+
+  let overBottom = document.querySelector(".overlay-bottom");
+  if (!overBottom) {
+    overBottom = createElement({
+      type: "div",
+      classes: "overlay-bottom"
+    })
+    main.append(overBottom);
+  }
 }
