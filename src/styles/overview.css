@@ -13,7 +13,6 @@
 
 .overview-link {
   color: var(--bg-light);
-  text-decoration: none;
 }
 .overview-link:hover {
   text-decoration: underline;

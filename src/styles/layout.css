@@ -5,6 +5,11 @@
   line-height: 1.2;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 :root {
   font-family: system-ui, sans-serif;
   --bg-color: #84b68d;
