@@ -1,6 +1,6 @@
 import { createElement } from "./createElement";
 
-const priorities = ["Normal priority", "Time-sensitive", "Important", "Time-sensitive and important", "Low priority"];
+const priorities = ["Important", "Normal priority", "Low priority"];
 
 function createPriorityDiv() {
   return createElement({
