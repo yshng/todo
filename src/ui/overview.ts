@@ -29,7 +29,7 @@ export function populateOverview() {
       type: "a",
       text: project.id == -1 ? "(no project)" : project.title,
       classes: "overview-link",
-      attr: [["href", "#"]],
+      attr: "href,#",
     });
     link.addEventListener("click", () => selectProject(project.id));
     h1.appendChild(link);
@@ -43,7 +43,7 @@ export function populateOverview() {
         type: "a",
         text: todo.title,
         classes: "overview-link",
-        attr: [["href", `#`]],
+        attr: "href,#"
       });
       const span = createElement({
         type: "span",
