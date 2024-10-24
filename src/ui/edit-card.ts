@@ -90,6 +90,8 @@ function newToDoFromCard(id: number) {
   let title = document.querySelector<HTMLInputElement>("#title-field")?.value || "";
 
   let dueDate = document.querySelector<HTMLInputElement>("#due-date")?.value || undefined;
+  dueDate
+  console.log(dueDate);
 
   let notes = document.querySelector<HTMLTextAreaElement>("#notes")?.value || "";
 

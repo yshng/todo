@@ -1,4 +1,5 @@
-import { formatDate, formatDistance } from "date-fns";
+import { formatInTimeZone } from "date-fns-tz";
+import { formatDistance } from "date-fns";
 import { ToDo } from "../model/todo";
 import { createPriority } from "./priority";
 import {
@@ -24,9 +25,10 @@ export function createCard(item: ToDo) {
   card.append(
     createRow(createTitle(item.title), createStatusButtons(item)),
     getProjectName(item.projectID),
-    createStatus(item.status),
-    createDueDate(item.dueDate),
-    createPriority(item.priority),
+    createStatus(item.status))
+  if (item.dueDate) 
+    card.append(createDueDate(item.dueDate));
+  card.append( createPriority(item.priority),
     createTimescale(item.timescale),
     createNotes(item.notes),
     createTimestamp(item.created),
@@ -75,17 +77,15 @@ function createStatusButtons(todo: ToDo) {
   return container;
 }
 
-function createDueDate(dueDate: string | undefined): HTMLDivElement {
+function createDueDate(dueDate: string | undefined) {
   const container = document.createElement("div");
   container.classList.add("due-date-div");
   const date = document.createElement("p");
-
-  if (dueDate == undefined) {
-    date.textContent = "(none)";
-  } else {
-    date.textContent = "Due by " + formatDate(dueDate, "eeee, MMMM d, yyyy");
-    container.append(date);
+  if (dueDate) {
+    console.log(dueDate);
+    date.textContent = "Due by " + formatInTimeZone(dueDate, "UTC", "EEEE, MMMM d, yyyy");
   }
+  container.append(date);
   return container;
 }
 
