@@ -47,8 +47,14 @@ export function populateOverview() {
         classes: "overview-link",
         attr: [["href",`#`]]
       })
+      const span = createElement({
+        type: "span",
+        text: todo.status,
+        classes: "status"
+      })
+      if (todo.status == "done") {link.style.textDecoration = "line-through"};
       link.addEventListener("click",() => selectToDo(todo.created));
-      li.appendChild(link);
+      li.append(link, span);
       list.appendChild(li);
     }
     container.appendChild(list);
