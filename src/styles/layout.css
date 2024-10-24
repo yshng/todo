@@ -68,8 +68,8 @@ main {
 }
 
 #overview-button{
-  grid-area: panel2;
-  place-self: center end;
+  grid-area: panel1;
+  place-self: center center;
 }
 
 .panel {
@@ -116,7 +116,7 @@ main {
 
 .overlay-top {
   display: block;
-  background-image: linear-gradient(var(--bg-color) 20%, #84b68d00);
+  background-image: linear-gradient(var(--bg-color), #84b68d00);
   width: 700px;
   height: 40px;
   grid-area: cards;
@@ -127,7 +127,7 @@ main {
 
 .overlay-bottom {
   display: block;
-  background-image: linear-gradient(to top, var(--bg-color) 50%, #84b68d00);
+  background-image: linear-gradient(to top, var(--bg-color), #84b68d00);
   width: 700px;
   height: 60px;
   grid-area: cards;
