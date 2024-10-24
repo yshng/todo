@@ -79,6 +79,9 @@ export function removeToDo(id: number) {
 
 export function selectToDo(id: number) {
   const todo = getToDoByID(id);
-  if (todo) setTypedItem("currentProject",todo.projectID);
+  if (todo) {
+    if (todo.status == "done") setTypedItem("currentProject",-2);
+    else setTypedItem("currentProject",todo.projectID);
+  }
   updateDisplay(id);
 }
