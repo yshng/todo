@@ -146,5 +146,5 @@ main {
 }
 
 #overview {
-  grid-area: cards;
+  grid-area: cards / span 2;
 }
