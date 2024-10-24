@@ -23,6 +23,10 @@ a {
 
 }
 
+::-webkit-scrollbar {
+  width: 0;
+}
+
 input,
 textarea,
 select {
@@ -69,8 +73,6 @@ main {
 }
 
 .panel {
-  position: sticky;
-  top: 80px;
   z-index: 1;
 }
 
