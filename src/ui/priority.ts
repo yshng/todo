@@ -1,23 +1,31 @@
-const priorities = ["Very high", "High", "Normal", "Low", "Very Low"] as const;
+import { createElement } from "./createElement";
 
-export function createPriority(priority: number): HTMLDivElement {
-  const container = document.createElement("div");
-  container.classList.add("priority-div");
-  const body = document.createElement("p");
-  body.classList.add("priority");
-  body.textContent = priorities[priority] + " priority";
-  container.append(body);
-  return container;
+const priorities = ["Normal priority", "Time-sensitive", "Important", "Time-sensitive and important", "Low priority"];
+
+function createPriorityDiv() {
+  return createElement({
+    type: "div",
+    classes: "priority-div"
+  })
 }
 
-export function createPriorityDropdown(priority?: number): HTMLDivElement {
-  const container = document.createElement("div");
-  container.classList.add("priority-div");
+export function createPriority(priority: number) {
+  const div = createPriorityDiv();
+  div.append(createElement({
+    type: "p",
+    classes: "priority",
+    text: priorities[priority]
+  }))
+  return div;
+}
+
+export function createPriorityDropdown(priority?: number){
+  const container = createPriorityDiv();
   const dropdown = document.createElement("select");
   dropdown.setAttribute("id","priority-dropdown")
   for (let i = 0; i < priorities.length; i++) {
     const opt = document.createElement("option");
-    opt.textContent = priorities[i] + " priority";
+    opt.textContent = priorities[i];
     opt.value = i.toString();
     if (i == priority) {
       opt.selected = true;

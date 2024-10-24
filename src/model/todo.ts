@@ -53,7 +53,7 @@ export function addEmptyToDo(projectID?: number): ToDo {
   let todo: ToDo = {
     title: "",
     dueDate: undefined,
-    priority: 2,
+    priority: 0,
     status: "not yet started",
     notes: undefined,
     timescale: 0,

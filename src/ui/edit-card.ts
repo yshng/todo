@@ -74,7 +74,6 @@ function createNotesField(notes?: string): HTMLDivElement {
   }
 
   container.append(head,body);
-
   return container;
 }
 
@@ -95,10 +94,9 @@ function newToDoFromCard(id: number) {
   let notes = document.querySelector<HTMLTextAreaElement>("#notes")?.value || "";
 
   let priority =
-    document.querySelector<HTMLSelectElement>("#priority")?.selectedIndex || 2;
+    document.querySelector<HTMLSelectElement>("#priority-dropdown")?.selectedIndex || 0;
 
-  let timescale =
-    document.querySelector<HTMLSelectElement>("#timescale")?.selectedIndex || 1;
+  let timescale = document.querySelector<HTMLSelectElement>("#timescale-dropdown")?.selectedIndex || 0;
 
   let projectSelect =
     document.querySelector<HTMLSelectElement>("#project-dropdown");

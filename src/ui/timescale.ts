@@ -11,7 +11,7 @@ export function createTimescale(index: number): HTMLDivElement {
   container.classList.add("timescale-div");
   const timescale = document.createElement("p");
   timescale.classList.add("timescale");
-  timescale.textContent = "Should take " + timescales[index];
+  timescale.textContent = "Should take " + timescales[index] + " to complete";
 
   container.append(timescale);
   return container;
