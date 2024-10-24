@@ -1,6 +1,7 @@
 import { getProjects, getCurrentProject, getCompleted, getIncomplete} from "../model/storage";
 import { addProject, selectProject } from "../model/project";
 import { createElement } from "./createElement";
+import { checkEditBuffer } from "../model/editBuffer";
 
 export function populateProjects(): HTMLDivElement {
   const projectDiv = document.createElement("div");
@@ -49,11 +50,13 @@ function createProjectSelector(id: number, title: string) {
 }
 
 function createProjectBadge(id: number) {
+  let number = getIncomplete()
+  .filter((todo) => todo.projectID == id)
+  .length;
+  if (checkEditBuffer()?.projectID == id) number++;
   const badge = createElement({
     type: "span",
-    text: getIncomplete()
-      .filter((todo) => todo.projectID == id)
-      .length.toString(),
+    text: number.toString(),
     classes: "project-badge"
   })
   return badge;

@@ -1,6 +1,7 @@
 import { getToDos, setTypedItem } from "./storage";
 import { Status } from "./status";
 import { updateDisplay } from "..";
+import { addToEditBuffer } from "./editBuffer";
 
 export interface ToDo {
   title: string;
@@ -60,7 +61,7 @@ export function addEmptyToDo(projectID?: number): ToDo {
     created: Date.now(),
     projectID: projectID || -1
   }
-  addToDo(todo);
+  addToEditBuffer(todo);
   return todo;
 }
 

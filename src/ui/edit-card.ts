@@ -1,18 +1,19 @@
-import { replaceToDo, getToDoByID, ToDo } from "../model/todo";
+import { replaceToDo, getToDoByID, ToDo, addToDo } from "../model/todo";
 import { createPriorityDropdown } from "./priority";
 import { createTimescaleDropdown } from "./timescale";
 import { createProjectDropdown } from "./project";
 import { createRow } from "../ui/card";
 import { formatDistanceToNow } from "date-fns";
-import { trashButton } from "./edit-trash-buttons";
 import { selectToDo } from "../model/todo";
+import { clearEditBuffer } from "../model/editBuffer";
+import { updateDisplay } from "..";
 
 export function editCard(todo: ToDo) {
   const card = document.createElement("form");
   card.classList.add("todo","editing");
   card.setAttribute("autocomplete","off");
   card.append(
-    createRow(createTitleField(todo.title), createSaveButton(todo.created), trashButton(todo.created)),
+    createRow(createTitleField(todo.title), createFormButtons(todo.created)),
     createProjectDropdown(todo.projectID),
     createDueDateSelector(todo.dueDate),
     createPriorityDropdown(todo.priority),
@@ -31,15 +32,24 @@ function createTitleField(title: string): HTMLInputElement {
   return titleField;
 }
 
-function createSaveButton(id: number): HTMLDivElement {
+function createFormButtons(id: number): HTMLDivElement {
   const container = document.createElement("div");
   container.classList.add("status-button-div");
   const save = document.createElement("button");
   save.setAttribute("type","submit");
   save.classList.add("save-button","status-button");
   save.addEventListener("click", () => pushSaveButton(id));
-  container.append(save);
+  const cancel = document.createElement("button");
+  cancel.setAttribute("type","cancel");
+  cancel.classList.add("trash-button","status-button");
+  cancel.addEventListener("click", () => pushCancelButton());
+  container.append(save,cancel);
   return container; 
+}
+
+function pushCancelButton() {
+  clearEditBuffer();
+  updateDisplay();
 }
 
 function createDueDateSelector(duedate?: string): HTMLDivElement {
@@ -119,6 +129,11 @@ function newToDoFromCard(id: number) {
 }
 
 function pushSaveButton(id: number) {
-  replaceToDo(id, newToDoFromCard(id));
+  if (getToDoByID(id)) {
+    replaceToDo(id, newToDoFromCard(id));
+  } else {
+    addToDo(newToDoFromCard(id));
+  }
+  clearEditBuffer();
   selectToDo(id);
 }

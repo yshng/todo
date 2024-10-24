@@ -14,6 +14,7 @@ export interface Schema {
   currentProject: number;
   prevProjects: Project[];
   prevToDos: ToDo[];
+  editBuffer: ToDo | null;
 }
 
 export function checkStorage() {
@@ -37,7 +38,7 @@ export function setTypedItem<T extends keyof Schema>(
   window.localStorage.setItem(key, JSON.stringify(value));
 }
 
-function getTypedItem<T extends keyof Schema>(key: T): Schema[T] | undefined {
+export function getTypedItem<T extends keyof Schema>(key: T): Schema[T] | undefined {
   let result = window.localStorage.getItem(key);
   if (result) return JSON.parse(result);
   else return undefined;

@@ -3,6 +3,8 @@ import { deleteProject, getProjectByID } from "../model/project";
 import { getCompleted, getCurrentProject, getIncomplete } from "../model/storage";
 import { confirmProjectDelete } from "../ui/delete-message";
 import { makeNewItemButton } from "./new-item-button";
+import { checkEditBuffer } from "../model/editBuffer";
+import { editCard } from "./edit-card";
 
 export function populateContent() {
   const contentDiv = document.createElement("div");
@@ -14,11 +16,14 @@ export function populateContent() {
   message.classList.add("todo", "message");
   const current = getCurrentProject();
 
+  const underEdit = checkEditBuffer();
+  if (underEdit) cardHolder.append(editCard(underEdit));
+
   let forDisplay = getIncomplete();
   if (current > 0) {
     forDisplay = forDisplay.filter(
       (todo) => todo.projectID == current,
-    );
+    ).filter( (todo) => todo.created != underEdit?.created);
   }
   if(current == -2) {
     forDisplay = getCompleted();

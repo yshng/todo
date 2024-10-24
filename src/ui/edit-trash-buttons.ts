@@ -2,6 +2,7 @@ import { getToDoByID, removeToDo } from "../model/todo";
 import { editCard } from "./edit-card";
 import { replaceCard } from "./card";
 import { confirmToDoDelete } from "./delete-message";
+import { moveToEditBuffer } from "../model/editBuffer";
 
 
 export function editButton(id: number): HTMLButtonElement {
@@ -13,7 +14,10 @@ export function editButton(id: number): HTMLButtonElement {
 
 function pushEditButton(id: number) {
   const todo = getToDoByID(id);
-  if (todo) replaceCard(id, editCard(todo));
+  if (todo) {
+    moveToEditBuffer(todo, id);
+    replaceCard(id, editCard(todo));
+  }
 }
 
 export function trashButton(id: number): HTMLButtonElement {
