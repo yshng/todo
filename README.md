@@ -9,6 +9,7 @@ Out of sight, out of mind. Keep one task at a time in view.
 
 Not yet implemented features: 
 
+- One-click clear completed tasks 
 - Sort tasks by priority, due date, etc. 
 - Track how much time you have worked on each task. 
 - Mobile layout...
