@@ -18,7 +18,7 @@ function makeConfirm(message: string, option: string, restore: Function) {
   const exit = createElement({
     type: "button",
     id: "exit",
-    text: "X",
+    text: "X"
   });
   confirm.append(undo, exit);
   cards?.prepend(confirm);
