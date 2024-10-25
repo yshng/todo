@@ -1,5 +1,5 @@
 import { createCard } from "../ui/card";
-import { deleteProject, getProjectByID } from "../model/project";
+import { deleteProject, getProjectByID, selectProject } from "../model/project";
 import {
   getCompleted,
   getCurrentProject,
@@ -27,7 +27,7 @@ export function populateContent() {
       .filter((todo) => todo.projectID == current)
       .filter((todo) => todo.created != underEdit?.created);
   }
-  if (current == -2) { forDisplay = getCompleted(); }
+  if (current == -2) { forDisplay = getCompleted(); };
   if (forDisplay.length) {
     forDisplay.map((todo) => {
       let cards = createCard(todo);
@@ -36,6 +36,10 @@ export function populateContent() {
   } else if (current == -1) {
     message.textContent = "You have no pending tasks.";
     message.appendChild(contentItemButton("Add a task"));
+  } else if (current == -2) {
+    message.textContent = "You have deleted all your completed tasks."
+    message.appendChild(contentItemButton("Add a new task"));
+    selectProject(-1);
   } else {
     message.textContent = "This project contains no tasks.";
     message.appendChild(contentItemButton("Add a task"));
