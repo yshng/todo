@@ -47,7 +47,12 @@ export function populateContent() {
 
   if (current > 0) {
     message.append(contentDeleteButton());
-  }
+    if (forDisplay.length > 0) {
+      message.append(createElement({
+        type: "p",
+        text: "Note: Deleting a project with tasks in it will not delete the tasks, only remove them from this project."
+    }))
+  }}
 
   cardHolder.append(message, createBuffer());
   contentDiv.append(cardHolder);

@@ -56,6 +56,14 @@
   width: fit-content;
 }
 
+.message > p {
+  font-weight: 300;
+  margin-top: 10px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+
 input.title {
   height: fit-content;
 }
