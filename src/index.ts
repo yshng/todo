@@ -39,6 +39,7 @@ export function updateDisplay(position?: number) {
   }
 
   if (main) addOverlays(main);
+  document.querySelector<HTMLInputElement>("#title-field")?.focus();
 }
 
 function addOverlays(main: HTMLDivElement) {

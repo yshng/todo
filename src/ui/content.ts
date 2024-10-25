@@ -1,19 +1,21 @@
 import { createCard } from "../ui/card";
 import { deleteProject, getProjectByID } from "../model/project";
-import { getCompleted, getCurrentProject, getIncomplete } from "../model/storage";
+import {
+  getCompleted,
+  getCurrentProject,
+  getIncomplete,
+} from "../model/storage";
 import { confirmProjectDelete } from "../ui/delete-message";
 import { makeNewItemButton } from "./new-item-button";
 import { checkEditBuffer } from "../model/editBuffer";
 import { editCard } from "./edit-card";
+import { createElement } from "./createElement";
 
 export function populateContent() {
-  const contentDiv = document.createElement("div");
-  contentDiv.setAttribute("id", "content");
-  const cardHolder = document.createElement("div");
-  cardHolder.setAttribute("id", "cards");
+  const contentDiv = createElement({ type: "div", id: "content" });
+  const cardHolder = createElement({ type: "div", id: "cards" });
   cardHolder.append(createBuffer());
-  let message = document.createElement("div");
-  message.classList.add("todo", "message");
+  let message = createElement({ type: "div", classes: "todo message" });
   const current = getCurrentProject();
 
   const underEdit = checkEditBuffer();
@@ -21,13 +23,11 @@ export function populateContent() {
 
   let forDisplay = getIncomplete();
   if (current > 0) {
-    forDisplay = forDisplay.filter(
-      (todo) => todo.projectID == current,
-    ).filter( (todo) => todo.created != underEdit?.created);
+    forDisplay = forDisplay
+      .filter((todo) => todo.projectID == current)
+      .filter((todo) => todo.created != underEdit?.created);
   }
-  if(current == -2) {
-    forDisplay = getCompleted();
-  }
+  if (current == -2) { forDisplay = getCompleted(); }
   if (forDisplay.length) {
     forDisplay.map((todo) => {
       let cards = createCard(todo);
@@ -45,16 +45,18 @@ export function populateContent() {
     message.append(contentDeleteButton());
   }
 
-  cardHolder.append(message);
-  cardHolder.append(createBuffer())
+  cardHolder.append(message, createBuffer());
   contentDiv.append(cardHolder);
   return contentDiv;
 }
 
 function contentDeleteButton() {
-  const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete project";
-    deleteButton.addEventListener("click", () => pushDeleteProjectButton())
+  const deleteButton = createElement({
+    type: "button",
+    attr: "type,button",
+    text: "Delete project"
+  });
+  deleteButton.addEventListener("click", () => pushDeleteProjectButton());
   return deleteButton;
 }
 
@@ -66,14 +68,15 @@ function pushDeleteProjectButton() {
 }
 
 export function createBuffer() {
-  const buffer = document.createElement("div");
-  buffer.classList.add("buffer");
-  return buffer;
+  return createElement({ type: "div", classes: "buffer" });
 }
 
 function contentItemButton(message: string) {
-  const addItem = document.createElement("button");
-  addItem.textContent = message;
+  const addItem = createElement({
+    type: "button",
+    attr: "type,button",
+    text: message,
+  }) as HTMLButtonElement;
   makeNewItemButton(addItem);
   return addItem;
 }

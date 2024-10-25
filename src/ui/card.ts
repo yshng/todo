@@ -25,10 +25,11 @@ export function createCard(item: ToDo) {
   card.append(
     createRow(createTitle(item.title), createStatusButtons(item)),
     getProjectName(item.projectID),
-    createStatus(item.status))
-  if (item.dueDate) 
-    card.append(createDueDate(item.dueDate));
-  card.append( createPriority(item.priority),
+    createStatus(item.status),
+  );
+  if (item.dueDate) card.append(createDueDate(item.dueDate));
+  card.append(
+    createPriority(item.priority),
     createTimescale(item.timescale),
     createNotes(item.notes),
     createTimestamp(item.created),
@@ -38,7 +39,7 @@ export function createCard(item: ToDo) {
 }
 
 export function createRow(...elements: HTMLElement[]) {
-  const row = createElement({type: "div", classes: "card-row"})
+  const row = createElement({ type: "div", classes: "card-row" });
   row.append(...elements);
   return row;
 }
@@ -47,8 +48,8 @@ function createTitle(title: string) {
   return createElement({
     type: "p",
     classes: "title",
-    text: title
-  })
+    text: title,
+  });
 }
 
 function getProjectName(id: number): HTMLParagraphElement {
@@ -65,7 +66,10 @@ function getProjectName(id: number): HTMLParagraphElement {
 }
 
 function createStatusButtons(todo: ToDo) {
-  const container = createElement({type: "div",classes: "status-button-div"});
+  const container = createElement({
+    type: "div",
+    classes: "status-button-div",
+  });
   if (todo.status == "not yet started" || todo.status == "paused") {
     container.append(playButton(todo.created), checkButton(todo.created));
   } else if (todo.status == "started") {
@@ -78,41 +82,40 @@ function createStatusButtons(todo: ToDo) {
 }
 
 function createDueDate(dueDate: string | undefined) {
-  const container = document.createElement("div");
-  container.classList.add("due-date-div");
+  const container = createElement({ type: "div", classes: "due-date-div" });
   const date = document.createElement("p");
   if (dueDate) {
     console.log(dueDate);
-    date.textContent = "Due by " + formatInTimeZone(dueDate, "UTC", "EEEE, MMMM d, yyyy");
+    date.textContent =
+      "Due by " + formatInTimeZone(dueDate, "UTC", "EEEE, MMMM d, yyyy");
   }
   container.append(date);
   return container;
 }
 
-function createNotes(notes?: string): HTMLDivElement {
-  const container = document.createElement("div");
-  container.classList.add("notes-div");
+function createNotes(notes?: string) {
+  const container = createElement({ type: "div", classes: "notes-div" });
+  const head = createElement({
+    type: "p",
+    classes: "notes-head",
+    text: "Notes",
+  });
 
-  const head = document.createElement("p");
-  head.classList.add("notes-head");
-  head.textContent = "Notes";
-
-  const body = document.createElement("p");
-  body.classList.add("notes");
-  if (notes != undefined) {
-    body.textContent = notes;
-  }
-
+  const body = createElement({
+    type: "p",
+    classes: "notes",
+    text: notes || "",
+  });
   container.append(head, body);
-
   return container;
 }
 
-function createTimestamp(timestamp: number): HTMLDivElement {
-  const container = document.createElement("div");
-  container.classList.add("timestamp");
-  container.textContent = `Created ${formatDistance(timestamp, new Date())} ago`;
-  return container;
+function createTimestamp(timestamp: number) {
+  return createElement({
+    type: "div",
+    classes: "timestamp",
+    text: `Created ${formatDistance(timestamp, new Date())} ago`,
+  });
 }
 
 export function replaceCard(id: number, el: Element) {

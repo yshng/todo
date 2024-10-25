@@ -7,11 +7,14 @@ import { formatDistanceToNow } from "date-fns";
 import { selectToDo } from "../model/todo";
 import { clearEditBuffer } from "../model/editBuffer";
 import { updateDisplay } from "..";
+import { createElement } from "./createElement";
 
 export function editCard(todo: ToDo) {
-  const card = document.createElement("form");
-  card.classList.add("todo","editing");
-  card.setAttribute("autocomplete","off");
+  const card = createElement({
+    type: "form",
+    classes: "todo editing",
+    attr: "autocomplete,off"
+  });
   card.append(
     createRow(createTitleField(todo.title), createFormButtons(todo.created)),
     createProjectDropdown(todo.projectID),
@@ -24,24 +27,33 @@ export function editCard(todo: ToDo) {
 }
 
 function createTitleField(title: string): HTMLInputElement {
-  const titleField = document.createElement("input");
-  titleField.setAttribute("type","text");
-  titleField.setAttribute("id","title-field");
+  const titleField = createElement({
+    type: "input",
+    id: "title-field",
+    attr: "type,text;placeholder,To Do Item",
+  }) as HTMLInputElement;
   titleField.value = title;
-  titleField.setAttribute("placeholder","To Do Item");
   return titleField;
 }
 
-function createFormButtons(id: number): HTMLDivElement {
-  const container = document.createElement("div");
-  container.classList.add("status-button-div");
-  const save = document.createElement("button");
-  save.setAttribute("type","submit");
-  save.classList.add("save-button","status-button");
+function createFormButtons(id: number) {
+  const container = createElement({ 
+    type: "div", 
+    classes: "status-button-div" 
+  });
+
+  const save = createElement({
+    type: "button",
+    attr: "type,submit",
+    classes: "save-button status-button",
+  });
   save.addEventListener("click", () => pushSaveButton(id));
-  const cancel = document.createElement("button");
-  cancel.setAttribute("type","cancel");
-  cancel.classList.add("trash-button","status-button");
+
+  const cancel = createElement({
+    type: "button",
+    classes: "trash-button status-button",
+    attr: "type,cancel"
+  });
   cancel.addEventListener("click", () => pushCancelButton());
   container.append(save,cancel);
   return container; 
@@ -52,47 +64,60 @@ function pushCancelButton() {
   updateDisplay();
 }
 
-function createDueDateSelector(duedate?: string): HTMLDivElement {
-  const container = document.createElement("div");
-  container.classList.add("due-date-div");
-  const date = document.createElement("input");
-  const label = document.createElement("label");
-  label.setAttribute("for","due-date");
-  label.textContent = "Due by ";
-  date.setAttribute("type","date");
-  date.setAttribute("id","due-date");
+function createDueDateSelector(duedate?: string) {
+  const container = createElement({
+    type: "div",
+    classes: "due-date-div"
+  })
+
+  const label = createElement({
+    type: "label",
+    attr: "for,due-date",
+    text: "Due by "
+  });
+
+  const date = createElement({
+    type: "input",
+    id: "due-date",
+    attr: "type,date"
+  }) as HTMLInputElement;
+  
   if (duedate) date.value = duedate;
   container.append(label,date);
   return container;
 }
 
-function createNotesField(notes?: string): HTMLDivElement {
-  const container = document.createElement("div");
-  container.classList.add("notes-div");
+function createNotesField(notes?: string) {
+  const container = createElement({ type: "div", classes: "notes-div" });
+  
+  const head = createElement({
+    type: "label",
+    classes: "notes-head",
+    attr: "for,notes-field",
+    text: "Notes"
+  })
 
-  const head = document.createElement("p");
-  head.classList.add("notes-head");
-  head.textContent = "Notes";
-
-  const body = document.createElement("textarea");
-  body.classList.add("notes");
-  body.setAttribute("id","notes");
-  if (notes == undefined) {
-    body.placeholder = "add notes here";
-  } else { 
+  const body = createElement({
+    type: "textarea",
+    id: "notes-field",
+    classes: "notes"
+  }) as HTMLTextAreaElement;
+  
+  notes == undefined ? 
+    body.placeholder = "add notes here" :
     body.value = notes;
-  }
 
   container.append(head,body);
   return container;
 }
 
-function createTimestamp(timestamp?: number): HTMLDivElement {
-  const container = document.createElement("div");
-  container.classList.add("timestamp");
+function createTimestamp(timestamp?: number) {
   if (!timestamp) { timestamp = Date.now(); }
-  container.textContent = `Created ${formatDistanceToNow(timestamp)} ago`;
-  return container;
+  return createElement({
+    type: "div",
+    classes: "timestamp",
+    text: `Created ${formatDistanceToNow(timestamp)} ago`
+  });
 }
 
 function newToDoFromCard(id: number) {
@@ -100,9 +125,7 @@ function newToDoFromCard(id: number) {
   let title = document.querySelector<HTMLInputElement>("#title-field")?.value || "";
 
   let dueDate = document.querySelector<HTMLInputElement>("#due-date")?.value || undefined;
-  dueDate
-  console.log(dueDate);
-
+  
   let notes = document.querySelector<HTMLTextAreaElement>("#notes")?.value || "";
 
   let priority =

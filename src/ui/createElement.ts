@@ -2,7 +2,7 @@ interface customElement {
   type: string;
   id?: string;
   classes?: string; // "class1 class2"
-  attr?: string; // "att1,target att2,false"
+  attr?: string; // "att1,target;att2,false"
   text?: string;
 }
 
@@ -14,7 +14,7 @@ export function createElement(el: customElement) {
   }
   if (el.id) element.setAttribute("id", el.id);
   if (el.attr) {
-    const ats = el.attr.split(" ");
+    const ats = el.attr.split(";");
     for (let at of ats) {
       const a = at.split(",");
       element.setAttribute(a[0], a[1]);
