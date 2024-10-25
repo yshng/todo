@@ -1,7 +1,7 @@
 import storageAvailable from "storage-available";
 import { Project } from "./project";
 import { ToDo } from "./todo";
-import { updateDisplay } from "..";
+import { updateDisplay } from "../ui/update-display";
 
 if (storageAvailable("localStorage")) {
 } else {

@@ -1,6 +1,6 @@
 import { getToDos, setTypedItem } from "./storage";
 import { Status } from "./status";
-import { updateDisplay } from "..";
+import { updateDisplay } from "../ui/update-display";
 import { addToEditBuffer } from "./editBuffer";
 
 export interface ToDo {

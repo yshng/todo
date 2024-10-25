@@ -1,4 +1,4 @@
-import { updateDisplay } from "..";
+import { updateDisplay } from "../ui/update-display";
 import { getProjects, setTypedItem, getToDos } from "./storage";
 import { ToDo } from "./todo";
 

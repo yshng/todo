@@ -6,7 +6,7 @@ import { createRow } from "../ui/card";
 import { formatDistanceToNow } from "date-fns";
 import { selectToDo } from "../model/todo";
 import { clearEditBuffer } from "../model/editBuffer";
-import { updateDisplay } from "..";
+import { updateDisplay } from "../ui/update-display";
 import { createElement } from "./createElement";
 
 export function editCard(todo: ToDo) {
@@ -125,7 +125,7 @@ function newToDoFromCard(id: number) {
   let title = document.querySelector<HTMLInputElement>("#title-field")?.value || "";
 
   let dueDate = document.querySelector<HTMLInputElement>("#due-date")?.value || undefined;
-  
+
   let notes = document.querySelector<HTMLTextAreaElement>("#notes")?.value || "";
 
   let priority =

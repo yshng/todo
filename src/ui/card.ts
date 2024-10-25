@@ -12,7 +12,7 @@ import {
 import { trashButton, editButton } from "./edit-trash-buttons";
 import { createTimescale } from "./timescale";
 import { getProjects } from "../model/storage";
-import { getElementByID } from "..";
+import { getElementByID } from "./util";
 import { createElement } from "./createElement";
 
 export function createCard(item: ToDo) {

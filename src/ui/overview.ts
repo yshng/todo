@@ -2,7 +2,7 @@ import { createElement } from "./createElement";
 import { getProjects, getToDos } from "../model/storage";
 import { selectProject } from "../model/project";
 import { selectToDo } from "../model/todo";
-import { updateDisplay } from "..";
+import { updateDisplay } from "../ui/update-display";
 
 function enableOverviewButton() {
   const overviewButton = document.querySelector("#overview-button");

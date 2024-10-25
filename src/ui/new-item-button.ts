@@ -1,5 +1,5 @@
 import { addEmptyToDo } from "../model/todo";
-import { updateDisplay } from "..";
+import { updateDisplay } from "../ui/update-display";
 import { addToEditBuffer } from "../model/editBuffer";
 
 export function makeNewItemButton(element: HTMLButtonElement) {
