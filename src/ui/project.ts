@@ -113,12 +113,33 @@ button?.addEventListener("click", () => makeProjectInput());
 
 function makeProjectInput() {
   const projectDiv = document.querySelector("#projects");
-  const form = document.createElement("form");
-  const input = document.createElement("input");
-  const button = document.createElement("button");
-  button.setAttribute("type","submit");
-  form.addEventListener( "submit", () => {addProject(input.value)});
-  form.append(input,button);
+  const form = createElement({
+    type: "form",
+    id: "new-project-form"
+  });
+  const input = createElement({
+    type: "input",
+    attr: "type,text",
+    id: "new-project-input"
+  }) as HTMLInputElement;
+  const submit = createElement({
+    type: "button",
+    classes: "new-project-button",
+    attr: "type,submit",
+    text: "Save"
+  })
+  const cancel = createElement({
+    type: "button",
+    classes: "new-project-button",
+    attr: "type,button",
+    text: "Cancel"
+  })
+  form.addEventListener( "submit", (e) => {
+    e.preventDefault();
+    addProject(input.value)
+  });
+  form.append(input,submit,cancel);
+  cancel.addEventListener("click", () => form.remove());
   projectDiv?.append(form);
   input.focus();
 }

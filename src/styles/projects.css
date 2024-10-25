@@ -8,9 +8,13 @@
   padding-bottom: 10em;
   padding-left: 20px;
   scroll-snap-type: y proximity;
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 #projects h1 {
+  margin-bottom: .5rem;
+  line-height: 1;
   display: flex;
   flex-flow: row nowrap;
   align-items: start;
@@ -30,7 +34,6 @@
 .project-badge {
   font-size: 1rem;
   margin-right: 1rem;
-  line-height: 1.25;
   background-color: var(--low-contrast);
   flex: 0 0 2rem;
   aspect-ratio: 1 / 1;
@@ -39,7 +42,7 @@
   align-items: center;
   justify-content: center;
   color: var(--bg-color);
-  transform: translateY(.5em);
+  transform: translateY(.3em);
 }
 
 .current-project {
@@ -58,17 +61,28 @@
   background-color: var(--bg-dark);
 }
 
-#projects input {
+#new-project-form {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+#new-project-form > input#new-project-input {
+  width: 100%;
   font-size: 2rem;
   font-weight: 700;
   outline: none;
   border: none;
-  background-color: var(--low-contrast);
   padding: 5px;
+  background-color: var(--low-contrast);
   color: var(--bg-darker);
-  width: 100%;
 }
 
-#projects form button {
-  visibility: hidden;
+.new-project-button {
+  background-color: var(--bg-color);
+  flex: 0 0 fit-content;
+  font-weight: 600;
+  color: var(--bg-darker);
+  border: none;
 }
