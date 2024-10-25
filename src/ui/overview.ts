@@ -52,9 +52,11 @@ export function populateOverview() {
       });
       if (todo.status == "done") {
         link.style.textDecoration = "line-through";
+        li.append(link);
+      } else {
+        li.append(link,span);
       }
       link.addEventListener("click", () => selectToDo(todo.created));
-      li.append(link, span);
       list.appendChild(li);
     }
     container.appendChild(list);
