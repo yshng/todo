@@ -35,7 +35,7 @@ export function populateContent() {
     });
   } else if (current == -1) {
     message.textContent = "You have no pending tasks.";
-    message.appendChild(contentItemButton("Add a task"));
+    message.appendChild(contentItemButton("Get started with a new task"));
   } else if (current == -2) {
     message.textContent = "You have deleted all your completed tasks."
     message.appendChild(contentItemButton("Add a new task"));
