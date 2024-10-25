@@ -13,24 +13,35 @@ export function editCard(todo: ToDo) {
   const card = createElement({
     type: "form",
     classes: "todo editing",
-    attr: "autocomplete,off"
+    attr: "autocomplete,off;novalidate,novalidate"
   });
+  card.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (validateForm()) { pushSaveButton(todo.created) }});
   card.append(
-    createRow(createTitleField(todo.title), createFormButtons(todo.created)),
+    createRow(createTitleField(todo.title)),
     createProjectDropdown(todo.projectID),
     createDueDateSelector(todo.dueDate),
     createPriorityDropdown(todo.priority),
     createTimescaleDropdown(todo.timescale),
     createNotesField(todo.notes),
-    createTimestamp(todo.created))
+    createLastRow(createTimestamp(todo.created),createFormButtons(todo.created)))
   return card;
+
+}
+
+function createLastRow(...elements: HTMLElement[]) {
+  const row = createRow(...elements);
+  row.classList.add("last-row");
+  return row;
 }
 
 function createTitleField(title: string): HTMLInputElement {
   const titleField = createElement({
     type: "input",
     id: "title-field",
-    attr: "type,text;placeholder,To Do Item",
+    classes: "title",
+    attr: "type,text;placeholder,To Do Item;required,required",
   }) as HTMLInputElement;
   titleField.value = title;
   return titleField;
@@ -45,14 +56,13 @@ function createFormButtons(id: number) {
   const save = createElement({
     type: "button",
     attr: "type,submit",
-    classes: "save-button status-button",
+    text: "Save"
   });
-  save.addEventListener("click", () => pushSaveButton(id));
 
   const cancel = createElement({
     type: "button",
-    classes: "trash-button status-button",
-    attr: "type,cancel"
+    attr: "type,cancel",
+    text: "Cancel"
   });
   cancel.addEventListener("click", () => pushCancelButton());
   container.append(save,cancel);
@@ -152,11 +162,22 @@ function newToDoFromCard(id: number) {
 }
 
 function pushSaveButton(id: number) {
-  if (getToDoByID(id)) {
-    replaceToDo(id, newToDoFromCard(id));
-  } else {
-    addToDo(newToDoFromCard(id));
-  }
-  clearEditBuffer();
-  selectToDo(id);
+    if (getToDoByID(id)) {
+      replaceToDo(id, newToDoFromCard(id));
+    } else {
+      addToDo(newToDoFromCard(id));
+    }
+    clearEditBuffer();
+    selectToDo(id);
 }
+
+function validateForm() {
+  const titleField = document.querySelector<HTMLInputElement>("#title-field");
+  if (titleField?.validity.valueMissing) {
+    titleField?.setCustomValidity("Please give your task a name.");  
+  } else {
+    titleField?.setCustomValidity("");
+  }
+  return titleField?.reportValidity();
+}
+  
