@@ -85,7 +85,6 @@ function createDueDate(dueDate: string | undefined) {
   const container = createElement({ type: "div", classes: "due-date-div" });
   const date = document.createElement("p");
   if (dueDate) {
-    console.log(dueDate);
     date.textContent =
       "Due by " + formatInTimeZone(dueDate, "UTC", "EEEE, MMMM d, yyyy");
   }
@@ -113,7 +112,7 @@ function createNotes(notes?: string) {
 function createTimestamp(timestamp: number) {
   return createElement({
     type: "div",
-    classes: "timestamp",
+    classes: "timestamp last-row",
     text: `Created ${formatDistance(timestamp, new Date())} ago`,
   });
 }

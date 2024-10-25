@@ -1,4 +1,4 @@
-import { updateDisplay } from "..";
+import { updateDisplay } from "../ui/update-display";
 import { restoreToDos, restoreProjects } from "../model/storage";
 import { createElement } from "./createElement";
 

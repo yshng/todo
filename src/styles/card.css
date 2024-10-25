@@ -70,7 +70,7 @@ input.title {
 
 .title {
   font-weight: 600;
-  flex: 1 0 200px;
+  flex: 2 0 200px;
 }
 
 .status-button-div {
@@ -171,6 +171,9 @@ input.title {
 }
 
 .timestamp {
-  margin-top: auto;
   font-size: .8rem;
+}
+
+.last-row {
+  margin-top: auto;
 }

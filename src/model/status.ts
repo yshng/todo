@@ -1,4 +1,4 @@
-import { updateDisplay } from "..";
+import { updateDisplay } from "../ui/update-display";
 import { getToDoByID, selectToDo, updateToDo } from "./todo";
 
 export type Status = "not yet started" | "started" | "paused" | "done";
