@@ -136,7 +136,7 @@ function newToDoFromCard(id: number) {
 
   let dueDate = document.querySelector<HTMLInputElement>("#due-date")?.value || undefined;
 
-  let notes = document.querySelector<HTMLTextAreaElement>("#notes")?.value || "";
+  let notes = document.querySelector<HTMLTextAreaElement>("#notes-field")?.value
 
   let priority =
     document.querySelector<HTMLSelectElement>("#priority-dropdown")?.selectedIndex || 0;
