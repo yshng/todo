@@ -13,3 +13,15 @@ Not yet implemented features:
 - Sort tasks by priority, due date, etc. 
 - Track how much time you have worked on each task. 
 - Mobile layout...
+
+## Deploying locally
+
+To build and run this locally, just do:
+
+```
+$ git clone git@github.com:yshng/todo.git
+$ cd todo
+$ npm install
+$ npm run build
+$ npm start
+```
